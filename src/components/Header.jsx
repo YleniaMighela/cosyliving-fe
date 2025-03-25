@@ -1,61 +1,56 @@
-// importo il componente dalla libreria di react-router
+
 import { Link } from "react-router-dom"
-// import SearchBar from "./SearchBar";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping, faHeart, faHouse } from '@fortawesome/free-solid-svg-icons'
+
+import FilterSearch from "./FilterSearch"
 
 export default function Header() {
 
     return (
+
+
         <header>
-
-
-
-            <nav className="navbar navbar-expand-lg  sedia " >
-                <h1>CosyLiving</h1>
-                <div className="container-fluid">
-
-                    <li className="nav-item dropdown">
-                        <Link className="nav-link dropdown-toggle" to="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            PRODOTTI
-                        </Link>
-                        <ul className="dropdown-menu">
-                            <li><a className="dropdown-item" href="#">Divani</a></li>
-                            <li><a className="dropdown-item" href="#">Poltrone</a></li>
-                            <li><a className="dropdown-item" href="#">Pouf</a></li>
-                            <li><a className="dropdown-item" href="#">Tavoli</a></li>
-                            <li><a className="dropdown-item" href="#">Tavolini</a></li>
-                            <li><a className="dropdown-item" href="#">Sedie</a></li>
-                            <li><a className="dropdown-item" href="#">Lampade</a></li>
-                            <li><a className="dropdown-item" href="#">Librerie</a></li>
-                        </ul>
-                    </li>
-
-                    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-
-                    {/* sezione promozioni*/}
-                    <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul className="navbar-nav">
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="#">PROMOZIONI</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="#">NUOVI ARRIVI</Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link className="nav-link active" aria-current="page" to="#">CLIENTI CONTENTI</Link>
-                            </li>
-
-                        </ul>
+            <div className="navba">
+                <Link to="/">
+                    <h1 className="title">CosyLiving
+                        <FontAwesomeIcon icon={faHouse} />
+                    </h1>
+                </Link>
+                {/* sezione navbar */}
+                <div className="dropdown">
+                    <button>CATEGORIE ▼</button>
+                    <div className="dropdown-content">
+                        <Link to="#">Divani</Link>
+                        <Link to="#">Poltrone</Link>
+                        <Link to="#">Pouf</Link>
+                        <Link to="#">Tavolini</Link>
+                        <Link to="#">Sedie</Link>
+                        <Link to="#">Lampade</Link>
+                        <Link to="#">Librerie</Link>
                     </div>
                 </div>
-            </nav>
+            </div>
+
+            {/* sezione search */}
+            <FilterSearch />
+
+            {/* sezione icone */}
+            <div className="icons_header">
+                <Link to="#">
+                    <FontAwesomeIcon icon={faCartShopping} size="2x" className="cart-icon" />
+                </Link>
+                <Link to="#">
+                    <FontAwesomeIcon icon={faHeart} size="2x" className="heart-icon" />
+                </Link>
+            </div>
+
 
 
 
         </header >
+
     );
 
 
