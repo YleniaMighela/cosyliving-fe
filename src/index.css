@@ -112,17 +112,31 @@ header {
 
 
 
-
-
-
-
 main {
     /* background-color: rgb(231, 231, 105); */
     width: 100%;
     height: 100%;
 }
 
-footer {
+/* RECENSIONI */
+.container_review {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.containersingle_review {
+    width: 20%;
+    padding: 20px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* footer {
     background-color: rgb(49, 190, 49);
     height: 70px;
-}
+} */
