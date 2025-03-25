@@ -1,9 +1,10 @@
-// importo il componente dallLinklibreriLinkdi react-router
-import { Link } from "react-router-dom"
-// import SearchBar from "./SearchBar";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCartShopping, faHeart } from '@fortawesome/free-solid-svg-icons'
 
+import { Link } from "react-router-dom"
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCartShopping, faHeart, faHouse } from '@fortawesome/free-solid-svg-icons'
+
+import FilterSearch from "./FilterSearch"
 
 export default function Header() {
 
@@ -12,7 +13,12 @@ export default function Header() {
 
         <header>
             <div className="navba">
-                <Link to="/"><h1 className="title">CosyLiving</h1></Link>
+                <Link to="/">
+                    <h1 className="title">CosyLiving
+                        <FontAwesomeIcon icon={faHouse} />
+                    </h1>
+                </Link>
+                {/* sezione navbar */}
                 <div className="dropdown">
                     <button>CATEGORIE ▼</button>
                     <div className="dropdown-content">
@@ -25,14 +31,21 @@ export default function Header() {
                         <Link to="#">Librerie</Link>
                     </div>
                 </div>
-                {/* sezione icone */}
-                <div className="icons_header">
-                    <FontAwesomeIcon icon={faCartShopping} size="2x" className="cart-icon" />
-                    <FontAwesomeIcon icon={faHeart} size="2x" className="heart-icon" />
-                </div>
             </div>
 
-            {/* sezione ricerca */}
+            {/* sezione search */}
+            <FilterSearch />
+
+            {/* sezione icone */}
+            <div className="icons_header">
+                <Link to="#">
+                    <FontAwesomeIcon icon={faCartShopping} size="2x" className="cart-icon" />
+                </Link>
+                <Link to="#">
+                    <FontAwesomeIcon icon={faHeart} size="2x" className="heart-icon" />
+                </Link>
+            </div>
+
 
 
 

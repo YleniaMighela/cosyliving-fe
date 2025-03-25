@@ -3,9 +3,19 @@ export default function HomePage() {
 
     return (
         <div >
+
             {/* ricerca componente FilterSearch */}
 
+
+            {/* sezione ricerca */}
+
+
+
             {/* hero compononenteCardhero */}
+            <div >
+
+            </div>
+
 
             {/* ultimi arrivi componente CardProducts */}
 
