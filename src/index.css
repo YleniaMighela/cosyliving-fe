@@ -122,7 +122,24 @@ main {
     height: 100%;
 }
 
+
+/* FOOTER */
+
 footer {
-    background-color: rgb(49, 190, 49);
+    background-color: rgba(159, 159, 159, 0.753);
     height: 70px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+}
+
+
+
+.footer-left,
+.footer-right {
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }
