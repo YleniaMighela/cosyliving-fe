@@ -155,6 +155,47 @@ footer {
     flex-direction: column;
 }
 
+/* sezione ultimi arrivi */
+.container_imgArrivi {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin: 4%;
+    z-index: 35;
+    position: relative;
+
+    /* width: 100%; */
+}
+
+.img_arrivi {
+    margin-top: 15%;
+    width: 90%;
+
+    border-radius: 20%;
+
+}
+
+/* Sfalsamento alternato */
+.img_arrivi:nth-child(odd) {
+    transform: translateY(25px);
+}
+
+.img_arrivi:nth-child(even) {
+    transform: translateY(-15px);
+}
+
+h4 {
+    position: absolute;
+    top: 20%;
+    left: 45%;
+    background-color: rgba(0, 0, 0, 0.445);
+    color: rgb(247, 242, 242);
+    font-size: 50px;
+}
+
+
+
 
 
 /* sezione specialprice */

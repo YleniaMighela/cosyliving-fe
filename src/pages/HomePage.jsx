@@ -1,6 +1,8 @@
 import ReviewSize from "../components/ReviewSize";
 import SpecialPrice from "../components/SpecialPrice"
 import CardTips from "../components/CardTips";
+import CardProducts from "../components/CardProducts";
+
 
 export default function HomePage() {
 
@@ -21,6 +23,7 @@ export default function HomePage() {
 
 
                 {/* ultimi arrivi componente CardProducts */}
+                <CardProducts />
 
                 {/* promozioni componente SpecialPrice (solo quelli scontati) */}
                 <SpecialPrice />
