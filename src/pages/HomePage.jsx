@@ -1,4 +1,5 @@
 import ReviewSize from "../components/ReviewSize";
+import CardTips from "../components/CardTips";
 
 export default function HomePage() {
 
@@ -8,10 +9,7 @@ export default function HomePage() {
 
             <div >
 
-                {/* ricerca componente FilterSearch */}
 
-
-                {/* sezione ricerca */}
 
 
 
@@ -26,6 +24,7 @@ export default function HomePage() {
                 {/* promozioni componente CardProducts (solo quelli scontati) */}
 
                 {/* descrizione sui materiale ecc componente CardTips */}
+                <CardTips />
 
                 {/* recensioni ReviewSize */}
                 <ReviewSize />
