@@ -125,8 +125,8 @@ footer {
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
-    position: fixed;
-    bottom: 0;
+    /* position: fixed;
+    bottom: 0; */
     width: 100%;
 }
 
@@ -237,7 +237,7 @@ h3 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-left: 9%;
+    padding-left: 9%;
     width: 100%;
 }
 

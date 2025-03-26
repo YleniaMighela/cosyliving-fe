@@ -7,35 +7,32 @@ import CardProducts from "../components/CardProducts";
 export default function HomePage() {
 
     return (
-        <main>
-
-
-            <div >
 
 
 
+        <div >
 
 
-                {/* hero compononenteCardhero */}
-                <div >
-
-                </div>
 
 
-                {/* ultimi arrivi componente CardProducts */}
-                <CardProducts />
 
-                {/* promozioni componente SpecialPrice (solo quelli scontati) */}
-                <SpecialPrice />
+            {/* hero compononenteCardhero */}
 
-                {/* descrizione sui materiale ecc componente CardTips */}
-                <CardTips />
 
-                {/* recensioni ReviewSize */}
-                <ReviewSize />
+            {/* ultimi arrivi componente CardProducts */}
+            <CardProducts />
 
-            </div>
-        </main>
+            {/* promozioni componente SpecialPrice (solo quelli scontati) */}
+            <SpecialPrice />
+
+            {/* descrizione sui materiale ecc componente CardTips */}
+            <CardTips />
+
+            {/* recensioni ReviewSize */}
+            <ReviewSize />
+
+        </div>
+
     );
 }
 
