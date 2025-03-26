@@ -1,7 +1,10 @@
-import DefaultLayout from "./layout/DefaultLayout";
-import HomePage from "./pages/HomePage"
 import { BrowserRouter, Route, Routes, } from "react-router-dom";
 import GlobalContext from "./context/GlobalContext.jsx";
+import DefaultLayout from "./layout/DefaultLayout";
+// page
+import NotFound from "./pages/NotFound"
+import HomePage from "./pages/HomePage"
+
 function App() {
 
 
@@ -13,6 +16,7 @@ function App() {
           <Routes>
             <Route element={<DefaultLayout />} >
               <Route path="/" element={<HomePage />} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>
