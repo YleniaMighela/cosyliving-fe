@@ -1,10 +1,7 @@
 import ReviewSize from "../components/ReviewSize";
-<<<<<<< HEAD
 import SpecialPrice from "../components/SpecialPrice"
-=======
 import CardTips from "../components/CardTips";
 
->>>>>>> 48dfd7fe7c8ca7656fa92a6838577e55262bc497
 export default function HomePage() {
 
     return (
@@ -13,13 +10,10 @@ export default function HomePage() {
 
             <div >
 
-<<<<<<< HEAD
-=======
 
 
 
 
->>>>>>> 48dfd7fe7c8ca7656fa92a6838577e55262bc497
                 {/* hero compononenteCardhero */}
                 <div >
 
