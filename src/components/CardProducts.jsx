@@ -6,15 +6,17 @@ export default function UltimiArrivi() {
 
     return (
         <>
-            <Link to="/"><h4>Ultimi Arrivi</h4></Link>
+
 
             <div className="container_imgArrivi">
+                <Link to="/"><h4 className="title_arrivi" >Ultimi Arrivi</h4></Link>
 
                 <img className="img_arrivi" src="../img/sedia.jpg" alt="" />
                 <img className="img_arrivi" src="../img/tavolini.jpg" alt="" />
                 <img className="img_arrivi" src="../img/poltrona.jpg" alt="" />
                 <img className="img_arrivi" src="../img/divano.jpg" alt="" />
                 <img className="img_arrivi" src="../img/libreria.jpg" alt="" />
+
 
 
 
