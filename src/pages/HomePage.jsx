@@ -5,6 +5,7 @@ import CardProducts from "../components/CardProducts";
 
 
 import CardHero from "../components/CardHero";
+import UltimiArrivi from "../components/CardProducts";
 export default function HomePage() {
 
     return (
@@ -25,7 +26,7 @@ export default function HomePage() {
 
 
             {/* ultimi arrivi componente CardProducts */}
-            <CardProducts />
+            <UltimiArrivi />
 
             {/* promozioni componente SpecialPrice (solo quelli scontati) */}
             <SpecialPrice />
