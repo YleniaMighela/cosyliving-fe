@@ -1,5 +1,5 @@
 import ReviewSize from "../components/ReviewSize";
-
+import SpecialPrice from "../components/SpecialPrice"
 export default function HomePage() {
 
     return (
@@ -7,13 +7,6 @@ export default function HomePage() {
 
 
             <div >
-
-                {/* ricerca componente FilterSearch */}
-
-
-                {/* sezione ricerca */}
-
-
 
                 {/* hero compononenteCardhero */}
                 <div >
@@ -23,7 +16,8 @@ export default function HomePage() {
 
                 {/* ultimi arrivi componente CardProducts */}
 
-                {/* promozioni componente CardProducts (solo quelli scontati) */}
+                {/* promozioni componente SpecialPrice (solo quelli scontati) */}
+                <SpecialPrice />
 
                 {/* descrizione sui materiale ecc componente CardTips */}
 

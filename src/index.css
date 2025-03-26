@@ -158,7 +158,31 @@ footer {
     flex-direction: column;
 }
 
-/* footer {
-    background-color: rgb(49, 190, 49);
-    height: 70px;
-} */
+
+/* sezione specialprice */
+.container_imgprice {
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+    width: 70%;
+    position: relative;
+
+
+
+}
+
+#special {
+    width: 30%;
+    border-radius: 30%;
+    margin-left: 20%;
+
+}
+
+h3 {
+    position: absolute;
+    top: 40%;
+    right: 29%;
+    background-color: rgba(0, 0, 0, 0.445);
+    color: rgb(247, 242, 242);
+    font-size: 50px;
+}
