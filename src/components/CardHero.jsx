@@ -5,6 +5,7 @@ import React, { useState } from "react";
 
 const images = [
     "/divani-componibili.jpg",
+    "/tips-img.webp",
     "/tips-img.webp"
 
 ];
@@ -13,7 +14,13 @@ const CardHero = () => {
     const [index, setIndex] = useState(0);
 
     const moveTo = (i) => {
-        setIndex(i);
+        if (i >= images.length) {
+            setIndex(0); // Torna all'inizio se è oltre il limite
+        } else if (i < 0) {
+            setIndex(images.length - 1); // Torna all'ultima immagine
+        } else {
+            setIndex(i);
+        }
     };
 
     return (
@@ -23,6 +30,7 @@ const CardHero = () => {
                     <img key={i} src={src} alt={`Slide ${i + 1}`} />
                 ))}
             </div>
+
             <div className="navigation">
                 {images.map((_, i) => (
                     <button key={i} className={index === i ? "active" : ""} onClick={() => moveTo(i)}></button>
