@@ -125,6 +125,9 @@ footer {
     justify-content: space-between;
     align-items: center;
     font-size: 14px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 
@@ -265,5 +268,28 @@ h3 {
 
 .img-tips {
     width: 75%;
+
+}
+
+.container_notFound {
+    text-align: center;
+    padding: 50px;
+    font-size: 30px;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#button_notfound {
+    font-size: 25px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-left: 45%;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
 
 }
