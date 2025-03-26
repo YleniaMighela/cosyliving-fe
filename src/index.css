@@ -277,7 +277,7 @@ h3 {
 
 }
 
-<<<<<<< HEAD .container_notFound {
+.container_notFound {
     text-align: center;
     padding: 50px;
     font-size: 30px;
@@ -297,47 +297,46 @@ h3 {
     border: none;
     cursor: pointer;
     border-radius: 5px;
+}
 
-    =======
+/* CAROSELLO */
+.carousel-container {
+    width: 100%;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    padding: 2%;
+}
 
-    /* CAROSELLO */
-    .carousel-container {
-        width: 100%;
-        margin: auto;
-        overflow: hidden;
-        position: relative;
-        padding: 2%;
-    }
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
 
-    .carousel {
-        display: flex;
-        transition: transform 0.5s ease-in-out;
-    }
+.carousel img {
+    width: 100%;
+    height: 50vh;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+}
 
-    .carousel img {
-        width: 100%;
-        height: 50vh;
-        object-fit: cover;
-        border-radius: 10px;
-        flex-shrink: 0;
-    }
+.navigation {
+    text-align: center;
+    margin-top: 10px;
+}
 
-    .navigation {
-        text-align: center;
-        margin-top: 10px;
-    }
+.navigation button {
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    background-color: #ddd;
+    border-radius: 50%;
+}
 
-    .navigation button {
-        cursor: pointer;
-        padding: 10px;
-        margin: 5px;
-        border: none;
-        background-color: #ddd;
-        border-radius: 50%;
-    }
+.navigation button.active {
+    background-color: #555;
+    color: white;
 
-    .navigation button.active {
-        background-color: #555;
-        color: white;
-        >>>>>>>1bc895f700f7ffa9cd45b40ffd9a9fb85eb3db62
-    }
+}

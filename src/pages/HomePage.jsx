@@ -1,6 +1,9 @@
 import ReviewSize from "../components/ReviewSize";
 import SpecialPrice from "../components/SpecialPrice"
 import CardTips from "../components/CardTips";
+import CardProducts from "../components/CardProducts";
+
+
 import CardHero from "../components/CardHero";
 export default function HomePage() {
 
@@ -14,6 +17,7 @@ export default function HomePage() {
 
 
 
+            {/* hero compononenteCardhero */}
             {/* hero compononenteCardhero */}
             <div >
                 <CardHero />
