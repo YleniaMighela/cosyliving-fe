@@ -226,3 +226,40 @@ h3 {
     width: 75%;
 
 }
+
+/* CAROSELLO */
+.carousel-container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.navigation {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.navigation button {
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    background-color: #ddd;
+    border-radius: 50%;
+}
+
+.navigation button.active {
+    background-color: #555;
+    color: white;
+}
