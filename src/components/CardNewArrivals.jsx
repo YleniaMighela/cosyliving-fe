@@ -42,9 +42,8 @@ export default function UltimiArrivi() {
                             src={arrivo.img_cover}
                             alt={arrivo.name}
                         />
-                        <p>{arrivo.description}</p>
                     </div>
-                ))};
+                ))}
             </div>
         </>
 
