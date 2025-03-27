@@ -11,7 +11,7 @@ export default function UltimiArrivi() {
 
             .then((res) => {
                 setNewArrivals(res.data);
-                // console.log(res.data);
+                console.log(res.data);
 
 
             })
