@@ -102,13 +102,13 @@ export default function FormCliente() {
     function sendEmail(e) {
         e.preventDefault();
         // email conferma ordine al cliente
-        emailjs.sendForm('service_3d3jrkm', 'template_yfwhf7f', e.target, 'YwWXI2IpotKYzl-pl')
+        emailjs.sendForm('service_z4wn6ts', 'template_yfwhf7f', e.target, 'YwWXI2IpotKYzl-pl')
             .then((result) => {
             }, (error) => {
                 console.log(error.text);
             });
         // email conferma ordine al sitp
-        emailjs.sendForm('service_3d3jrkm', 'template_792darg', e.target, 'YwWXI2IpotKYzl-pl')
+        emailjs.sendForm('service_z4wn6ts', 'template_792darg', e.target, 'YwWXI2IpotKYzl-pl')
             .then((result) => {
             }, (error) => {
                 console.log(error.text);
