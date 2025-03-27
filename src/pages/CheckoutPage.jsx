@@ -106,6 +106,11 @@ export default function FormCliente() {
             }, (error) => {
                 console.log(error.text);
             });
+        emailjs.sendForm('service_3d3jrkm', 'template_792darg', e.target, 'YwWXI2IpotKYzl-pl')
+            .then((result) => {
+            }, (error) => {
+                console.log(error.text);
+            });
     }
 
     function handleSubmit(e) {
