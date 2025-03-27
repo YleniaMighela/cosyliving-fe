@@ -1,4 +1,4 @@
-
+import emailjs from 'emailjs-com';
 import { useState, useEffect } from "react";
 
 const initialPersonalData = {
@@ -19,9 +19,9 @@ const initialBillingData = {
 };
 
 export default function FormCliente() {
-    console.log(localStorage);
+    // console.log(localStorage);
 
-    // localStorage.clear();
+    localStorage.clear();
     const [personalData, setPersonalData] = useState(initialPersonalData);
     const [billingData, setBillingData] = useState(initialBillingData);
     const [clients, setClients] = useState([]);
@@ -72,10 +72,10 @@ export default function FormCliente() {
             (c) => c.email === personalData.email || c.codiceFiscale === personalData.codiceFiscale
         );
 
-        if (exists) {
-            alert("Email o Codice Fiscale già esistente!");
-            return;
-        }
+        // if (exists) {
+        //     alert("Email o Codice Fiscale già esistente!");
+        //     return;
+        // }
 
         const newClient = {
             id: clients.length === 0 ? 1 : clients[clients.length - 1].id + 1,
@@ -99,7 +99,26 @@ export default function FormCliente() {
         setBillingData(initialBillingData);
     }
 
+    function sendEmail(e) {
+        e.preventDefault();
+        emailjs.sendForm('service_3d3jrkm', 'template_yfwhf7f', e.target, 'YwWXI2IpotKYzl-pl')
+            .then((result) => {
+            }, (error) => {
+                console.log(error.text);
+            });
+        emailjs.sendForm('service_3d3jrkm', 'template_792darg', e.target, 'YwWXI2IpotKYzl-pl')
+            .then((result) => {
+            }, (error) => {
+                console.log(error.text);
+            });
+    }
 
+    function handleSubmit(e) {
+        e.preventDefault();
+
+        sendEmail(e);
+        handlePersonalSubmit(e);
+    }
 
 
     return (
@@ -108,37 +127,37 @@ export default function FormCliente() {
                 {/* Form Dati Personali */}
                 <h2>Inserisci Dati Personali</h2>
 
-                <form className="form_personali" onSubmit={handlePersonalSubmit}>
+                <form className="form_personali" onSubmit={handleSubmit}>
                     <div>
                         <label>Nome</label>
-                        <input type="text" name="nome" value={personalData.nome} onChange={handlePersonalData} required />
+                        <input type="text" name="nome" value={personalData.nome} onChange={handlePersonalData} />
                     </div>
                     <div>
                         <label>Cognome</label>
-                        <input type="text" name="cognome" value={personalData.cognome} onChange={handlePersonalData} required />
+                        <input type="text" name="cognome" value={personalData.cognome} onChange={handlePersonalData} />
                     </div>
                     <div>
                         <label>Email</label>
-                        <input type="email" name="email" value={personalData.email} onChange={handlePersonalData} required />
+                        <input type="email" name="email" value={personalData.email} onChange={handlePersonalData} />
                     </div>
                     <div>
                         <label>Numero Telefonico</label>
-                        <input type="tel" name="numeroTelefonico" value={personalData.numeroTelefonico} onChange={handlePersonalData} required />
+                        <input type="tel" name="numeroTelefonico" value={personalData.numeroTelefonico} onChange={handlePersonalData} />
                     </div>
                     <div>
                         <label>Codice Fiscale</label>
-                        <input type="text" name="codiceFiscale" value={personalData.codiceFiscale} onChange={handlePersonalData} required />
+                        <input type="text" name="codiceFiscale" value={personalData.codiceFiscale} onChange={handlePersonalData} />
                     </div>
                     <div>
                         <label>Città</label>
-                        <input type="text" name="city" value={personalData.city} onChange={handlePersonalData} required />
+                        <input type="text" name="city" value={personalData.city} onChange={handlePersonalData} />
                     </div>
                     <div>
                         <label>Via</label>
-                        <input type="text" name="via" value={personalData.via} onChange={handlePersonalData} required />
+                        <input type="text" name="via" value={personalData.via} onChange={handlePersonalData} />
                     </div>
                     <div>
-                        <button type="submit">Invia dati</button>
+                        <button type="submit" >Invia dati</button>
                     </div>
                 </form>
             </section>
