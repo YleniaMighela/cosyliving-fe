@@ -7,6 +7,7 @@ import Form from "./components/Form";
 import NotFound from "./pages/NotFound"
 import HomePage from "./pages/HomePage"
 import MailForm from "./pages/OrdersPage.jsx";
+
 function App() {
 
 
@@ -20,7 +21,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/404" element={<NotFound />} />
               <Route path="/form" element={<Form />} />
-              <Route path="/mail" element={<MailForm />}></Route>
+              <Route path="/mail" element={<MailForm />} />
             </Route>
           </Routes>
         </BrowserRouter>
