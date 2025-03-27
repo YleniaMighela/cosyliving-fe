@@ -4,8 +4,12 @@ import DefaultLayout from "./layout/DefaultLayout";
 // componenti
 import Form from "./components/Form";
 // pages
+
+
+// page
 import NotFound from "./pages/NotFound"
 import HomePage from "./pages/HomePage"
+import DetailProduct from "./pages/DetailProduct"
 
 
 function App() {
@@ -22,6 +26,7 @@ function App() {
               <Route path="/404" element={<NotFound />} />
               <Route path="/form" element={<Form />} />
 
+              <Route path="/detail/:slug" element={<DetailProduct />} />
             </Route>
           </Routes>
         </BrowserRouter>
