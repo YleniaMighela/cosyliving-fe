@@ -1,6 +1,7 @@
 // import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram, faFacebook, faWhatsapp } from "@fortawesome/free-brands-svg-icons"
+import { Link } from 'react-router-dom'
 
 
 export default function Footer() {
@@ -16,9 +17,15 @@ export default function Footer() {
             </div>
             <div className="footer-right">
                 <span>Seguici anche su</span>
-                <span><FontAwesomeIcon icon={faInstagram} size="2x" color="#E1306C" /></span>
-                <span><FontAwesomeIcon icon={faFacebook} size="2x" color="#1877F2" /></span>
-                <span><FontAwesomeIcon icon={faWhatsapp} size="2x" color="#25D366" /></span>
+                <Link to="https://www.instagram.com/cosyl.iving/">
+                    <span><FontAwesomeIcon icon={faInstagram} size="2x" color="#E1306C" /></span>
+                </Link>
+                <Link to="https://www.facebook.com/profile.php?id=61574429769322">
+                    <span><FontAwesomeIcon icon={faFacebook} size="2x" color="#1877F2" />
+                    </span></Link>
+                <Link to="">
+                    <span><FontAwesomeIcon icon={faWhatsapp} size="2x" color="#25D366" /></span>
+                </Link>
             </div>
 
 
