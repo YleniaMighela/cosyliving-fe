@@ -26,7 +26,7 @@ function App() {
               <Route path="/404" element={<NotFound />} />
               <Route path="/form" element={<Form />} />
 
-              <Route path="/detail/:slug" element={<DetailProduct />} />
+              <Route path="/product/:slug" element={<DetailProduct />} />
             </Route>
           </Routes>
         </BrowserRouter>

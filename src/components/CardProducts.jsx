@@ -34,12 +34,16 @@ const CardProducts = () => {
     if (!product) return null;
     console.log(product.price);
 
+    const imageUrl = product.img_cover.startsWith("http")
+        ? product.img_cover
+        : `/images/${product.img_cover}`;
+
 
     return (
         <div className="product-detail">
             <div className="product-container">
                 <img
-                    src={`/images/${product.img_cover}`}
+                    src={imageUrl}
                     alt={product.name}
                     className="product-image"
                 />

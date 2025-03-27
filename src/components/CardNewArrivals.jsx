@@ -37,11 +37,13 @@ export default function UltimiArrivi() {
                 {/* Renderizza i nuovi arrivi */}
                 {newArrivals.map((arrivo, index) => (
                     <div key={index}>
-                        <img
-                            className="img_arrivi"
-                            src={arrivo.img_cover}
-                            alt={arrivo.name}
-                        />
+                        <Link to={`/products/${arrivo.slug}`}>
+                            <img
+                                className="img_arrivi"
+                                src={arrivo.img_cover}
+                                alt={arrivo.name}
+                            />
+                        </Link>
                     </div>
                 ))}
             </div>
