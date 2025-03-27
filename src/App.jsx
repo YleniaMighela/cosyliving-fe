@@ -16,7 +16,7 @@ function App() {
           <Routes>
             <Route element={<DefaultLayout />} >
               <Route path="/" element={<HomePage />} />
-              <Route path="*" element={<NotFound />} />
+              <Route path="/404" element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>

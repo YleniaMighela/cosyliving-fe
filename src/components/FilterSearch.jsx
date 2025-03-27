@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 export default function FilterSearch() {
     const location = useLocation(); // Recupera l'URL attuale
 
-    const isHiddenPage = location.pathname.startsWith("*")
+    const isHiddenPage = location.pathname.startsWith("/404")
     // location.pathname.startsWith("/trip") ||
     // location.pathname.startsWith("/addPassengers");
 
