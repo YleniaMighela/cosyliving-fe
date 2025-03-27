@@ -172,7 +172,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px;
-    /* margin: 4%; */
+    margin-left: -15%;
     z-index: 35;
     position: relative;
 
@@ -199,8 +199,8 @@ footer {
 
 h4 {
     position: absolute;
-    top: 20%;
-    left: 45%;
+    bottom: 95%;
+    left: 52%;
     background-color: rgba(0, 0, 0, 0.445);
     color: rgb(247, 242, 242);
     font-size: 50px;
