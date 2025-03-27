@@ -1,11 +1,11 @@
 import ReviewSize from "../components/ReviewSize";
 import SpecialPrice from "../components/SpecialPrice"
 import CardTips from "../components/CardTips";
-import CardProducts from "../components/CardProducts";
+// import CardProducts from "../components/CardProducts";
 
 
 import CardHero from "../components/CardHero";
-import UltimiArrivi from "../components/CardProducts";
+import UltimiArrivi from "../components/CardNewArrivals";
 export default function HomePage() {
 
     return (
@@ -13,12 +13,6 @@ export default function HomePage() {
 
 
         <div >
-
-
-
-
-
-            {/* hero compononenteCardhero */}
             {/* hero compononenteCardhero */}
             <div >
                 <CardHero />
