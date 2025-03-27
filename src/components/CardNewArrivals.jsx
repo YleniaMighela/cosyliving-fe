@@ -1,24 +1,54 @@
 import { Link } from "react-router-dom"
-
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 export default function UltimiArrivi() {
+
+    const [newArrivals, setNewArrivals] = useState([]);
+    //funzione di gestione chiamata verso la rottaSHow
+    function fetchNewArrival() {
+
+        axios.get(`http://localhost:3000/products/new_arrivals`)
+
+            .then((res) => {
+                setNewArrivals(res.data);
+                // console.log(res.data);
+
+
+            })
+
+            .catch(err => {
+                console.log(err);
+                if (err.status === 404) redirect("/404")
+            })
+
+    }
+
+
+    useEffect(fetchNewArrival, []);
 
     return (
         <>
 
-
             <div className="container_imgArrivi">
-                <Link to="/"><h4 className="title_arrivi" >Nuovi Arrivi</h4></Link>
+                <Link to="/">
+                    <h4 className="title_arrivi">Nuovi Arrivi</h4>
+                </Link>
 
-                <img className="img_arrivi" src="../img/sedia.jpg" alt="" />
-                <img className="img_arrivi" src="../img/tavolini.jpg" alt="" />
-                <img className="img_arrivi" src="../img/poltrona.jpg" alt="" />
-                <img className="img_arrivi" src="../img/divano.jpg" alt="" />
-                <img className="img_arrivi" src="../img/libreria.jpg" alt="" />
-
-
-
-
+                {/* Renderizza i nuovi arrivi */}
+                {newArrivals.map((arrivo, index) => (
+                    <div key={index}>
+                        <img
+                            className="img_arrivi"
+                            src={arrivo.img_cover}
+                            alt={arrivo.name}
+                        />
+                        <p>{arrivo.description}</p>
+                    </div>
+                ))};
             </div>
         </>
+
+
+
     );
 }
