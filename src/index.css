@@ -343,3 +343,14 @@ h3 {
     color: white;
 
 }
+
+
+/* form checkout */
+.form_datipersonali {
+    text-align: center;
+}
+
+.form_personali {
+    margin: 20px;
+    padding: 10px;
+}
