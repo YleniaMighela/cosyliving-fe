@@ -7,7 +7,7 @@ import { faCartShopping, faHeart, faHouse } from '@fortawesome/free-solid-svg-ic
 import FilterSearch from "./FilterSearch"
 
 export default function Header() {
-
+    const categories = ["Divani", "Poltrone", "Pouf", "Tavolini", "Sedie", "Lampade", "Librerie"];
     return (
 
 
@@ -22,13 +22,9 @@ export default function Header() {
                 <div className="dropdown">
                     <button>CATEGORIE ▼</button>
                     <div className="dropdown-content">
-                        <Link to="#">Divani</Link>
-                        <Link to="#">Poltrone</Link>
-                        <Link to="#">Pouf</Link>
-                        <Link to="#">Tavolini</Link>
-                        <Link to="#">Sedie</Link>
-                        <Link to="#">Lampade</Link>
-                        <Link to="#">Librerie</Link>
+                        {categories.map((category) => (
+                            <Link key={category} to={`/search/${category}`}>{category}</Link>
+                        ))}
                     </div>
                 </div>
             </div>

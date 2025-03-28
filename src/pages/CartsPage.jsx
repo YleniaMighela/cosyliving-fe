@@ -1,1 +1,0 @@
-// componente CardProducts e struttura con proprietà simili al dettaglio
