@@ -444,11 +444,24 @@ h3 {
 
 
 /* FORM CHECKOUT */
-.form_datipersonali {
+
+.section_ordine {
+    position: relative;
+}
+
+.container_riepilogo {
+    /* border: 1px solid black; */
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    position: absolute;
+    top: 0%;
+    left: 80%
 }
 
 .form_personali {
+
     margin: 20px;
     padding: 10px;
 }
