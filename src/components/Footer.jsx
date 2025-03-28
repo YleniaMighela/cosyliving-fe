@@ -17,13 +17,13 @@ export default function Footer() {
             </div>
             <div className="footer-right">
                 <span>Seguici anche su</span>
-                <Link to="https://www.instagram.com/cosyl.iving/">
+                <Link to="https://www.instagram.com/cosyl.iving/" target='_blank'>
                     <span><FontAwesomeIcon icon={faInstagram} size="2x" color="#E1306C" /></span>
                 </Link>
-                <Link to="https://www.facebook.com/profile.php?id=61574429769322">
+                <Link to="https://www.facebook.com/profile.php?id=61574429769322" target='_blank'>
                     <span><FontAwesomeIcon icon={faFacebook} size="2x" color="#1877F2" />
                     </span></Link>
-                <Link to="">
+                <Link to="" target='_blank'>
                     <span><FontAwesomeIcon icon={faWhatsapp} size="2x" color="#25D366" /></span>
                 </Link>
             </div>
