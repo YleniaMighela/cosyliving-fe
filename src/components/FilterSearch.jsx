@@ -1,21 +1,18 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 // searchproducts
 
 export default function FilterSearch() {
   const location = useLocation(); // Recupera l'URL attuale
-  console.log(location);
+  const navigate = useNavigate();
+
+  const [valueSearch, setValueSearch] = useState("");
+
+  // console.log(location);
   const isHiddenPage = location.pathname.startsWith("/404");
   // location.pathname.startsWith("/trip") ||
   // location.pathname.startsWith("/addPassengers");
-
-  //   useEffect(() => {
-  //     axios
-  //       .get(`http://localhost:3000/products/divano`)
-  //       .then()
-  //       .catch((err) => console.error(err));
-  //   });
 
   return (
     <div className="form_search">
@@ -25,8 +22,14 @@ export default function FilterSearch() {
             className="input_search"
             type="search"
             placeholder="Cerca il tuo prodotto..."
+            value={valueSearch}
+            onChange={(e) => setValueSearch(e.target.value)}
           />
-          <button className="button_search" type="submit">
+          <button
+            className="button_search"
+            type="submit"
+            onClick={() => navigate(`/search/${valueSearch}`)}
+          >
             Cerca
           </button>
         </>
