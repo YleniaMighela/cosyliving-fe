@@ -33,7 +33,7 @@ export default function Header() {
           <button>CATEGORIE ▼</button>
           <div className="dropdown-content">
             {categories.map((category) => (
-              <Link key={category} to={`/search/${category}`}>
+              <Link key={category} to={`/category/${category}`}>
                 {category}
               </Link>
             ))}

@@ -8,7 +8,6 @@ import CardProducts from "../components/CardProducts";
 
 export default function SearchProduct() {
   const params = useParams();
-  // console.log(params);
 
   // State Var that contains the query results
   const [searchRes, setSearchRes] = useState([]);
