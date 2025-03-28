@@ -1,5 +1,6 @@
 // pagina di tutti i prodotti
 // pagina di tutti i prodotti
+import { faInstagramSquare } from "@fortawesome/free-brands-svg-icons/faInstagramSquare";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -62,7 +63,25 @@ const CardProducts = () => {
     };
 
 
+    function StoreProduct() {
+        var Cart = JSON.parse(localStorage.getItem("Cart") || '[]')
+        var Product = {
+            img: imageUrl,
+            name: product.name,
+            price: CalcPrice(Number(product.price), Number(count)),
+            quantity: count
+        }
 
+        Cart.push(Product)
+        // console.log(Cart);
+        localStorage.setItem("Cart", JSON.stringify(Cart))
+        console.log(localStorage);
+    }
+
+    function Call() {
+        // localStorage.clear()
+        StoreProduct()
+    }
 
 
     return (
@@ -93,7 +112,7 @@ const CardProducts = () => {
                             <p>Quantità massima ordinabile</p>
                         }
                     </div>
-                    <button className="add-to-cart">Aggiungi al carrello</button>
+                    <button className="add-to-cart" onClick={Call}>Aggiungi al carrello</button>
                 </div>
             </div>
         </div>
