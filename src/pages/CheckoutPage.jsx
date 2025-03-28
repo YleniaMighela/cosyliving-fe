@@ -49,6 +49,28 @@ export default function FormCliente() {
         localStorage.setItem("billingInfo", JSON.stringify(billingInfo));
     }, [billingInfo]);
 
+
+    // riepilogo ordini dal localstorage
+    useEffect(() => {
+        setOrderProducts(JSON.parse(localStorage.getItem("Cart")) || [])
+    }, [])
+
+    var prezzo_totale = 0
+    for (var i = 0; i < orderProducts.length; i++) {
+        prezzo_totale = prezzo_totale + (orderProducts[i].price * orderProducts[i].quantity)
+    }
+    // orderProducts.map((product) => (
+
+    //                             ))
+
+    function CalcPrice(price, mult) {
+        price = price * mult
+        // console.log(price);
+        return Number(price).toFixed(2);;
+
+
+    }
+
     // Funzione per gestire l'input dei dati personali
     function handlePersonalData(e) {
         setPersonalData({
@@ -142,7 +164,7 @@ export default function FormCliente() {
                                     </li>
                                 ))}
                             </ul>
-                            <p><strong>Totale: €{total.toFixed(2)}</strong></p>
+                            <p><strong>Totale: €{prezzo_totale}</strong></p>
                         </>
                     )}
                 </div>
@@ -255,7 +277,7 @@ export default function FormCliente() {
                     </div>
 
                     <div>
-                        <button type="submit" onClick={localStorage.clear()}>Invia dati</button>
+                        <button type="submit" onClick={() => localStorage.clear()}>Invia dati</button>
                     </div>
                 </form>
             </section>
