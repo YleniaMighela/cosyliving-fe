@@ -19,12 +19,13 @@ export default function Cart() {
 
             }
             {cart != null &&
-                <div>
-                    <CartCard props={cart} />
-
-
+                <section>
+                    <div className="flex_cart">
+                        <CartCard props={cart} />
+                    </div>
                     <Link to="/form"> <button className="button_ordina">Ordina</button></Link>
-                </div>
+                </section>
+
             }
         </>
 

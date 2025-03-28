@@ -2,7 +2,7 @@
 // pagina di tutti i prodotti
 import { faInstagramSquare } from "@fortawesome/free-brands-svg-icons/faInstagramSquare";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 
 const CardProducts = () => {
@@ -112,7 +112,7 @@ const CardProducts = () => {
                             <p>Quantità massima ordinabile</p>
                         }
                     </div>
-                    <button className="add-to-cart" onClick={Call}>Aggiungi al carrello</button>
+                    <Link to="/cart"><button className="add-to-cart" onClick={Call}>Aggiungi al carrello</button></Link>
                 </div>
             </div>
         </div>
