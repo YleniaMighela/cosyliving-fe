@@ -28,7 +28,9 @@ export default function FilterSearch() {
           <button
             className="button_search"
             type="submit"
-            onClick={() => navigate(`/search/${valueSearch}`)}
+            onClick={() => {
+              if (valueSearch.length != 0) navigate(`/search/${valueSearch}`);
+            }}
           >
             Cerca
           </button>
