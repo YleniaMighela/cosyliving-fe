@@ -31,17 +31,32 @@ export default function ResultsCategoryHome() {
 
 
     return (
-        <div>
-            <h2>Risultati per: {name}</h2>
-            <div >
-                {products.map((product) => (
-                    <div key={product.id}>
-                        <img src={product.img_cover} alt={product.name} />
-                        <h5>{product.name}</h5>
-                        <p>€{product.price}</p>
-                    </div>
-                ))}
+        <>
+            <h2 id="resultsCategory">Risultati per: {name}</h2>
+            <div className="container_categoryhome">
+
+                <div >
+
+                    {products
+                        .sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
+                        .map((product) => (
+                            <>
+                                <div className="container_infocategory">
+                                    <div className="info">
+                                        <h5>{product.name}</h5>
+                                        <p>€{product.price}</p>
+                                    </div>
+
+
+                                    <div key={product.id}>
+                                        <img className="img_category1" src={product.img_cover} alt={product.name} />
+                                    </div>
+                                </div>
+
+                            </>
+                        ))}
+                </div>
             </div>
-        </div>
+        </>
     );
 }
