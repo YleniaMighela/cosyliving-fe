@@ -9,6 +9,7 @@ import Form from "./components/Form";
 import NotFound from "./pages/NotFound"
 import HomePage from "./pages/HomePage"
 import DetailProduct from "./pages/DetailProduct"
+import Cart from "./pages/CartPage.jsx";
 import ResultsCategoryHome from "./pages/ResultsCategoryHome"
 
 
@@ -27,6 +28,7 @@ function App() {
               <Route path="/form" element={<Form />} />
               <Route path="/search/:name" element={<ResultsCategoryHome />} />
               <Route path="/products/:slug" element={<DetailProduct />} />
+              <Route path="/cart" element={<Cart />}></Route>
             </Route>
           </Routes>
         </BrowserRouter>

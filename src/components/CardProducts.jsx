@@ -1,5 +1,6 @@
 // pagina di tutti i prodotti
 // pagina di tutti i prodotti
+import { faInstagramSquare } from "@fortawesome/free-brands-svg-icons/faInstagramSquare";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -9,6 +10,7 @@ const CardProducts = () => {
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [count, setCount] = useState(1);
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -32,11 +34,54 @@ const CardProducts = () => {
     if (loading) return <p className="loading">Caricamento...</p>;
     if (error) return <p className="error">{error}</p>;
     if (!product) return null;
-    console.log(product.price);
+    // console.log(product);
 
     const imageUrl = product.img_cover.startsWith("http")
         ? product.img_cover
         : `/images/${product.img_cover}`;
+
+
+
+    function CalcPrice(price, mult) {
+        price = price * mult
+        // console.log(price);
+        return Number(price).toFixed(2);;
+
+
+    }
+
+    const handleCount = (e) => {
+        let value = parseInt(e.target.value, 10);
+
+        if (isNaN(value) || value < 1) {
+            value = 1;
+        } else if (value > product.quantity) {
+            value = product.quantity;
+        }
+
+        setCount(value);
+    };
+
+
+    function StoreProduct() {
+        var Cart = JSON.parse(localStorage.getItem("Cart") || '[]')
+        var Product = {
+            img: imageUrl,
+            name: product.name,
+            price: CalcPrice(Number(product.price), Number(count)),
+            quantity: count
+        }
+
+        Cart.push(Product)
+        // console.log(Cart);
+        localStorage.setItem("Cart", JSON.stringify(Cart))
+        console.log(localStorage);
+    }
+
+    function Call() {
+        // localStorage.clear()
+        StoreProduct()
+    }
 
 
     return (
@@ -50,18 +95,24 @@ const CardProducts = () => {
                 <div className="product-info">
                     <h2 className="product-name">{product.name}</h2>
                     <p className="product-description">{product.description}</p>
-                    <p className="product-price">€{product.price}</p>
+                    <p className="product-price">€{CalcPrice(Number(product.price), Number(count))}</p>
                     <div className="quantity-container">
                         <label>Quantità</label>
+                        <button onClick={() => setCount((count) => (count === 1 ? 1 : count - 1))}>-</button>
                         <input
                             type="number"
                             min="1"
                             max={product.quantity}
-                            defaultValue="1"
                             className="quantity-input"
+                            onChange={handleCount}
+                            value={count}
                         />
+                        <button onClick={() => setCount((count) => (count === product.quantity ? product.quantity : count + 1))}>+</button>
+                        {count === product.quantity &&
+                            <p>Quantità massima ordinabile</p>
+                        }
                     </div>
-                    <button className="add-to-cart">Aggiungi al carrello</button>
+                    <button className="add-to-cart" onClick={Call}>Aggiungi al carrello</button>
                 </div>
             </div>
         </div>

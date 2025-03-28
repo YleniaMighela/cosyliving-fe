@@ -21,7 +21,7 @@ const initialBillingData = {
 export default function FormCliente() {
     // console.log(localStorage);
 
-    localStorage.clear();
+    // localStorage.clear();
     const [personalData, setPersonalData] = useState(initialPersonalData);
     const [billingData, setBillingData] = useState(initialBillingData);
     const [clients, setClients] = useState([]);
@@ -187,7 +187,7 @@ export default function FormCliente() {
                     </div>
 
                     <div>
-                        <button type="submit">Invia dati</button>
+                        <button type="submit" onClick={localStorage.clear()}>Invia dati</button>
                     </div>
                 </form>
             </section>
