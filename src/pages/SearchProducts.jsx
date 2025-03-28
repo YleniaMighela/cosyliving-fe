@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 // Components
-import CardProducts from "../components/CardProducts";
+import CardDetails from "../components/CardDetails";
 
 export default function SearchProduct() {
   const params = useParams();
