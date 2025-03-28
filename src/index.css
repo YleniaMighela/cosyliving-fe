@@ -153,7 +153,6 @@ header {
 
 
 main {
-    /* background-color: rgb(231, 231, 105); */
     width: 100%;
     height: 100%;
     /* nasconde la scrollbar */
@@ -165,86 +164,101 @@ main {
     display: none;
 }
 
-/* FOOTER */
-
-footer {
-    background-color: rgba(159, 159, 159, 0.753);
-    height: 70px;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    /* position: fixed;
-    bottom: 0; */
+/* CAROSELLO */
+.carousel-container {
     width: 100%;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    padding: 2%;
 }
 
-
-
-.footer-left,
-.footer-right {
+.carousel {
     display: flex;
-    gap: 15px;
-    align-items: center;
+    transition: transform 0.5s ease-in-out;
 }
 
-/* RECENSIONI */
-.container_review {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    flex-wrap: wrap;
+.carousel img {
+    width: 100%;
+    height: 120vh;
+    object-fit: cover;
+    object-position: center;
+    /* Centra l'immagine */
+    border-radius: 10px;
+    flex-shrink: 0;
+}
+
+.navigation {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.navigation button {
+    cursor: pointer;
     padding: 10px;
+    margin: 5px;
+    border: none;
+    background-color: #ddd;
+    border-radius: 50%;
 }
 
-.containersingle_review {
-    width: 20%;
-    padding: 20px;
-    border: 2px solid black;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+.navigation button.active {
+    background-color: #555;
+    color: white;
+
 }
 
-/* sezione ultimi arrivi */
+
+/* SEZIONE NUOVI ARRIVI */
 .title_arrivi {
     z-index: 99999999;
 }
 
 .container_imgArrivi {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
-    margin-left: -15%;
-    z-index: 35;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
     position: relative;
+    width: 90%;
+    margin-top: 5%;
+}
 
-    /* width: 100%; */
+.container_imgArrivi div {
+    position: relative;
+    width: 25%;
+    max-width: 200px;
+
 }
 
 .img_arrivi {
-    margin-top: 15%;
-    /* margin-left: 5%; */
-    width: 90%;
+    width: 100%;
+    height: auto;
+    /* Mantiene le proporzioni */
     border: 3px solid black;
+    display: block;
+    transition: transform 0.3s ease-in-out;
 
 
 }
 
-/* Sfalsamento alternato */
-.img_arrivi:nth-child(odd) {
-    transform: translateY(25px);
+.img_nuovi {
+    margin-top: 5%;
 }
 
-.img_arrivi:nth-child(even) {
+/* SFALSAMENTO ALTERNATO */
+.container_imgArrivi div:nth-child(odd) {
+    transform: translateY(15px);
+}
+
+.container_imgArrivi div:nth-child(even) {
     transform: translateY(-15px);
 }
 
 h4 {
     position: absolute;
     bottom: 95%;
-    left: 52%;
     background-color: rgba(0, 0, 0, 0.445);
     color: rgb(247, 242, 242);
     font-size: 50px;
@@ -254,7 +268,7 @@ h4 {
 
 
 
-/* sezione specialprice */
+/* SEZIONE SPECIAL PRICE */
 .container_imgprice {
     display: flex;
     justify-content: center;
@@ -303,14 +317,15 @@ h3 {
 .tips-left,
 .tips-right {
     display: flex;
-    align-items: center;
+    align-items: start;
 }
 
 .tips-left {
+    font-size: 25px;
     width: 35%;
     border: 1px solid black;
-    display: flex;
-    text-align: center;
+    text-align: start;
+    padding: 2%;
 }
 
 .tips-right {
@@ -344,61 +359,6 @@ h3 {
     border: none;
     cursor: pointer;
     border-radius: 5px;
-}
-
-/* CAROSELLO */
-.carousel-container {
-    width: 100%;
-    margin: auto;
-    overflow: hidden;
-    position: relative;
-    padding: 2%;
-}
-
-.carousel {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-}
-
-.carousel img {
-    width: 100%;
-    height: 120vh;
-    object-fit: cover;
-    object-position: center;
-    /* Centra l'immagine */
-    border-radius: 10px;
-    flex-shrink: 0;
-}
-
-.navigation {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.navigation button {
-    cursor: pointer;
-    padding: 10px;
-    margin: 5px;
-    border: none;
-    background-color: #ddd;
-    border-radius: 50%;
-}
-
-.navigation button.active {
-    background-color: #555;
-    color: white;
-
-}
-
-
-/* form checkout */
-.form_datipersonali {
-    text-align: center;
-}
-
-.form_personali {
-    margin: 20px;
-    padding: 10px;
 }
 
 /* DETTAGLIO PRODOTTO */
@@ -483,7 +443,18 @@ h3 {
 }
 
 
-/* regole per la pagina del carrello */
+/* FORM CHECKOUT */
+.form_datipersonali {
+    text-align: center;
+}
+
+.form_personali {
+    margin: 20px;
+    padding: 10px;
+}
+
+
+/* REGOLA PAGINA CARRELLO */
 
 .container {
 
@@ -497,4 +468,82 @@ h3 {
 .empty_cart {
     height: 200px;
 
+}
+
+.container_cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 15px;
+}
+
+.container_cart img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin: 15px 0;
+}
+
+.container_cart h2 {
+    font-size: 16px;
+    margin: 15px 0;
+}
+
+.container_cart p {
+    font-size: 14px;
+    color: #555;
+    margin: 2px 0;
+}
+
+.button_ordina {
+    font-size: 30px;
+    margin: 45px 150px;
+}
+
+/* RECENSIONI */
+.container_review {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+.containersingle_review {
+    width: 20%;
+    padding: 20px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: rgba(159, 159, 159, 0.753);
+    height: 70px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    width: 100%;
+}
+
+
+
+.footer-left,
+.footer-right {
+    display: flex;
+    gap: 15px;
+    align-items: center;
 }

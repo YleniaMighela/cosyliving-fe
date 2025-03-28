@@ -8,11 +8,14 @@ export default function CartCard(props) {
 
         props.props.map((prop) => (
             <>
-                <div className="container_review" >
+                <div className="container_cart" >
                     <img src={prop.img} alt={prop.name} />
-                    <h2>{prop.name}</h2>
-                    <p>€{prop.price}</p>
-                    <p>{prop.quantity}</p>
+                    <div>
+                        <h2>{prop.name}</h2>
+                        <p>€{prop.price}</p>
+                        <p>{prop.quantity}</p>
+                    </div>
+
                 </div>
             </>))
 

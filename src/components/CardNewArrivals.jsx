@@ -30,13 +30,13 @@ export default function UltimiArrivi() {
         <>
 
             <div className="container_imgArrivi">
-                <Link to="/">
-                    <h4 className="title_arrivi">Nuovi Arrivi</h4>
-                </Link>
+
+                <h4 className="title_arrivi">Nuovi Arrivi</h4>
+
 
                 {/* Renderizza i nuovi arrivi */}
                 {newArrivals.map((arrivo, index) => (
-                    <div key={index}>
+                    <div key={index} className="img_nuovi">
                         <Link to={`/products/${arrivo.slug}`}>
                             <img
                                 className="img_arrivi"

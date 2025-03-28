@@ -23,7 +23,7 @@ export default function Cart() {
                     <CartCard props={cart} />
 
 
-                    <Link to="/form"> <button>Ordina</button></Link>
+                    <Link to="/form"> <button className="button_ordina">Ordina</button></Link>
                 </div>
             }
         </>
