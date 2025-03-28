@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 export default function ResultsCategoryHome() {
@@ -41,16 +41,18 @@ export default function ResultsCategoryHome() {
                         .sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
                         .map((product) => (
                             <>
-                                <div className="container_infocategory">
-                                    <div key={product.id}>
-                                        <div className="info">
-                                            <h5>{product.name}</h5>
-                                            <p>€{product.price}</p>
-                                        </div>
-                                        <img className="img_category1" src={product.img_cover} alt={product.name} />
+                                <Link to={`/products/${product.name}`} className="not_link">
+                                    <div className="container_infocategory">
+                                        <div key={product.id}>
+                                            <div className="info">
+                                                <h5>{product.name}</h5>
+                                                <p>€{product.price}</p>
+                                            </div>
+                                            <img className="img_category1" src={product.img_cover} alt={product.name} />
 
+                                        </div>
                                     </div>
-                                </div>
+                                </Link>
 
                             </>
                         ))}
