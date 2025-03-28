@@ -4,9 +4,12 @@ import React, { useState } from "react";
 
 
 const images = [
-    "/divani-componibili.jpg",
-    "/tips-img.webp",
-    "/tips-img.webp"
+    "/arredo1.jpg",
+    "/arredo2.jpg",
+    "/arredo3.jpg",
+    "/arredo4.jpg",
+    "/divano.jpg",
+
 
 ];
 

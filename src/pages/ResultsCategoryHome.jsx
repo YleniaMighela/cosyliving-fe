@@ -42,14 +42,13 @@ export default function ResultsCategoryHome() {
                         .map((product) => (
                             <>
                                 <div className="container_infocategory">
-                                    <div className="info">
-                                        <h5>{product.name}</h5>
-                                        <p>€{product.price}</p>
-                                    </div>
-
-
                                     <div key={product.id}>
+                                        <div className="info">
+                                            <h5>{product.name}</h5>
+                                            <p>€{product.price}</p>
+                                        </div>
                                         <img className="img_category1" src={product.img_cover} alt={product.name} />
+
                                     </div>
                                 </div>
 
