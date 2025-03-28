@@ -38,7 +38,7 @@ export default function Header() {
 
             {/* sezione icone */}
             <div className="icons_header">
-                <Link to="#">
+                <Link to="/cart">
                     <FontAwesomeIcon icon={faCartShopping} size="2x" className="cart-icon" />
                 </Link>
                 <Link to="#">

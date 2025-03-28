@@ -435,3 +435,20 @@ h3 {
     font-size: 18px;
     color: red;
 }
+
+
+/* regole per la pagina del carrello */
+
+.container {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.empty_cart {
+    height: 200px;
+
+}
