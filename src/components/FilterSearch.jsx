@@ -1,15 +1,15 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
 // searchproducts
 
 export default function FilterSearch() {
-  const location = useLocation(); // Recupera l'URL attuale
+  // const location = useLocation(); // Recupera l'URL attuale
   const navigate = useNavigate();
 
+  // State Var that contains the searchbar value
   const [valueSearch, setValueSearch] = useState("");
 
-  // console.log(location);
   const isHiddenPage = location.pathname.startsWith("/404");
   // location.pathname.startsWith("/trip") ||
   // location.pathname.startsWith("/addPassengers");
