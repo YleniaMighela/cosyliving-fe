@@ -26,7 +26,7 @@ export default function SearchProduct() {
       <h2>Risultati di Ricerca per la parola: {params.value}</h2>
       <ul>
         {searchRes.length > 0 ? (
-          searchRes.map((res) => <li>{res.name}</li>)
+          searchRes.map((res) => <li key={res.id}>{res.name}</li>)
         ) : (
           <span>Nessun Risultato Trovato</span>
         )}
