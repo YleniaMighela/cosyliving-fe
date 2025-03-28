@@ -64,18 +64,35 @@ const CardProducts = () => {
 
 
     function StoreProduct() {
-        var Cart = JSON.parse(localStorage.getItem("Cart") || '[]')
-        var Product = {
-            img: imageUrl,
-            name: product.name,
-            price: CalcPrice(Number(product.price), Number(count)),
-            quantity: count
+        // Retrieve the existing cart or initialize an empty array
+        var Cart = JSON.parse(localStorage.getItem("Cart")) || [];
+
+        // Determine the new product ID
+        var id_cart = Cart.length > 0 ? Cart[Cart.length - 1].id + 1 : 1;
+
+        // Check if the product already exists in the cart
+        var existingProduct = Cart.find((item) => item.name === product.name);
+
+        if (existingProduct) {
+            // If product exists, update its quantity
+            existingProduct.quantity += count;
+            existingProduct.price = CalcPrice(Number(product.price), existingProduct.quantity);
+        } else {
+            // Otherwise, add a new product
+            var Product = {
+                id: id_cart,
+                img: imageUrl,
+                name: product.name,
+                price: CalcPrice(Number(product.price), Number(count)),
+                quantity: count
+            };
+            Cart.push(Product);
         }
 
-        Cart.push(Product)
-        // console.log(Cart);
-        localStorage.setItem("Cart", JSON.stringify(Cart))
-        console.log(localStorage);
+        // Save updated cart to localStorage
+        localStorage.setItem("Cart", JSON.stringify(Cart));
+        console.log(Cart);
+        // console.log("localstorage" + localStorage);
     }
 
     function Call() {
@@ -112,11 +129,14 @@ const CardProducts = () => {
                             <p>Quantità massima ordinabile</p>
                         }
                     </div>
-                    <Link to="/cart"><button className="add-to-cart" onClick={Call}>Aggiungi al carrello</button></Link>
+                    <Link to="/cart">
+                        <button className="add-to-cart" onClick={Call}>Aggiungi al carrello</button>
+                    </Link>
                 </div>
             </div>
         </div>
     );
+
 };
 
 export default CardProducts;
