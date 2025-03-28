@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 // Components
-import CardProducts from "../components/CardProducts";
+import CardDetails from "../components/CardDetails";
 
 export default function SearchProduct() {
   const params = useParams();
@@ -26,7 +26,7 @@ export default function SearchProduct() {
       <h2>Risultati di Ricerca per la parola: {params.value}</h2>
       <ul>
         {searchRes.length > 0 ? (
-          searchRes.map((res) => <li>{res.name}</li>)
+          searchRes.map((res) => <li key={res.id}>{res.name}</li>)
         ) : (
           <span>Nessun Risultato Trovato</span>
         )}
