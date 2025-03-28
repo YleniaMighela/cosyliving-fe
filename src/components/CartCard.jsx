@@ -32,9 +32,7 @@ export default function CartCard({ dati, setCart }) {
                         <h2>{prop.name}</h2>
                         <p>€{prop.price}</p>
                         <p>{prop.quantity}</p>
-                        <Link to="#">
-                            <button onClick={() => EliminateArticle(prop.name)}>Rimuovi dal carrello</button>
-                        </Link>
+                        <button onClick={() => EliminateArticle(prop.name)}>Rimuovi dal carrello</button>
                     </div>
 
                 </div>
