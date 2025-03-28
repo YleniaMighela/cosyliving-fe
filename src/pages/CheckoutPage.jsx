@@ -26,6 +26,8 @@ export default function FormCliente() {
     const [billingData, setBillingData] = useState(initialBillingData);
     const [clients, setClients] = useState([]);
     const [billingInfo, setBillingInfo] = useState([]);
+    // variabili di stato per riepilogo dell'ordine
+    const [orderProducts, setOrderProducts] = useState([]);
 
     // Recupero dati da localStorage
     useEffect(() => {
@@ -46,6 +48,28 @@ export default function FormCliente() {
     useEffect(() => {
         localStorage.setItem("billingInfo", JSON.stringify(billingInfo));
     }, [billingInfo]);
+
+
+    // riepilogo ordini dal localstorage
+    useEffect(() => {
+        setOrderProducts(JSON.parse(localStorage.getItem("Cart")) || [])
+    }, [])
+
+    var prezzo_totale = 0
+    for (var i = 0; i < orderProducts.length; i++) {
+        prezzo_totale = prezzo_totale + (orderProducts[i].price * orderProducts[i].quantity)
+    }
+    // orderProducts.map((product) => (
+
+    //                             ))
+
+    function CalcPrice(price, mult) {
+        price = price * mult
+        // console.log(price);
+        return Number(price).toFixed(2);;
+
+
+    }
 
     // Funzione per gestire l'input dei dati personali
     function handlePersonalData(e) {
@@ -125,72 +149,139 @@ export default function FormCliente() {
 
     return (
         <>
-            <section className="form_datipersonali">
+            {/* sezione riepilogo ordine */}
+            <section className='section_ordine' >
+                <div className="container_riepilogo">
+                    <h2>Riepilogo Ordine</h2>
+                    {orderProducts.length === 0 ? (
+                        <p>Nessun prodotto aggiunto al carrello</p>
+                    ) : (
+                        <>
+                            <ul>
+                                {orderProducts.map((product, index) => (
+                                    <li key={index}>
+                                        {product.name} - {product.quantity} x €{product.price}
+                                    </li>
+                                ))}
+                            </ul>
+                            <p><strong>Totale: €{prezzo_totale}</strong></p>
+                        </>
+                    )}
+                </div>
+            </section>
+            {/* sezione dati personali */}
+            <section>
                 {/* Form Dati Personali */}
-                <h2>Inserisci Dati Personali</h2>
-
                 <form className="form_personali" onSubmit={handleSubmit}>
+                    <h2>Inserisci Dati Personali</h2>
                     <div>
-                        <label>Nome</label>
-                        <input type="text" name="nome" value={personalData.nome} onChange={handlePersonalData} />
+
+                        <input type="text"
+                            name="nome"
+                            placeholder="Nome..."
+                            value={personalData.nome}
+                            onChange={handlePersonalData} />
                     </div>
                     <div>
-                        <label>Cognome</label>
-                        <input type="text" name="cognome" value={personalData.cognome} onChange={handlePersonalData} />
+
+                        <input type="text"
+                            name="cognome"
+                            placeholder="Cognome..."
+                            value={personalData.cognome}
+                            onChange={handlePersonalData} />
                     </div>
                     <div>
-                        <label>Email</label>
-                        <input type="email" name="email" value={personalData.email} onChange={handlePersonalData} />
+
+                        <input type="email"
+                            name="email"
+                            placeholder="Email..."
+                            value={personalData.email}
+                            onChange={handlePersonalData} />
                     </div>
                     <div>
-                        <label>Numero Telefonico</label>
-                        <input type="tel" name="numeroTelefonico" value={personalData.numeroTelefonico} onChange={handlePersonalData} />
+
+                        <input type="tel"
+                            name="numeroTelefonico"
+                            placeholder="Numero telefonico..."
+                            value={personalData.numeroTelefonico}
+                            onChange={handlePersonalData} />
                     </div>
                     <div>
-                        <label>Codice Fiscale</label>
-                        <input type="text" name="codiceFiscale" value={personalData.codiceFiscale} onChange={handlePersonalData} />
+
+                        <input type="text"
+                            name="codiceFiscale"
+                            placeholder="Codice Fiscale..."
+                            value={personalData.codiceFiscale}
+                            onChange={handlePersonalData} />
                     </div>
                     <div>
-                        <label>Città</label>
-                        <input type="text" name="city" value={personalData.city} onChange={handlePersonalData} />
+
+                        <input type="text"
+                            name="via"
+                            value={personalData.via}
+                            placeholder="Via..."
+                            onChange={handlePersonalData} />
                     </div>
                     <div>
-                        <label>Via</label>
-                        <input type="text" name="via" value={personalData.via} onChange={handlePersonalData} />
+
+                        <input type="text"
+                            name="city"
+                            value={personalData.city}
+                            placeholder="Città..."
+                            onChange={handlePersonalData} />
                     </div>
+
                     <div>
                         <button type="submit" >Invia dati</button>
                     </div>
                 </form>
             </section>
 
-            <section className="form_datipersonali">
+            {/* sezione dati fatturazione*/}
+            <section>
                 {/* Form Dati di Fatturazione */}
-                <h2>Inserisci Dati di Fatturazione</h2>
+
                 <form className="form_personali" onSubmit={handleBillingSubmit}>
+                    <h2>Inserisci Dati di Fatturazione</h2>
+                    <div>
+
+                        <input type="text"
+                            name="partitaIVA"
+                            placeholder="Partita Iva..."
+                            value={billingData.partitaIVA}
+                            onChange={handleBillingData} required />
+                    </div>
+                    <div>
+
+                        <input type="text"
+                            name="indirizzoFatturazione"
+                            placeholder="Indirizzo di Fatturazione..."
+                            value={billingData.indirizzoFatturazione}
+                            onChange={handleBillingData} required />
+                    </div>
+                    <div>
+
+                        <input type="text"
+                            name="cittàFatturazione"
+                            value={billingData.cittàFatturazione}
+                            placeholder="Città..."
+                            onChange={handleBillingData} required />
+                    </div>
+                    <div>
+
+                        <input type="text"
+                            name="cap"
+                            value={billingData.cap}
+                            placeholder="CAP..."
+                            onChange={handleBillingData} required />
+                    </div>
 
                     <div>
-                        <label>Partita IVA</label>
-                        <input type="text" name="partitaIVA" value={billingData.partitaIVA} onChange={handleBillingData} required />
-                    </div>
-                    <div>
-                        <label>Indirizzo Fatturazione</label>
-                        <input type="text" name="indirizzoFatturazione" value={billingData.indirizzoFatturazione} onChange={handleBillingData} required />
-                    </div>
-                    <div>
-                        <label>Città</label>
-                        <input type="text" name="cittàFatturazione" value={billingData.cittàFatturazione} onChange={handleBillingData} required />
-                    </div>
-                    <div>
-                        <label>CAP</label>
-                        <input type="text" name="cap" value={billingData.cap} onChange={handleBillingData} required />
-                    </div>
-
-                    <div>
-                        <button type="submit" onClick={localStorage.clear()}>Invia dati</button>
+                        <button type="submit" onClick={() => localStorage.clear()}>Invia dati</button>
                     </div>
                 </form>
             </section>
+
 
         </>
     );
