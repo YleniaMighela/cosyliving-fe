@@ -26,7 +26,7 @@ export default function SearchProduct() {
     <div>
       <h2>Risultati di Ricerca per la parola: {params.value}</h2>
       {searchRes.length > 0 ? (
-        searchRes.map((res) => <li key={res.id}>{res.name}</li>)
+        searchRes.map((res) => <CardProduct key={res.id} prodInfos={res} />)
       ) : (
         <span>Nessun Risultato Trovato</span>
       )}

@@ -1,11 +1,12 @@
 export default function CardProduct(props) {
-  const { name, price, quantity, img_cover } = prodInfos.props;
+  const { name, price, quantity, img_cover } = props.prodInfos;
   return (
-    <div>
-      <img src={img_cover} alt={name} />
-      <h2>Prodotto: {name}</h2>
-      <h3>Prezzo: {price}</h3>
-      <h3>Quantità: {quantity}</h3>
+    // Style temporaneo
+    <div style={{ border: "solid 1px black" }}>
+      <img src={img_cover} alt={"Image of " + name} />
+      <h2>Prodotto: {name} </h2>
+      <span>Prezzo: {price} </span>
+      <span>Quantità: {quantity}</span>
     </div>
   );
 }
