@@ -24,12 +24,29 @@ export default function SearchProduct() {
 
   return (
     <div>
-      <h2>Risultati di Ricerca per la parola: {params.value}</h2>
-      {searchRes.length > 0 ? (
-        searchRes.map((res) => <CardProduct key={res.id} prodInfos={res} />)
-      ) : (
-        <span>Nessun Risultato Trovato</span>
-      )}
+      <div>
+        <h2>Risultati di Ricerca per la parola: {params.value}</h2>
+        {searchRes.length > 0 ? (
+          searchRes.map((res) => <CardProduct key={res.id} prodInfos={res} />)
+        ) : (
+          <span>Nessun Risultato Trovato</span>
+        )}
+      </div>
+      <div>
+        <h2>Ordina per:</h2>
+        <label>
+          <input type="checkbox" />
+          Data
+        </label>
+        <label>
+          <input type="checkbox" />
+          Prezzo
+        </label>
+        <label>
+          <input type="checkbox" />
+          Nome
+        </label>
+      </div>
     </div>
   );
 }
