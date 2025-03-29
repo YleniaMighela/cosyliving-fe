@@ -34,18 +34,39 @@ export default function SearchProduct() {
       </div>
       <div>
         <h2>Ordina per:</h2>
-        <label>
-          <input type="checkbox" />
-          Data
-        </label>
-        <label>
-          <input type="checkbox" />
-          Prezzo
-        </label>
-        <label>
-          <input type="checkbox" />
-          Nome
-        </label>
+        <div>
+          <span>Data </span>
+          <label>
+            <input type="radio" name="data" value="asc" />
+            ⬆️ Crescente
+          </label>
+          <label>
+            <input type="radio" name="data" value="desc" />
+            ⬇️ Decrescente
+          </label>
+        </div>
+        <div>
+          <span>Prezzo </span>
+          <label>
+            <input type="radio" name="price" value="asc" />
+            ⬆️ Crescente
+          </label>
+          <label>
+            <input type="radio" name="price" value="desc" />
+            ⬇️ Decrescente
+          </label>
+        </div>
+        <div>
+          <span>Nome </span>
+          <label>
+            <input type="radio" name="name" value="asc" />
+            ⬆️ Crescente
+          </label>
+          <label>
+            <input type="radio" name="name" value="desc" />
+            ⬇️ Decrescente
+          </label>
+        </div>
       </div>
     </div>
   );
