@@ -38,33 +38,33 @@ export default function SearchProduct() {
           <span>Data </span>
           <label>
             <input type="radio" name="data" value="asc" />
-            ⬆️ Crescente
+            Crescente
           </label>
           <label>
             <input type="radio" name="data" value="desc" />
-            ⬇️ Decrescente
+            Decrescente
           </label>
         </div>
         <div>
           <span>Prezzo </span>
           <label>
             <input type="radio" name="price" value="asc" />
-            ⬆️ Crescente
+            Crescente
           </label>
           <label>
             <input type="radio" name="price" value="desc" />
-            ⬇️ Decrescente
+            Decrescente
           </label>
         </div>
         <div>
           <span>Nome </span>
           <label>
             <input type="radio" name="name" value="asc" />
-            ⬆️ Crescente
+            Crescente
           </label>
           <label>
             <input type="radio" name="name" value="desc" />
-            ⬇️ Decrescente
+            Decrescente
           </label>
         </div>
       </div>
