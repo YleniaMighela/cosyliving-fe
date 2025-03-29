@@ -57,7 +57,7 @@ export default function FormCliente() {
 
     var prezzo_totale = 0
     for (var i = 0; i < orderProducts.length; i++) {
-        prezzo_totale = prezzo_totale + (orderProducts[i].price * orderProducts[i].quantity)
+        prezzo_totale = prezzo_totale + Number((orderProducts[i].price))
     }
     // orderProducts.map((product) => (
 
@@ -156,16 +156,33 @@ export default function FormCliente() {
                     {orderProducts.length === 0 ? (
                         <p>Nessun prodotto aggiunto al carrello</p>
                     ) : (
-                        <>
-                            <ul>
-                                {orderProducts.map((product, index) => (
-                                    <li key={index}>
-                                        {product.name} - {product.quantity} x €{product.price}
-                                    </li>
-                                ))}
-                            </ul>
-                            <p><strong>Totale: €{prezzo_totale}</strong></p>
-                        </>
+                        prezzo_totale <= 1000 ? (
+                            <>
+                                <ul>
+                                    {orderProducts.map((product, index) => (
+                                        <li key={index}>
+                                            {product.name} x {product.quantity} - €{product.price}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <p>Totale prodotti €{prezzo_totale}</p>
+                                <p><strong>Spedizione €9,99</strong></p>
+                                <p><strong>Totale: €{prezzo_totale + 9.99}</strong></p>
+                            </>
+                        ) : (
+                            <>
+                                <ul>
+                                    {orderProducts.map((product, index) => (
+                                        <li key={index}>
+                                            {product.name} x {product.quantity} - €{product.price}
+                                        </li>
+                                    ))}
+                                </ul>
+                                <p>Totale prodotti €{prezzo_totale}</p>
+                                <p><strong><s>Spedizione €9,99</s></strong></p>
+                                <p><strong>Totale: €{prezzo_totale}</strong></p>
+                            </>
+                        )
                     )}
                 </div>
             </section>
