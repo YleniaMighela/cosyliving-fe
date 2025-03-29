@@ -22,6 +22,18 @@ export default function SearchProduct() {
       .catch((err) => console.error(err));
   }, [params.value]);
 
+  function stringOrder(arr) {
+    const newSearchList = [...arr].sort((a, b) => a.name.localeCompare(b.name));
+    console.log(newSearchList);
+    return newSearchList;
+  }
+
+  function numOrder(arr) {
+    const newSearchList = [...arr].sort((a, b) => a.price - b.price);
+    console.log(newSearchList);
+    return newSearchList;
+  }
+
   return (
     <div>
       <div>
@@ -48,7 +60,12 @@ export default function SearchProduct() {
         <div>
           <span>Prezzo </span>
           <label>
-            <input type="radio" name="price" value="asc" />
+            <input
+              type="radio"
+              name="price"
+              value="asc"
+              onChange={() => setSearchRes(numOrder(searchRes))}
+            />
             Crescente
           </label>
           <label>
@@ -59,7 +76,12 @@ export default function SearchProduct() {
         <div>
           <span>Nome </span>
           <label>
-            <input type="radio" name="name" value="asc" />
+            <input
+              type="radio"
+              name="name"
+              value="asc"
+              onChange={() => setSearchRes(stringOrder(searchRes))}
+            />
             Crescente
           </label>
           <label>
