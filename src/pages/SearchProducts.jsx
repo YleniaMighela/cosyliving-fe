@@ -47,6 +47,23 @@ export default function SearchProduct() {
     return newSearchList;
   }
 
+  function dateOrder(arr, key, order) {
+    let newSearchList = [];
+
+    if (order === "asc") {
+      newSearchList = [...arr].sort(
+        (a, b) => new Date(a[key]) - new Date(b[key])
+      );
+    } else {
+      newSearchList = [...arr].sort(
+        (a, b) => new Date(b[key]) - new Date(a[key])
+      );
+    }
+
+    console.log(newSearchList);
+    return newSearchList;
+  }
+
   return (
     <div>
       <div>
@@ -62,11 +79,27 @@ export default function SearchProduct() {
         <div>
           <span>Data </span>
           <label>
-            <input type="radio" name="data" value="asc" />
+            <input
+              type="radio"
+              name="order"
+              value="asc"
+              id="created_at"
+              onChange={(e) =>
+                setSearchRes(dateOrder(searchRes, e.target.id, e.target.value))
+              }
+            />
             Crescente
           </label>
           <label>
-            <input type="radio" name="data" value="desc" />
+            <input
+              type="radio"
+              name="order"
+              value="desc"
+              id="created_at"
+              onChange={(e) =>
+                setSearchRes(dateOrder(searchRes, e.target.id, e.target.value))
+              }
+            />
             Decrescente
           </label>
         </div>
@@ -75,19 +108,23 @@ export default function SearchProduct() {
           <label>
             <input
               type="radio"
-              name="price"
+              name="order"
               value="asc"
-              onChange={() => setSearchRes(numOrder(searchRes, "price", "asc"))}
+              id="price"
+              onChange={(e) =>
+                setSearchRes(numOrder(searchRes, e.target.id, e.target.value))
+              }
             />
             Crescente
           </label>
           <label>
             <input
               type="radio"
-              name="price"
+              name="order"
               value="desc"
-              onChange={() =>
-                setSearchRes(numOrder(searchRes, "price", "desc"))
+              id="price"
+              onChange={(e) =>
+                setSearchRes(numOrder(searchRes, e.target.id, e.target.value))
               }
             />
             Decrescente
@@ -98,10 +135,13 @@ export default function SearchProduct() {
           <label>
             <input
               type="radio"
-              name="name"
+              name="order"
               value="asc"
-              onChange={() =>
-                setSearchRes(stringOrder(searchRes, "name", "asc"))
+              id="name"
+              onChange={(e) =>
+                setSearchRes(
+                  stringOrder(searchRes, e.target.id, e.target.value)
+                )
               }
             />
             Crescente
@@ -109,10 +149,13 @@ export default function SearchProduct() {
           <label>
             <input
               type="radio"
-              name="name"
+              name="order"
               value="desc"
-              onChange={() =>
-                setSearchRes(stringOrder(searchRes, "name", "desc"))
+              id="name"
+              onChange={(e) =>
+                setSearchRes(
+                  stringOrder(searchRes, e.target.id, e.target.value)
+                )
               }
             />
             Decrescente
