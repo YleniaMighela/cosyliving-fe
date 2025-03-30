@@ -1,6 +1,6 @@
 // richiamo il componente Card Products e FilterSearch
 // pagina che mostra tutti i prodotti e filtraggio
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -22,7 +22,7 @@ export default function SearchProduct() {
       .catch((err) => console.error(err));
   }, [params.value]);
 
-  function stringOrder(arr, key, order) {
+  function stringSorter(arr, key, order) {
     let newSearchList = [];
 
     if (order === "asc") {
@@ -34,7 +34,7 @@ export default function SearchProduct() {
     return newSearchList;
   }
 
-  function numOrder(arr, key, order) {
+  function numSorter(arr, key, order) {
     let newSearchList = [];
 
     if (order === "asc") {
@@ -47,7 +47,7 @@ export default function SearchProduct() {
     return newSearchList;
   }
 
-  function dateOrder(arr, key, order) {
+  function dateSorter(arr, key, order) {
     let newSearchList = [];
 
     if (order === "asc") {
@@ -69,7 +69,11 @@ export default function SearchProduct() {
       <div>
         <h2>Risultati di Ricerca per la parola: {params.value}</h2>
         {searchRes.length > 0 ? (
-          searchRes.map((res) => <CardProduct key={res.id} prodInfos={res} />)
+          searchRes.map((res) => (
+            <Link to={`/products/${res.name}`}>
+              <CardProduct key={res.id} prodInfos={res} />
+            </Link>
+          ))
         ) : (
           <span>Nessun Risultato Trovato</span>
         )}
@@ -85,7 +89,7 @@ export default function SearchProduct() {
               value="asc"
               id="created_at"
               onChange={(e) =>
-                setSearchRes(dateOrder(searchRes, e.target.id, e.target.value))
+                setSearchRes(dateSorter(searchRes, e.target.id, e.target.value))
               }
             />
             Crescente
@@ -97,7 +101,7 @@ export default function SearchProduct() {
               value="desc"
               id="created_at"
               onChange={(e) =>
-                setSearchRes(dateOrder(searchRes, e.target.id, e.target.value))
+                setSearchRes(dateSorter(searchRes, e.target.id, e.target.value))
               }
             />
             Decrescente
@@ -112,7 +116,7 @@ export default function SearchProduct() {
               value="asc"
               id="price"
               onChange={(e) =>
-                setSearchRes(numOrder(searchRes, e.target.id, e.target.value))
+                setSearchRes(numSorter(searchRes, e.target.id, e.target.value))
               }
             />
             Crescente
@@ -124,7 +128,7 @@ export default function SearchProduct() {
               value="desc"
               id="price"
               onChange={(e) =>
-                setSearchRes(numOrder(searchRes, e.target.id, e.target.value))
+                setSearchRes(numSorter(searchRes, e.target.id, e.target.value))
               }
             />
             Decrescente
@@ -140,7 +144,7 @@ export default function SearchProduct() {
               id="name"
               onChange={(e) =>
                 setSearchRes(
-                  stringOrder(searchRes, e.target.id, e.target.value)
+                  stringSorter(searchRes, e.target.id, e.target.value)
                 )
               }
             />
@@ -154,7 +158,7 @@ export default function SearchProduct() {
               id="name"
               onChange={(e) =>
                 setSearchRes(
-                  stringOrder(searchRes, e.target.id, e.target.value)
+                  stringSorter(searchRes, e.target.id, e.target.value)
                 )
               }
             />
