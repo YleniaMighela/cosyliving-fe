@@ -22,14 +22,27 @@ export default function SearchProduct() {
       .catch((err) => console.error(err));
   }, [params.value]);
 
-  function stringOrder(arr) {
-    const newSearchList = [...arr].sort((a, b) => a.name.localeCompare(b.name));
+  function stringOrder(arr, key, order) {
+    let newSearchList = [];
+
+    if (order === "asc") {
+      newSearchList = [...arr].sort((a, b) => a[key].localeCompare(b[key]));
+    } else {
+      newSearchList = [...arr].sort((a, b) => b[key].localeCompare(a[key]));
+    }
     console.log(newSearchList);
     return newSearchList;
   }
 
-  function numOrder(arr) {
-    const newSearchList = [...arr].sort((a, b) => a.price - b.price);
+  function numOrder(arr, key, order) {
+    let newSearchList = [];
+
+    if (order === "asc") {
+      newSearchList = [...arr].sort((a, b) => a[key] - b[key]);
+    } else {
+      newSearchList = [...arr].sort((a, b) => b[key] - a[key]);
+    }
+
     console.log(newSearchList);
     return newSearchList;
   }
@@ -64,12 +77,19 @@ export default function SearchProduct() {
               type="radio"
               name="price"
               value="asc"
-              onChange={() => setSearchRes(numOrder(searchRes))}
+              onChange={() => setSearchRes(numOrder(searchRes, "price", "asc"))}
             />
             Crescente
           </label>
           <label>
-            <input type="radio" name="price" value="desc" />
+            <input
+              type="radio"
+              name="price"
+              value="desc"
+              onChange={() =>
+                setSearchRes(numOrder(searchRes, "price", "desc"))
+              }
+            />
             Decrescente
           </label>
         </div>
@@ -80,12 +100,21 @@ export default function SearchProduct() {
               type="radio"
               name="name"
               value="asc"
-              onChange={() => setSearchRes(stringOrder(searchRes))}
+              onChange={() =>
+                setSearchRes(stringOrder(searchRes, "name", "asc"))
+              }
             />
             Crescente
           </label>
           <label>
-            <input type="radio" name="name" value="desc" />
+            <input
+              type="radio"
+              name="name"
+              value="desc"
+              onChange={() =>
+                setSearchRes(stringOrder(searchRes, "name", "desc"))
+              }
+            />
             Decrescente
           </label>
         </div>
