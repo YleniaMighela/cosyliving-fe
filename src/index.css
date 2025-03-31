@@ -565,4 +565,5 @@ footer {
 .flex_cart {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
