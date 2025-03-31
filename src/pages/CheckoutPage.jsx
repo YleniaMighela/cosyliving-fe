@@ -1,5 +1,6 @@
 import emailjs from 'emailjs-com';
 import { useState, useEffect } from "react";
+import axios from 'axios';
 
 const initialPersonalData = {
     nome: "",
@@ -18,6 +19,8 @@ const initialBillingData = {
     cap: "",
 };
 
+
+
 export default function FormCliente() {
     // console.log(localStorage);
 
@@ -28,16 +31,22 @@ export default function FormCliente() {
     const [billingInfo, setBillingInfo] = useState([]);
     // variabili di stato per riepilogo dell'ordine
     const [orderProducts, setOrderProducts] = useState([]);
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("Cart")) || [])
 
     // Recupero dati da localStorage
     useEffect(() => {
         const storedClients = JSON.parse(localStorage.getItem("clients")) || [];
-
         setClients(storedClients);
 
         const storedBilling = JSON.parse(localStorage.getItem("billingInfo")) || [];
-
         setBillingInfo(storedBilling);
+
+        const storedCart = JSON.parse(localStorage.getItem("Cart")) || [];
+        setOrderProducts(storedCart);
+        console.log("Personal data:", personalData);
+        console.log("Cart data:", cart);
     }, []);
 
     // Salvo dati nel localStorage quando cambia lo stato
@@ -93,9 +102,46 @@ export default function FormCliente() {
             id: clients.length === 0 ? 1 : clients[clients.length - 1].id + 1,
             ...personalData
         };
+        // Funzione per inviare l'email
+        const sendEmail = (formData) => {
+            // email conferma ordine al cliente
+            emailjs.sendForm('service_z4wn6ts', 'template_yfwhf7f', formData, 'YwWXI2IpotKYzl-pl')
+                .then((result) => {
+                    console.log("Email inviata al cliente:", result.text);
+                }, (error) => {
+                    console.log("Errore invio email al cliente:", error.text);
+                });
 
+            // email conferma ordine al sito
+            emailjs.sendForm('service_z4wn6ts', 'template_792darg', formData, 'YwWXI2IpotKYzl-pl')
+                .then((result) => {
+                    console.log("Email inviata al sito:", result.text);
+                }, (error) => {
+                    console.log("Errore invio email al sito:", error.text);
+                });
+        };
         setClients([...clients, newClient]);
         setPersonalData(initialPersonalData);
+        axios.post("http://localhost:3000/order", {
+            personalData: personalData,
+            cart: cart
+            // prezzo_totale,
+        })
+            .then((res) => {
+                setSuccessMessage("Dati inviati con successo!");  // Messaggio di successo
+                setTimeout(() => {
+                    setSuccessMessage("");  // Nascondi il messaggio dopo un po'
+                }, 5000);
+                sendEmail()
+            })
+            .catch((error) => {
+                // Gestisci gli errori e mostra un messaggio di errore
+                console.error("Errore durante l'invio dei dati:", error);
+                setErrorMessage("Si è verificato un errore nell'invio dei dati. Riprova più tardi.");
+                setTimeout(() => {
+                    setErrorMessage("");  // Nascondi il messaggio di errore dopo 5 secondi
+                }, 5000);
+            });
     }
 
     // Salvataggio dati di fatturazione
@@ -111,28 +157,6 @@ export default function FormCliente() {
         setBillingData(initialBillingData);
     }
 
-    function sendEmail(e) {
-        e.preventDefault();
-        // email conferma ordine al cliente
-        emailjs.sendForm('service_z4wn6ts', 'template_yfwhf7f', e.target, 'YwWXI2IpotKYzl-pl')
-            .then((result) => {
-            }, (error) => {
-                console.log(error.text);
-            });
-        // email conferma ordine al sitp
-        emailjs.sendForm('service_z4wn6ts', 'template_792darg', e.target, 'YwWXI2IpotKYzl-pl')
-            .then((result) => {
-            }, (error) => {
-                console.log(error.text);
-            });
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-
-        sendEmail(e);
-        handlePersonalSubmit(e);
-    }
 
 
     return (
@@ -177,7 +201,7 @@ export default function FormCliente() {
             {/* sezione dati personali */}
             <section>
                 {/* Form Dati Personali */}
-                <form className="form_personali" onSubmit={handleSubmit}>
+                <form className="form_personali" onSubmit={handlePersonalSubmit}>
                     <h2>Inserisci Dati Personali</h2>
                     <div>
 
@@ -247,6 +271,8 @@ export default function FormCliente() {
                         <button type="submit" >Invia dati</button>
                     </div>
                 </form>
+                {successMessage && <div className="error-message">{successMessage}</div>}
+                {errorMessage && <div className="error-message">{errorMessage}</div>}
             </section>
 
             {/* sezione dati fatturazione*/}

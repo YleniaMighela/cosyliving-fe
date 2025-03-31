@@ -77,9 +77,8 @@ const CardProducts = () => {
     } else {
       // Otherwise, add a new product
       var Product = {
-        id: id_cart,
+        id_product: product.id,
         img: imageUrl,
-        name: product.name,
         price: CalcPrice(Number(product.price), Number(count)),
         quantity: count,
       };

@@ -9,10 +9,10 @@ export default function CartCard({ dati, setCart }) {
     const [data, setData] = useState(dati.props || [])
     // console.log(localStorage.getItem("Cart"));
 
-    function EliminateArticle(name) {
+    function EliminateArticle(id) {
         var Cart = JSON.parse(localStorage.getItem("Cart")) || []
 
-        Cart = Cart.filter(product => product.name != name)
+        Cart = Cart.filter(product => product.id != id)
         setCart(Cart)
         localStorage.setItem("Cart", JSON.stringify(Cart))
 
@@ -44,7 +44,7 @@ export default function CartCard({ dati, setCart }) {
                         <button
                             onClick={() =>
                                 prop.quantity === 1
-                                    ? EliminateArticle(prop.name)
+                                    ? EliminateArticle(prop.id)
                                     : updateQuantity(prop.id, prop.quantity - 1)
                             }
                         >
@@ -57,7 +57,7 @@ export default function CartCard({ dati, setCart }) {
                             +
                         </button>
                     </div>
-                    <button onClick={() => EliminateArticle(prop.name)}>Rimuovi dal carrello</button>
+                    <button onClick={() => EliminateArticle(prop.id)}>Rimuovi dal carrello</button>
                 </div>
 
             </div>
