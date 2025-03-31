@@ -9,69 +9,29 @@ import { useNavigate } from "react-router-dom";
 import CardProduct from "../components/CardProduct";
 
 export default function SearchProduct() {
-  const params = useParams();
+  const { value, sorter } = useParams();
 
   // State Var that contains the query results
   const [searchRes, setSearchRes] = useState([]);
 
   const navigate = useNavigate();
   useEffect(() => {
+    // Clean searchRes
     if (searchRes.length > 0) setSearchRes([]);
 
+    // Axios call that search specific prods
     axios
-      .get(`http://localhost:3000/search/${params.value}`)
+      .get(`http://localhost:3000/search/${value}/${sorter}?`)
       .then((response) => setSearchRes(response.data))
       .catch((err) => console.error(err));
-  }, [params.value]);
-
-  function stringSorter(arr, key, order) {
-    let newSearchList = [];
-
-    if (order === "asc") {
-      newSearchList = [...arr].sort((a, b) => a[key].localeCompare(b[key]));
-    } else {
-      newSearchList = [...arr].sort((a, b) => b[key].localeCompare(a[key]));
-    }
-    console.log(newSearchList);
-    return newSearchList;
-  }
-
-  function numSorter(arr, key, order) {
-    let newSearchList = [];
-
-    if (order === "asc") {
-      newSearchList = [...arr].sort((a, b) => a[key] - b[key]);
-    } else {
-      newSearchList = [...arr].sort((a, b) => b[key] - a[key]);
-    }
-
-    console.log(newSearchList);
-    return newSearchList;
-  }
-
-  function dateSorter(arr, key, order) {
-    let newSearchList = [];
-
-    if (order === "asc") {
-      newSearchList = [...arr].sort(
-        (a, b) => new Date(a[key]) - new Date(b[key])
-      );
-    } else {
-      newSearchList = [...arr].sort(
-        (a, b) => new Date(b[key]) - new Date(a[key])
-      );
-    }
-
-    console.log(newSearchList);
-    return newSearchList;
-  }
+  }, [value, sorter]);
 
   return (
     <>
       <button id="button_notfound" onClick={() => navigate(-1)}>
         Indietro
       </button>
-      <h2>Risultati di Ricerca per la parola: {params.value}</h2>
+      <h2>Risultati di Ricerca per la parola: {value}</h2>
       <div className="special-price-container">
         {/* sezione del filtro */}
         <h2>Ordina per:</h2>
@@ -84,11 +44,10 @@ export default function SearchProduct() {
                 type="radio"
                 name="order"
                 value="desc"
-                id="created_at"
+                id="date"
+                checked={sorter == "date_desc"}
                 onChange={(e) =>
-                  setSearchRes(
-                    dateSorter(searchRes, e.target.id, e.target.value)
-                  )
+                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
                 }
               />
               Dal più recente
@@ -99,11 +58,10 @@ export default function SearchProduct() {
                 type="radio"
                 name="order"
                 value="asc"
-                id="created_at"
+                id="date"
+                checked={sorter == "date_asc"}
                 onChange={(e) =>
-                  setSearchRes(
-                    dateSorter(searchRes, e.target.id, e.target.value)
-                  )
+                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
                 }
               />
               Al meno recente
@@ -118,10 +76,9 @@ export default function SearchProduct() {
                 name="order"
                 value="asc"
                 id="price"
+                checked={sorter == "price_asc"}
                 onChange={(e) =>
-                  setSearchRes(
-                    numSorter(searchRes, e.target.id, e.target.value)
-                  )
+                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
                 }
               />
               Crescente
@@ -132,10 +89,9 @@ export default function SearchProduct() {
                 name="order"
                 value="desc"
                 id="price"
+                checked={sorter == "price_desc"}
                 onChange={(e) =>
-                  setSearchRes(
-                    numSorter(searchRes, e.target.id, e.target.value)
-                  )
+                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
                 }
               />
               Decrescente
@@ -150,30 +106,28 @@ export default function SearchProduct() {
               <input
                 type="radio"
                 name="order"
-                value="desc"
-                id="created_at"
+                value="asc"
+                id="name"
+                checked={sorter == "name_asc"}
                 onChange={(e) =>
-                  setSearchRes(
-                    dateSorter(searchRes, e.target.id, e.target.value)
-                  )
+                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
                 }
               />
-              Dal più recente
+              A-Z
             </label>
 
             <label>
               <input
                 type="radio"
                 name="order"
-                value="asc"
-                id="created_at"
+                value="desc"
+                id="name"
+                checked={sorter == "name_desc"}
                 onChange={(e) =>
-                  setSearchRes(
-                    dateSorter(searchRes, e.target.id, e.target.value)
-                  )
+                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
                 }
               />
-              Al meno recente
+              Z-A
             </label>
             <br />
           </div>

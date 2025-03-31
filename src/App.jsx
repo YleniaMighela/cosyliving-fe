@@ -25,7 +25,10 @@ function App() {
               <Route path="/*" element={<NotFound />} />
               <Route path="/form" element={<Form />} />
               <Route path="/category/:name" element={<ResultsCategoryHome />} />
-              <Route path="/search/:value" element={<SearchProduct />} />
+              <Route
+                path="/search/:value/:sorter?"
+                element={<SearchProduct />}
+              />
               <Route path="/products/:slug" element={<DetailProduct />} />
               <Route path="/special-price" element={<SpecialPrices />} />
               <Route path="/new-arrivals" element={<NewArrivalPage />} />
