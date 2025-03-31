@@ -72,11 +72,11 @@ export default function SearchProduct() {
         Indietro
       </button>
       <h2>Risultati di Ricerca per la parola: {params.value}</h2>
-      <div className="special-price-container">
+      <div className="order_by">
         {/* sezione del filtro */}
         <h2>Ordina per:</h2>
         <div class="filter-container">
-          <div>
+          <div className="ultim_arrivi">
             <span>Ultimi arrivi: </span>
 
             <label>
@@ -110,7 +110,8 @@ export default function SearchProduct() {
             </label>
             <br />
           </div>
-          <div>
+
+          <div className="ultim_arrivi">
             <span>Prezzo: </span>
             <label>
               <input
@@ -142,7 +143,7 @@ export default function SearchProduct() {
             </label>
           </div>
 
-          <div>
+          <div className="ultim_arrivi">
             <br />
             <span>Nome: </span>
 

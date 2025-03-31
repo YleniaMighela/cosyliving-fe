@@ -619,7 +619,7 @@ footer {
 
 .special-price-container {
     max-width: 1200px;
-    margin: 0 25%;
+    margin: 0 auto;
     padding: 20px;
 }
 
@@ -659,7 +659,7 @@ footer {
 /* sezione filtraggio */
 .filter-container {
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     margin-bottom: 20px;
 }
 
@@ -675,6 +675,11 @@ footer {
 
 }
 
+.ultim_arrivi {
+    display: flex;
+    margin-left: 3%;
+
+}
 
 input[type="radio"] {
     margin-right: 5px;
@@ -685,4 +690,10 @@ a {
     /* Rimuove la sottolineatura */
     color: inherit;
     /* Fa in modo che il colore ereditato dal genitore venga utilizzato */
+}
+
+.order_by {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
