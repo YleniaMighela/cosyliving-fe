@@ -195,57 +195,64 @@ export default function FormCliente() {
 
                         <input type="text"
                             name="nome"
-                            placeholder="Nome..."
+                            placeholder="Nome...*"
                             value={personalData.nome}
-                            onChange={handlePersonalData} />
+                            onChange={handlePersonalData}
+                            required />
                     </div>
                     <div>
 
                         <input type="text"
                             name="cognome"
-                            placeholder="Cognome..."
+                            placeholder="Cognome...*"
                             value={personalData.cognome}
-                            onChange={handlePersonalData} />
+                            onChange={handlePersonalData}
+                            required />
                     </div>
                     <div>
 
                         <input type="email"
                             name="email"
-                            placeholder="Email..."
+                            placeholder="Email...*"
                             value={personalData.email}
-                            onChange={handlePersonalData} />
+                            onChange={handlePersonalData}
+                            required />
                     </div>
                     <div>
 
                         <input type="tel"
                             name="numeroTelefonico"
-                            placeholder="Numero telefonico..."
+                            placeholder="Numero telefonico...*"
                             value={personalData.numeroTelefonico}
-                            onChange={handlePersonalData} />
+                            onChange={handlePersonalData}
+                            required />
                     </div>
                     <div>
 
                         <input type="text"
                             name="codiceFiscale"
-                            placeholder="Codice Fiscale..."
+                            placeholder="Codice Fiscale...*"
                             value={personalData.codiceFiscale}
-                            onChange={handlePersonalData} />
+                            onChange={handlePersonalData}
+                            required />
                     </div>
                     <div>
 
                         <input type="text"
                             name="via"
                             value={personalData.via}
-                            placeholder="Via..."
-                            onChange={handlePersonalData} />
+                            placeholder="Via...*"
+                            onChange={handlePersonalData}
+                            required />
                     </div>
                     <div>
 
                         <input type="text"
                             name="city"
                             value={personalData.city}
-                            placeholder="Città..."
-                            onChange={handlePersonalData} />
+                            placeholder="Città...*"
+                            onChange={handlePersonalData}
+                            required />
                     </div>
 
                     <div>
