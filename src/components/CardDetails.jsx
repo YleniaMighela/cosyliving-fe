@@ -4,12 +4,6 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-var dimension = {
-  height: "",
-  length: "",
-  depth: ""
-};
-
 
 const CardProducts = () => {
   const { slug } = useParams();
