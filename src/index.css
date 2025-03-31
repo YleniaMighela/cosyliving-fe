@@ -315,6 +315,7 @@ h3 {
 }
 
 .container_notFound {
+    margin: 5%;
     text-align: center;
     padding: 50px;
     font-size: 30px;
