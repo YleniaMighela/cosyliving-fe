@@ -86,7 +86,7 @@ const CardProducts = () => {
     } else {
       // Otherwise, add a new product
       var Product = {
-        id: id_cart,
+        id: product.id,
         img: imageUrl,
         name: product.name,
         price: CalcPrice(Number(product.price), Number(count)),
@@ -98,6 +98,7 @@ const CardProducts = () => {
     // Save updated cart to localStorage
     localStorage.setItem("Cart", JSON.stringify(Cart));
     console.log(Cart);
+    console.log(product);
     // console.log("localstorage" + localStorage);
   }
 
