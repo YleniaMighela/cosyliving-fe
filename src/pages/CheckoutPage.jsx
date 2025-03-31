@@ -57,20 +57,8 @@ export default function FormCliente() {
 
     var prezzo_totale = 0
     for (var i = 0; i < orderProducts.length; i++) {
-        prezzo_totale = prezzo_totale + Number((orderProducts[i].price))
+        prezzo_totale = prezzo_totale + Number((orderProducts[i].price)) * Number(orderProducts[i].quantity)
     }
-    // orderProducts.map((product) => (
-
-    //                             ))
-
-    function CalcPrice(price, mult) {
-        price = price * mult
-        // console.log(price);
-        return Number(price).toFixed(2);;
-
-
-    }
-
     // Funzione per gestire l'input dei dati personali
     function handlePersonalData(e) {
         setPersonalData({
@@ -165,9 +153,9 @@ export default function FormCliente() {
                                         </li>
                                     ))}
                                 </ul>
-                                <p>Totale prodotti €{prezzo_totale}</p>
+                                <p>Totale prodotti €{(prezzo_totale).toFixed(2)}</p>
                                 <p><strong>Spedizione €9,99</strong></p>
-                                <p><strong>Totale: €{prezzo_totale + 9.99}</strong></p>
+                                <p><strong>Totale: €{(prezzo_totale + 9.99).toFixed(2)}</strong></p>
                             </>
                         ) : (
                             <>
@@ -178,9 +166,9 @@ export default function FormCliente() {
                                         </li>
                                     ))}
                                 </ul>
-                                <p>Totale prodotti €{prezzo_totale}</p>
+                                <p>Totale prodotti €{(prezzo_totale).toFixed(2)}</p>
                                 <p><strong><s>Spedizione €9,99</s></strong></p>
-                                <p><strong>Totale: €{prezzo_totale}</strong></p>
+                                <p><strong>Totale: €{(prezzo_totale).toFixed(2)}</strong></p>
                             </>
                         )
                     )}
