@@ -139,6 +139,7 @@ export default function SearchProduct() {
               <Link to={`/products/${res.slug}`} key={res.id}>
                 <CardProduct prodInfos={res} />
               </Link>
+
             ))
           ) : (
             <span>Nessun Risultato Trovato</span>

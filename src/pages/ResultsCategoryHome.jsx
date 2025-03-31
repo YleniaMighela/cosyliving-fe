@@ -33,26 +33,23 @@ export default function ResultsCategoryHome() {
     return (
         <>
             <h2 id="resultsCategory">Risultati per: {name}</h2>
-            <div className="container_categoryhome">
+            <div className="special-price-container">
 
-                <div >
+                <div className="products-grid" >
 
                     {products
                         .sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
                         .map((product) => (
                             <>
-                                <Link to={`/products/${product.slug}`} className="not_link">
-                                    <div className="container_infocategory">
-                                        <div key={product.id}>
-                                            <div className="info">
-                                                <h5>{product.name}</h5>
-                                                <p>€{product.price}</p>
-                                            </div>
-                                            <img className="img_category1" src={product.img_cover} alt={product.name} />
+                                <div className="product-card">
+                                    <div key={product.id}>
 
-                                        </div>
+                                        <h2>{product.name}</h2>
+                                        <img className="img_category1" src={product.img_cover} alt={product.name} />
+                                        <p className="price">€{product.price}</p>
+                                        <Link to={`/products/${product.slug}`} className="not_link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
                                     </div>
-                                </Link>
+                                </div>
 
                             </>
                         ))}
