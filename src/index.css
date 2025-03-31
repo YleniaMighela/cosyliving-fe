@@ -311,6 +311,7 @@ h3 {
 .container-tips {
     display: flex;
     padding: 15px;
+    align-items: stretch;
 }
 
 
@@ -318,6 +319,11 @@ h3 {
 .tips-right {
     display: flex;
     align-items: start;
+}
+
+.tips-left,
+.img-tips {
+    min-height: 100%;
 }
 
 .tips-left {
@@ -331,6 +337,7 @@ h3 {
 .tips-right {
     width: 100%;
     display: flex;
+
 
 }
 
