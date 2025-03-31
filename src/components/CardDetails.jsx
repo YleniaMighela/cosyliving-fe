@@ -113,14 +113,7 @@ const CardProducts = () => {
             >
               -
             </button>
-            <input
-              type="number"
-              min="1"
-              max={product.quantity}
-              className="quantity-input"
-              onChange={handleCount}
-              value={count}
-            />
+            <p>{count}</p>
             <button
               onClick={() =>
                 setCount((count) =>
