@@ -154,12 +154,13 @@ export default function FormCliente() {
 
   function handleSubmit(e) {
     e.preventDefault();
+
     console.log(personalData);
     // Axios Call
     axios
       .post(`http://localhost:3000/order/`, personalData, {
         headers: {
-          "Content-Type": "application/json", // Specifica che stai inviando JSON
+          "Content-Type": "application/json",
         },
       })
       .then((response) => setSearchRes(response.data))
@@ -171,7 +172,6 @@ export default function FormCliente() {
 
   useEffect(() => {
     if (orderProducts.length > 0) {
-      // ✅ Evita di aggiornare quando è vuoto
       setPersonalData((currentPersonalData) => ({
         ...currentPersonalData,
         products: orderProducts.map((product) => ({
@@ -180,7 +180,7 @@ export default function FormCliente() {
         })),
       }));
     }
-  }, [orderProducts]); // 🔥 Si attiva SOLO quando `orderProducts` cambia
+  }, [orderProducts]);
 
   return (
     <>
