@@ -9,6 +9,7 @@ const CardProducts = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [count, setCount] = useState(1);
+  const [text, setText] = useState("Aggiungi al carrello")
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -92,6 +93,21 @@ const CardProducts = () => {
   }
 
 
+
+  function ChangeCart(text) {
+    setText("Aggiunto al carrello")
+    setInterval(() => {
+      setText("Aggiungi al carrello")
+      clearInterval()
+    }, 2700);
+  }
+
+  function Call() {
+    ChangeCart(text)
+    StoreProduct();
+
+  }
+
   return (
     <div className="product-detail">
       <div className="product-container">
@@ -121,8 +137,8 @@ const CardProducts = () => {
             </button>
             {count === product.quantity && <p>Quantità massima ordinabile</p>}
           </div>
-          <button className="add-to-cart" onClick={StoreProduct()}>
-            Aggiungi al carrello
+          <button className="add-to-cart" onClick={() => { Call(text) }}>
+            {text}
           </button>
         </div>
       </div>
