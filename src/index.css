@@ -378,7 +378,7 @@ h3 {
 }
 
 .product-name {
-    font-size: 24px;
+    font-size: 40px;
     font-weight: bold;
     margin-bottom: 10px;
 }
@@ -390,14 +390,27 @@ h3 {
 }
 
 .product-price {
-    font-size: 20px;
+    font-size: 40px;
     font-weight: bold;
     color: #222;
 }
 
 .quantity-container {
     margin: 15px 0;
+    display: flex;
 }
+
+.quantity-container button {
+    margin-left: 12px;
+    padding: 3px;
+    /* display: flex; */
+}
+
+.quantity-container p {
+    text-align: center;
+    margin-left: 13px;
+}
+
 
 .quantity-input {
     width: 50px;
@@ -414,6 +427,7 @@ h3 {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 60px;
 }
 
 .add-to-cart:hover {
@@ -623,4 +637,16 @@ a {
     /* Rimuove la sottolineatura */
     color: inherit;
     /* Fa in modo che il colore ereditato dal genitore venga utilizzato */
+}
+
+.container_dimension li {
+    list-style: none;
+    font-size: 20px;
+}
+
+.container_dimension {
+    margin-top: 3%;
+    line-height: 25px;
+    font-size: 20px;
+
 }
