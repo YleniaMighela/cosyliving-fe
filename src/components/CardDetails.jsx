@@ -91,10 +91,6 @@ const CardProducts = () => {
     // console.log("localstorage" + localStorage);
   }
 
-  function Call() {
-    // localStorage.clear()
-    StoreProduct();
-  }
 
   return (
     <div className="product-detail">
@@ -125,11 +121,9 @@ const CardProducts = () => {
             </button>
             {count === product.quantity && <p>Quantità massima ordinabile</p>}
           </div>
-          <Link to="/cart">
-            <button className="add-to-cart" onClick={Call}>
-              Aggiungi al carrello
-            </button>
-          </Link>
+          <button className="add-to-cart" onClick={StoreProduct()}>
+            Aggiungi al carrello
+          </button>
         </div>
       </div>
     </div>
