@@ -115,10 +115,17 @@ const CardProducts = () => {
 
       <div className="product-detail">
         <div className="product-container">
-          <img src={imageUrl} alt={product.name} className="product-image" />
+          <div className="image-container">
+
+            <img src={imageUrl} alt={product.name} className="product-image" />
+            <div className="overlay">
+              <p className="product-description">{product.description}</p>
+            </div>
+
+          </div>
           <div className="product-info">
             <h2 className="product-name">{product.name}</h2>
-            {/* <p className="product-description">{product.description}</p> */}
+
 
             <div className="container_dimension">
               <strong> Dimensioni:</strong>
@@ -126,13 +133,23 @@ const CardProducts = () => {
                 <li><em>Altezza:</em> {product.height} cm</li>
                 <li><em>Lunghezza:</em> {product.length} cm</li>
                 <li><em>Profondità:</em> {product.depth} cm</li>
+                <li><em>Peso:</em> {product.weight} kg</li>
               </ul>
 
             </div>
+            {/* 
+            <div>
+              <strong>Materiali:</strong>
+              <span></span>
+            </div>
 
+            <div>
+              <strong>Colori:</strong>
+              <span></span>
+            </div> */}
 
             <div className="quantity-container">
-              <label>Quantità</label>
+              <label><strong>Quantità :</strong></label>
               <button
                 onClick={() => setCount((count) => (count === 1 ? 1 : count - 1))}
               >
@@ -154,8 +171,9 @@ const CardProducts = () => {
 
 
             <p className="product-price">
-              {product.price}
+              {product.price} €
             </p>
+            <p className="discount"> Sconto del: {product.discount} %</p>
             <button className="add-to-cart" onClick={StoreProduct()}>
               Aggiungi al carrello
             </button>
