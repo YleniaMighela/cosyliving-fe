@@ -210,87 +210,55 @@ main {
 
 
 /* SEZIONE NUOVI ARRIVI */
-.title_arrivi {
-    z-index: 99999999;
-}
 
-.container_imgArrivi {
+.home-container {
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 15px;
-    position: relative;
-    width: 90%;
-    margin-top: 5%;
-}
-
-.container_imgArrivi div {
-    position: relative;
-    width: 25%;
-    max-width: 200px;
-
-}
-
-.img_arrivi {
+    align-items: center;
     width: 100%;
+    padding: 50px 0;
+}
+
+.card {
+    width: 400px;
     height: auto;
-    /* Mantiene le proporzioni */
-    border: 3px solid black;
-    display: block;
-    transition: transform 0.3s ease-in-out;
-
-
+    text-align: center;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 20px;
 }
 
-.img_nuovi {
-    margin-top: 5%;
+.card img {
+    width: 100%;
+    border-radius: 10px;
 }
 
-/* SFALSAMENTO ALTERNATO */
-.container_imgArrivi div:nth-child(odd) {
-    transform: translateY(15px);
+.card h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
 }
-
-.container_imgArrivi div:nth-child(even) {
-    transform: translateY(-15px);
-}
-
-h4 {
-    position: absolute;
-    bottom: 95%;
-    background-color: rgba(0, 0, 0, 0.445);
-    color: rgb(247, 242, 242);
-    font-size: 50px;
-}
-
-
-
-
 
 /* SEZIONE SPECIAL PRICE */
 .container_imgprice {
     display: flex;
     justify-content: center;
-    margin: 5%;
     width: 70%;
     position: relative;
-
-
-
 }
 
 #special {
-    width: 30%;
-    margin-left: 45%;
+    width: 50%;
+    margin-left: 20%;
     border: 3px solid black;
 
 }
 
 h3 {
     position: absolute;
-    top: 40%;
-    right: 29%;
+    top: 50%;
+    right: 40%;
     background-color: rgba(0, 0, 0, 0.445);
     color: rgb(247, 242, 242);
     font-size: 50px;
