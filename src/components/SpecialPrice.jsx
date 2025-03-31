@@ -6,7 +6,9 @@ export default function SpecialPrice() {
 
             <div className="container_imgprice">
                 <h3>Special Price</h3>
-                <img id="special" src="../img/tavolino.jpg" alt="" />
+                <Link to="/special-price">
+                    <img id="special" src="../img/tavolino.jpg" alt="" />
+                </Link>
             </div>
         </>
     );
