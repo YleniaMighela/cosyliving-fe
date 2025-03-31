@@ -65,107 +65,87 @@ export default function SearchProduct() {
   }
 
   return (
-    <div>
-      <div>
-        <h2>Risultati di Ricerca per la parola: {params.value}</h2>
-        {searchRes.length > 0 ? (
-          searchRes.map((res) => (
-            <Link to={`/products/${res.name}`}>
-              <CardProduct key={res.id} prodInfos={res} />
-            </Link>
-          ))
-        ) : (
-          <span>Nessun Risultato Trovato</span>
-        )}
-      </div>
-      <div>
+    <>
+      <h2>Risultati di Ricerca per la parola: {params.value}</h2>
+      <div className="special-price-container">
+        {/* sezione del filtro */}
         <h2>Ordina per:</h2>
-        <div>
-          <span>Data </span>
-          <label>
-            <input
-              type="radio"
-              name="order"
-              value="asc"
-              id="created_at"
-              onChange={(e) =>
-                setSearchRes(dateSorter(searchRes, e.target.id, e.target.value))
-              }
-            />
-            Crescente
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="order"
-              value="desc"
-              id="created_at"
-              onChange={(e) =>
-                setSearchRes(dateSorter(searchRes, e.target.id, e.target.value))
-              }
-            />
-            Decrescente
-          </label>
+        <div class="filter-container">
+          <div>
+            <span>Ultimi arrivi: </span>
+
+            <label>
+              <input
+                type="radio"
+                name="order"
+                value="desc"
+                id="created_at"
+                onChange={(e) =>
+                  setSearchRes(dateSorter(searchRes, e.target.id, e.target.value))
+                }
+              />
+              Dal più recente
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="order"
+                value="asc"
+                id="created_at"
+                onChange={(e) =>
+                  setSearchRes(dateSorter(searchRes, e.target.id, e.target.value))
+                }
+              />
+              Al meno recente
+            </label>
+            <br />
+          </div>
+          <div>
+            <span>Prezzo: </span>
+            <label>
+              <input
+                type="radio"
+                name="order"
+                value="asc"
+                id="price"
+                onChange={(e) =>
+                  setSearchRes(numSorter(searchRes, e.target.id, e.target.value))
+                }
+              />
+              Crescente
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="order"
+                value="desc"
+                id="price"
+                onChange={(e) =>
+                  setSearchRes(numSorter(searchRes, e.target.id, e.target.value))
+                }
+              />
+              Decrescente
+            </label>
+          </div>
+
         </div>
-        <div>
-          <span>Prezzo </span>
-          <label>
-            <input
-              type="radio"
-              name="order"
-              value="asc"
-              id="price"
-              onChange={(e) =>
-                setSearchRes(numSorter(searchRes, e.target.id, e.target.value))
-              }
-            />
-            Crescente
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="order"
-              value="desc"
-              id="price"
-              onChange={(e) =>
-                setSearchRes(numSorter(searchRes, e.target.id, e.target.value))
-              }
-            />
-            Decrescente
-          </label>
+
+
+        {/* sezione del prodotto */}
+        <div className="products-grid " >
+          {searchRes.length > 0 ? (
+            searchRes.map((res) => (
+              <Link to={`/products/${res.slug}`} key={res.id}>
+                <CardProduct prodInfos={res} />
+              </Link>
+            ))
+          ) : (
+            <span>Nessun Risultato Trovato</span>
+          )}
         </div>
-        <div>
-          <span>Nome </span>
-          <label>
-            <input
-              type="radio"
-              name="order"
-              value="asc"
-              id="name"
-              onChange={(e) =>
-                setSearchRes(
-                  stringSorter(searchRes, e.target.id, e.target.value)
-                )
-              }
-            />
-            Crescente
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="order"
-              value="desc"
-              id="name"
-              onChange={(e) =>
-                setSearchRes(
-                  stringSorter(searchRes, e.target.id, e.target.value)
-                )
-              }
-            />
-            Decrescente
-          </label>
-        </div>
-      </div>
-    </div>
+
+      </div >
+    </>
   );
 }
