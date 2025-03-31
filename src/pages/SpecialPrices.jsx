@@ -28,7 +28,7 @@ const SpecialPrices = () => {
             <div className="products-grid">
                 {products.map((product) => (
                     <div key={product.id} className="product-card">
-                        <img src={`http://localhost:3000/images/${product.img_cover}`} alt={product.name} />
+                        <img src={`${product.img_cover}`} alt={product.name} />
                         <h2>{product.name}</h2>
                         <p className="price">€{Number(product.price).toFixed(2)}</p>
                         <p className="discount">Sconto: {product.discount}%</p>
