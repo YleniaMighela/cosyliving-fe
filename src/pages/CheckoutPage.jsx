@@ -130,7 +130,7 @@ export default function FormCliente() {
             .then((res) => {
                 setSuccessMessage("Dati inviati con successo!");  // Messaggio di successo
                 setTimeout(() => {
-                    setSuccessMessage("");  // Nascondi il messaggio dopo un po'
+                    setSuccessMessage("");  // Nasconde il messaggio dopo un po'
                 }, 5000);
                 sendEmail()
             })
@@ -139,7 +139,7 @@ export default function FormCliente() {
                 console.error("Errore durante l'invio dei dati:", error);
                 setErrorMessage("Si è verificato un errore nell'invio dei dati. Riprova più tardi.");
                 setTimeout(() => {
-                    setErrorMessage("");  // Nascondi il messaggio di errore dopo 5 secondi
+                    setErrorMessage("");  // Nasconde il messaggio di errore dopo 5 secondi
                 }, 5000);
             });
     }
