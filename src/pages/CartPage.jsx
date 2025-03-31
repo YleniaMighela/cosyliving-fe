@@ -28,7 +28,7 @@ export default function Cart() {
                 <div className="container_notFound">
                     <FontAwesomeIcon icon={faCartShopping} className="empty_cart" />
                     <h2>Il tuo carrello è vuoto</h2>
-                    <Link to="/"><button>Continua i tuoi acquisti</button></Link>
+                    <Link to="/"><button className="bottone_dettaglio">Continua i tuoi acquisti</button></Link>
                 </div>
             ) : (
                 <section>
