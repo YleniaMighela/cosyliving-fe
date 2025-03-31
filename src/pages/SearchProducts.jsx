@@ -21,7 +21,7 @@ export default function SearchProduct() {
 
     // Axios call that search specific prods
     axios
-      .get(`http://localhost:3000/search/${value}/${sorter}?`)
+      .get(`http://localhost:3000/search/${value}${sorter ? `/${sorter}` : ""}`)
       .then((response) => setSearchRes(response.data))
       .catch((err) => console.error(err));
   }, [value, sorter]);
@@ -37,7 +37,7 @@ export default function SearchProduct() {
         <div className="special-price-container">
           {/* sezione del filtro */}
           <h2>Ordina per:</h2>
-          <div class="filter-container">
+          <div className="filter-container">
             <div className="ultim_arrivi">
               <span>Ultimi arrivi: </span>
 
@@ -47,7 +47,7 @@ export default function SearchProduct() {
                   name="order"
                   value="desc"
                   id="date"
-                  checked={sorter == "date_desc"}
+                  checked={sorter === "date_desc"}
                   onChange={(e) =>
                     navigate(
                       `/search/${value}/${e.target.id}_${e.target.value}`
@@ -63,7 +63,7 @@ export default function SearchProduct() {
                   name="order"
                   value="asc"
                   id="date"
-                  checked={sorter == "date_asc"}
+                  checked={sorter === "date_asc"}
                   onChange={(e) =>
                     navigate(
                       `/search/${value}/${e.target.id}_${e.target.value}`
@@ -83,7 +83,7 @@ export default function SearchProduct() {
                   name="order"
                   value="asc"
                   id="price"
-                  checked={sorter == "price_asc"}
+                  checked={sorter === "price_asc"}
                   onChange={(e) =>
                     navigate(
                       `/search/${value}/${e.target.id}_${e.target.value}`
@@ -98,7 +98,7 @@ export default function SearchProduct() {
                   name="order"
                   value="desc"
                   id="price"
-                  checked={sorter == "price_desc"}
+                  checked={sorter === "price_desc"}
                   onChange={(e) =>
                     navigate(
                       `/search/${value}/${e.target.id}_${e.target.value}`
@@ -119,7 +119,7 @@ export default function SearchProduct() {
                   name="order"
                   value="asc"
                   id="name"
-                  checked={sorter == "name_asc"}
+                  checked={sorter === "name_asc"}
                   onChange={(e) =>
                     navigate(
                       `/search/${value}/${e.target.id}_${e.target.value}`
@@ -135,7 +135,7 @@ export default function SearchProduct() {
                   name="order"
                   value="desc"
                   id="name"
-                  checked={sorter == "name_desc"}
+                  checked={sorter === "name_desc"}
                   onChange={(e) =>
                     navigate(
                       `/search/${value}/${e.target.id}_${e.target.value}`
