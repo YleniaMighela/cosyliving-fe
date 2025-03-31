@@ -4,6 +4,13 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+var dimension = {
+  height: "",
+  length: "",
+  depth: ""
+};
+
+
 const CardProducts = () => {
   const { slug } = useParams();
   const [product, setProduct] = useState(null);
@@ -21,6 +28,7 @@ const CardProducts = () => {
           throw new Error("Prodotto non trovato");
         }
         const data = await response.json();
+        // console.log(data)
         setProduct(data);
       } catch (err) {
         setError(err.message);
@@ -31,6 +39,9 @@ const CardProducts = () => {
 
     fetchProduct();
   }, [slug]);
+
+
+
 
   if (loading) return <p className="loading">Caricamento...</p>;
   if (error) return <p className="error">{error}</p>;
@@ -104,21 +115,48 @@ const CardProducts = () => {
 
       <div className="product-detail">
         <div className="product-container">
-          <img src={imageUrl} alt={product.name} className="product-image" />
+          <div className="image-container">
+
+            <img src={imageUrl} alt={product.name} className="product-image" />
+            <div className="overlay">
+              <p className="product-description">{product.description}</p>
+            </div>
+
+          </div>
           <div className="product-info">
             <h2 className="product-name">{product.name}</h2>
-            <p className="product-description">{product.description}</p>
-            <p className="product-price">
-              {product.price}
-            </p>
+
+
+            <div className="container_dimension">
+              <strong> Dimensioni:</strong>
+              <ul>
+                <li><em>Altezza:</em> {product.height} cm</li>
+                <li><em>Lunghezza:</em> {product.length} cm</li>
+                <li><em>Profondità:</em> {product.depth} cm</li>
+                <li><em>Peso:</em> {product.weight} kg</li>
+              </ul>
+
+            </div>
+            {/* 
+            <div>
+              <strong>Materiali:</strong>
+              <span></span>
+            </div>
+
+            <div>
+              <strong>Colori:</strong>
+              <span></span>
+            </div> */}
+
             <div className="quantity-container">
-              <label>Quantità</label>
+              <label><strong>Quantità :</strong></label>
               <button
                 onClick={() => setCount((count) => (count === 1 ? 1 : count - 1))}
               >
                 -
               </button>
-              <p>{count}</p>
+              <p> {count} </p>
+
               <button
                 onClick={() =>
                   setCount((count) =>
@@ -130,6 +168,12 @@ const CardProducts = () => {
               </button>
               {count === product.quantity && <p>Quantità massima ordinabile</p>}
             </div>
+
+
+            <p className="product-price">
+              {product.price} €
+            </p>
+            <p className="discount"> Sconto del: {product.discount} %</p>
             <button className="add-to-cart" onClick={StoreProduct()}>
               Aggiungi al carrello
             </button>

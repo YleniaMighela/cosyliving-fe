@@ -47,9 +47,9 @@ export default function ResultsCategoryHome() {
                                 <div className="product-card">
                                     <div key={product.id}>
 
-                                        <h2>{product.name}</h2>
+                                        <h2 className="product-name">{product.name}</h2>
                                         <img className="img_category1" src={product.img_cover} alt={product.name} />
-                                        <p className="price">€{product.price}</p>
+                                        <p className="price_category">{product.price} €</p>
                                         <Link to={`/products/${product.slug}`} className="not_link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
                                     </div>
                                 </div>

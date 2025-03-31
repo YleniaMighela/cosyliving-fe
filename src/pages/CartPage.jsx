@@ -25,7 +25,7 @@ export default function Cart() {
     return (
         <>
             {cart.length === 0 ? (
-                <div className="container">
+                <div className="container_notFound">
                     <FontAwesomeIcon icon={faCartShopping} className="empty_cart" />
                     <h2>Il tuo carrello è vuoto</h2>
                     <Link to="/"><button>Continua i tuoi acquisti</button></Link>
