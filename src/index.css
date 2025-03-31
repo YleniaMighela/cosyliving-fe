@@ -338,6 +338,15 @@ h3 {
 
 /* DETTAGLIO PRODOTTO */
 
+.bottone_dettaglio {
+    margin: 5%;
+    padding: 2%;
+    background-color: rgba(0, 0, 0, 0.548);
+    color: white;
+    font-size: 15px;
+    cursor: pointer;
+}
+
 .product-detail {
     display: flex;
     justify-content: center;

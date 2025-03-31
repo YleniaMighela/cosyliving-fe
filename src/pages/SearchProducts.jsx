@@ -3,6 +3,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // Components
 import CardProduct from "../components/CardProduct";
@@ -13,6 +14,7 @@ export default function SearchProduct() {
   // State Var that contains the query results
   const [searchRes, setSearchRes] = useState([]);
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (searchRes.length > 0) setSearchRes([]);
 
@@ -66,6 +68,10 @@ export default function SearchProduct() {
 
   return (
     <>
+
+      <button id="button_notfound" onClick={() => navigate(-1)}>
+        Indietro
+      </button>
       <h2>Risultati di Ricerca per la parola: {params.value}</h2>
       <div className="special-price-container">
         {/* sezione del filtro */}
@@ -136,9 +142,12 @@ export default function SearchProduct() {
         <div className="products-grid " >
           {searchRes.length > 0 ? (
             searchRes.map((res) => (
-              <Link to={`/products/${res.slug}`} key={res.id}>
+              <div key={res.id} className="product-item">
                 <CardProduct prodInfos={res} />
-              </Link>
+                <Link to={`/products/${res.slug}`} className="not_link product-link">
+                  <button className="bottone_dettaglio">Vai al dettaglio</button>
+                </Link>
+              </div>
             ))
           ) : (
             <span>Nessun Risultato Trovato</span>

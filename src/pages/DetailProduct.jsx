@@ -9,10 +9,7 @@ export default function DetailProducts() {
       <div>
         <CardDetails />
       </div>
-      <Link to="/">
-        {" "}
-        <button id="button_notfound">Torna alla home</button>
-      </Link>
+
     </>
   );
 }
