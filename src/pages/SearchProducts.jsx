@@ -31,130 +31,143 @@ export default function SearchProduct() {
       <button id="button_notfound" onClick={() => navigate(-1)}>
         Indietro
       </button>
- 
+
       <div className="order_by">
-      <h2>Risultati di Ricerca per la parola: {value}</h2>
-      <div className="special-price-container">
-        {/* sezione del filtro */}
-        <h2>Ordina per:</h2>
-        <div class="filter-container">
-          <div className="ultim_arrivi">
-            <span>Ultimi arrivi: </span>
+        <h2>Risultati di Ricerca per la parola: {value}</h2>
+        <div className="special-price-container">
+          {/* sezione del filtro */}
+          <h2>Ordina per:</h2>
+          <div class="filter-container">
+            <div className="ultim_arrivi">
+              <span>Ultimi arrivi: </span>
 
-            <label>
-              <input
-                type="radio"
-                name="order"
-                value="desc"
-                id="date"
-                checked={sorter == "date_desc"}
-                onChange={(e) =>
-                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
-                }
-              />
-              Dal più recente
-            </label>
+              <label>
+                <input
+                  type="radio"
+                  name="order"
+                  value="desc"
+                  id="date"
+                  checked={sorter == "date_desc"}
+                  onChange={(e) =>
+                    navigate(
+                      `/search/${value}/${e.target.id}_${e.target.value}`
+                    )
+                  }
+                />
+                Dal più recente
+              </label>
 
-            <label>
-              <input
-                type="radio"
-                name="order"
-                value="asc"
-                id="date"
-                checked={sorter == "date_asc"}
-                onChange={(e) =>
-                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
-                }
-              />
-              Al meno recente
-            </label>
-            <br />
+              <label>
+                <input
+                  type="radio"
+                  name="order"
+                  value="asc"
+                  id="date"
+                  checked={sorter == "date_asc"}
+                  onChange={(e) =>
+                    navigate(
+                      `/search/${value}/${e.target.id}_${e.target.value}`
+                    )
+                  }
+                />
+                Al meno recente
+              </label>
+              <br />
+            </div>
+
+            <div className="ultim_arrivi">
+              <span>Prezzo: </span>
+              <label>
+                <input
+                  type="radio"
+                  name="order"
+                  value="asc"
+                  id="price"
+                  checked={sorter == "price_asc"}
+                  onChange={(e) =>
+                    navigate(
+                      `/search/${value}/${e.target.id}_${e.target.value}`
+                    )
+                  }
+                />
+                Crescente
+              </label>
+              <label>
+                <input
+                  type="radio"
+                  name="order"
+                  value="desc"
+                  id="price"
+                  checked={sorter == "price_desc"}
+                  onChange={(e) =>
+                    navigate(
+                      `/search/${value}/${e.target.id}_${e.target.value}`
+                    )
+                  }
+                />
+                Decrescente
+              </label>
+            </div>
+
+            <div className="ultim_arrivi">
+              <br />
+              <span>Nome: </span>
+
+              <label>
+                <input
+                  type="radio"
+                  name="order"
+                  value="asc"
+                  id="name"
+                  checked={sorter == "name_asc"}
+                  onChange={(e) =>
+                    navigate(
+                      `/search/${value}/${e.target.id}_${e.target.value}`
+                    )
+                  }
+                />
+                A-Z
+              </label>
+
+              <label>
+                <input
+                  type="radio"
+                  name="order"
+                  value="desc"
+                  id="name"
+                  checked={sorter == "name_desc"}
+                  onChange={(e) =>
+                    navigate(
+                      `/search/${value}/${e.target.id}_${e.target.value}`
+                    )
+                  }
+                />
+                Z-A
+              </label>
+              <br />
+            </div>
           </div>
 
-          <div className="ultim_arrivi">
-            <span>Prezzo: </span>
-            <label>
-              <input
-                type="radio"
-                name="order"
-                value="asc"
-                id="price"
-                checked={sorter == "price_asc"}
-                onChange={(e) =>
-                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
-                }
-              />
-              Crescente
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="order"
-                value="desc"
-                id="price"
-                checked={sorter == "price_desc"}
-                onChange={(e) =>
-                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
-                }
-              />
-              Decrescente
-            </label>
+          {/* sezione del prodotto */}
+          <div className="products-grid ">
+            {searchRes.length > 0 ? (
+              searchRes.map((res) => (
+                <div key={res.id} className="product-item">
+                  <CardProduct prodInfos={res} />
+                  <Link
+                    to={`/products/${res.slug}`}
+                    className="not_link product-link"
+                  >
+                    <button className="bottone_dettaglio">
+                      Vai al dettaglio
+                    </button>
+                  </Link>
+                </div>
+              ))
+            ) : (
+              <span>Nessun Risultato Trovato</span>
+            )}
           </div>
-
-          <div className="ultim_arrivi">
-            <br />
-            <span>Nome: </span>
-
-            <label>
-              <input
-                type="radio"
-                name="order"
-                value="asc"
-                id="name"
-                checked={sorter == "name_asc"}
-                onChange={(e) =>
-                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
-                }
-              />
-              A-Z
-            </label>
-
-            <label>
-              <input
-                type="radio"
-                name="order"
-                value="desc"
-                id="name"
-                checked={sorter == "name_desc"}
-                onChange={(e) =>
-                  navigate(`/search/${value}/${e.target.id}_${e.target.value}`)
-                }
-              />
-              Z-A
-            </label>
-            <br />
-          </div>
-        </div>
-
-        {/* sezione del prodotto */}
-        <div className="products-grid ">
-          {searchRes.length > 0 ? (
-            searchRes.map((res) => (
-              <div key={res.id} className="product-item">
-                <CardProduct prodInfos={res} />
-                <Link
-                  to={`/products/${res.slug}`}
-                  className="not_link product-link"
-                >
-                  <button className="bottone_dettaglio">
-                    Vai al dettaglio
-                  </button>
-                </Link>
-              </div>
-            ))
-          ) : (
-            <span>Nessun Risultato Trovato</span>
-          )}
         </div>
       </div>
     </>
