@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-
-const SpecialPrices = () => {
-    const [products, setProducts] = useState([]);
+const NewArrivalPage = () => {
+    const [newArrivals, setNewArrivals] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/products")
+        fetch("http://localhost:3000/products/new_arrivals")
             .then((res) => {
                 if (!res.ok) {
                     throw new Error(`Errore HTTP! Status: ${res.status}`);
@@ -17,29 +16,33 @@ const SpecialPrices = () => {
                 if (!Array.isArray(data)) {
                     throw new Error("La risposta dell'API non è un array valido.");
                 }
-                const discountedProducts = data.filter((product) => product.discount > 0);
-                setProducts(discountedProducts);
+                setNewArrivals(data);
             })
             .catch((err) => console.error("Errore nel fetch:", err));
     }, []);
 
     return (
         <div className="special-price-container">
-            <h1>Prodotti in Promozione</h1>
+            <h1>Nuovi Arrivi</h1>
+
             <div className="products-grid">
-                {products.map((product) => (
+
+                {newArrivals.map((product) => (
                     <div key={product.id} className="product-card">
                         <Link to={`/products/${product.slug}`} className="product-link">
                             <img src={`${product.img_cover}`} alt={product.name} />
                             <h2>{product.name}</h2>
+
                             <p className="price">€{Number(product.price).toFixed(2)}</p>
-                            <p className="discount">Sconto: {product.discount}%</p>
                         </Link>
                     </div>
+
                 ))}
+
             </div>
+
         </div>
     );
 };
 
-export default SpecialPrices;
+export default NewArrivalPage;
