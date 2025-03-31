@@ -581,3 +581,36 @@ footer {
     font-size: 16px;
     color: red;
 }
+
+
+
+/* sezione filtraggio */
+.filter-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.filter-container>div {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.filter-container span {
+    font-weight: bold;
+    margin-bottom: 5px;
+
+}
+
+
+input[type="radio"] {
+    margin-right: 5px;
+}
+
+a {
+    text-decoration: none;
+    /* Rimuove la sottolineatura */
+    color: inherit;
+    /* Fa in modo che il colore ereditato dal genitore venga utilizzato */
+}
