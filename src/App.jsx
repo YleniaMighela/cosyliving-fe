@@ -11,6 +11,7 @@ import DetailProduct from "./pages/DetailProduct";
 import Cart from "./pages/CartPage.jsx";
 import ResultsCategoryHome from "./pages/ResultsCategoryHome";
 import SearchProduct from "./pages/SearchProducts.jsx";
+import SpecialPrices from "./pages/SpecialPrices";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
               <Route path="/category/:name" element={<ResultsCategoryHome />} />
               <Route path="/search/:value" element={<SearchProduct />} />
               <Route path="/products/:slug" element={<DetailProduct />} />
+              <Route path="/special-price" element={<SpecialPrices />} />
               <Route path="/cart" element={<Cart />}></Route>
             </Route>
           </Routes>
