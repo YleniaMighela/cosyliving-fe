@@ -113,7 +113,10 @@ header {
 
 }
 
-
+.price_category {
+    margin-top: 3%;
+    font-size: 20px;
+}
 
 
 /* BARRA DI RICERCA */
