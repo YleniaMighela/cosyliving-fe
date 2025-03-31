@@ -3,6 +3,7 @@
 import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 // Components
 import CardProduct from "../components/CardProduct";
@@ -13,6 +14,7 @@ export default function SearchProduct() {
   // State Var that contains the query results
   const [searchRes, setSearchRes] = useState([]);
 
+  const navigate = useNavigate();
   useEffect(() => {
     if (searchRes.length > 0) setSearchRes([]);
 
@@ -66,6 +68,10 @@ export default function SearchProduct() {
 
   return (
     <>
+
+      <button id="button_notfound" onClick={() => navigate(-1)}>
+        Indietro
+      </button>
       <h2>Risultati di Ricerca per la parola: {params.value}</h2>
       <div className="special-price-container">
         {/* sezione del filtro */}

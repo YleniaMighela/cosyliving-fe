@@ -25,6 +25,10 @@ const SpecialPrices = () => {
 
     return (
         <div className="special-price-container">
+
+            <Link to="/">
+                <button id="button_notfound">Indietro</button>
+            </Link>
             <h1>Prodotti in Promozione</h1>
             <div className="products-grid">
                 {products.map((product) => (

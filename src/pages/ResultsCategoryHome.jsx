@@ -33,6 +33,9 @@ export default function ResultsCategoryHome() {
     return (
         <>
             <h2 id="resultsCategory">Risultati per: {name}</h2>
+            <Link to="/">
+                <button id="button_notfound">Indietro</button>
+            </Link>
             <div className="special-price-container">
 
                 <div className="products-grid" >

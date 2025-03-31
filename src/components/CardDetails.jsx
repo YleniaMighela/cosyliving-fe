@@ -2,6 +2,7 @@
 import { faInstagramSquare } from "@fortawesome/free-brands-svg-icons/faInstagramSquare";
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const CardProducts = () => {
   const { slug } = useParams();
@@ -9,6 +10,8 @@ const CardProducts = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [count, setCount] = useState(1);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -93,40 +96,47 @@ const CardProducts = () => {
 
 
   return (
-    <div className="product-detail">
-      <div className="product-container">
-        <img src={imageUrl} alt={product.name} className="product-image" />
-        <div className="product-info">
-          <h2 className="product-name">{product.name}</h2>
-          <p className="product-description">{product.description}</p>
-          <p className="product-price">
-            {product.price}
-          </p>
-          <div className="quantity-container">
-            <label>Quantità</label>
-            <button
-              onClick={() => setCount((count) => (count === 1 ? 1 : count - 1))}
-            >
-              -
+    <>
+
+      <button id="button_notfound" onClick={() => navigate(-1)}>
+        Indietro
+      </button>
+
+      <div className="product-detail">
+        <div className="product-container">
+          <img src={imageUrl} alt={product.name} className="product-image" />
+          <div className="product-info">
+            <h2 className="product-name">{product.name}</h2>
+            <p className="product-description">{product.description}</p>
+            <p className="product-price">
+              {product.price}
+            </p>
+            <div className="quantity-container">
+              <label>Quantità</label>
+              <button
+                onClick={() => setCount((count) => (count === 1 ? 1 : count - 1))}
+              >
+                -
+              </button>
+              <p>{count}</p>
+              <button
+                onClick={() =>
+                  setCount((count) =>
+                    count === product.quantity ? product.quantity : count + 1
+                  )
+                }
+              >
+                +
+              </button>
+              {count === product.quantity && <p>Quantità massima ordinabile</p>}
+            </div>
+            <button className="add-to-cart" onClick={StoreProduct()}>
+              Aggiungi al carrello
             </button>
-            <p>{count}</p>
-            <button
-              onClick={() =>
-                setCount((count) =>
-                  count === product.quantity ? product.quantity : count + 1
-                )
-              }
-            >
-              +
-            </button>
-            {count === product.quantity && <p>Quantità massima ordinabile</p>}
           </div>
-          <button className="add-to-cart" onClick={StoreProduct()}>
-            Aggiungi al carrello
-          </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

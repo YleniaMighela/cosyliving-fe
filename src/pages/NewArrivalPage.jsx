@@ -23,6 +23,10 @@ const NewArrivalPage = () => {
 
     return (
         <div className="special-price-container">
+
+            <Link to="/">
+                <button id="button_notfound">Indietro</button>
+            </Link>
             <h1>Nuovi Arrivi</h1>
 
             <div className="products-grid">
@@ -36,6 +40,7 @@ const NewArrivalPage = () => {
                         <p className="price">€{Number(product.price).toFixed(2)}</p>
 
                         <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
+
 
                     </div>
 
