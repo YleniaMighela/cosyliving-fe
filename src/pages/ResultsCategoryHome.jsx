@@ -41,7 +41,7 @@ export default function ResultsCategoryHome() {
                         .sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
                         .map((product) => (
                             <>
-                                <Link to={`/products/${product.name}`} className="not_link">
+                                <Link to={`/products/${product.slug}`} className="not_link">
                                     <div className="container_infocategory">
                                         <div key={product.id}>
                                             <div className="info">
