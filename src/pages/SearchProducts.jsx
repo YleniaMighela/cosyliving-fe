@@ -68,7 +68,6 @@ export default function SearchProduct() {
 
   return (
     <>
-
       <button id="button_notfound" onClick={() => navigate(-1)}>
         Indietro
       </button>
@@ -87,7 +86,9 @@ export default function SearchProduct() {
                 value="desc"
                 id="created_at"
                 onChange={(e) =>
-                  setSearchRes(dateSorter(searchRes, e.target.id, e.target.value))
+                  setSearchRes(
+                    dateSorter(searchRes, e.target.id, e.target.value)
+                  )
                 }
               />
               Dal più recente
@@ -100,7 +101,9 @@ export default function SearchProduct() {
                 value="asc"
                 id="created_at"
                 onChange={(e) =>
-                  setSearchRes(dateSorter(searchRes, e.target.id, e.target.value))
+                  setSearchRes(
+                    dateSorter(searchRes, e.target.id, e.target.value)
+                  )
                 }
               />
               Al meno recente
@@ -116,7 +119,9 @@ export default function SearchProduct() {
                 value="asc"
                 id="price"
                 onChange={(e) =>
-                  setSearchRes(numSorter(searchRes, e.target.id, e.target.value))
+                  setSearchRes(
+                    numSorter(searchRes, e.target.id, e.target.value)
+                  )
                 }
               />
               Crescente
@@ -128,24 +133,65 @@ export default function SearchProduct() {
                 value="desc"
                 id="price"
                 onChange={(e) =>
-                  setSearchRes(numSorter(searchRes, e.target.id, e.target.value))
+                  setSearchRes(
+                    numSorter(searchRes, e.target.id, e.target.value)
+                  )
                 }
               />
               Decrescente
             </label>
           </div>
 
+          <div>
+            <br />
+            <span>Nome: </span>
+
+            <label>
+              <input
+                type="radio"
+                name="order"
+                value="desc"
+                id="created_at"
+                onChange={(e) =>
+                  setSearchRes(
+                    dateSorter(searchRes, e.target.id, e.target.value)
+                  )
+                }
+              />
+              Dal più recente
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="order"
+                value="asc"
+                id="created_at"
+                onChange={(e) =>
+                  setSearchRes(
+                    dateSorter(searchRes, e.target.id, e.target.value)
+                  )
+                }
+              />
+              Al meno recente
+            </label>
+            <br />
+          </div>
         </div>
 
-
         {/* sezione del prodotto */}
-        <div className="products-grid " >
+        <div className="products-grid ">
           {searchRes.length > 0 ? (
             searchRes.map((res) => (
               <div key={res.id} className="product-item">
                 <CardProduct prodInfos={res} />
-                <Link to={`/products/${res.slug}`} className="not_link product-link">
-                  <button className="bottone_dettaglio">Vai al dettaglio</button>
+                <Link
+                  to={`/products/${res.slug}`}
+                  className="not_link product-link"
+                >
+                  <button className="bottone_dettaglio">
+                    Vai al dettaglio
+                  </button>
                 </Link>
               </div>
             ))
@@ -153,8 +199,7 @@ export default function SearchProduct() {
             <span>Nessun Risultato Trovato</span>
           )}
         </div>
-
-      </div >
+      </div>
     </>
   );
 }
