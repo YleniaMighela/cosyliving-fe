@@ -43,9 +43,28 @@ export default function FormCliente() {
         const storedBilling = JSON.parse(localStorage.getItem("billingInfo")) || [];
         setBillingInfo(storedBilling);
 
+        // Recupera l'oggetto Cart da localStorage
         const storedCart = JSON.parse(localStorage.getItem("Cart")) || [];
-        setOrderProducts(storedCart);
-        console.log("Personal data:", personalData);
+
+        // Rimuovi una chiave specifica da ogni oggetto nel carrello
+        const keyToRemove = "img"; // Sostituisci con la chiave da rimuovere
+
+        const updatedCart = storedCart.map(item => {
+            delete item[keyToRemove]; // Rimuove la chiave dall'oggetto
+            return item;
+        });
+        if (!personalData.nome || !personalData.email || cart.length === 0) {
+            console.error("Errore: Dati mancanti", personalData, cart);
+            setErrorMessage("Compila tutti i campi e aggiungi almeno un prodotto.");
+            return;
+        } else {
+            console.log("Va tutto bene dai dati");
+
+        }
+
+        // Salva il carrello aggiornato in localStorage
+        localStorage.setItem("Cart", JSON.stringify(updatedCart));
+        setOrderProducts(updatedCart); console.log("Personal data:", personalData);
         console.log("Cart data:", cart);
     }, []);
 
@@ -122,10 +141,11 @@ export default function FormCliente() {
         };
         setClients([...clients, newClient]);
         setPersonalData(initialPersonalData);
+
         axios.post("http://localhost:3000/order", {
             personalData: personalData,
             cart: cart
-            // prezzo_totale,
+
         })
             .then((res) => {
                 setSuccessMessage("Dati inviati con successo!");  // Messaggio di successo
