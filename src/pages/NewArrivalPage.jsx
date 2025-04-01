@@ -6,6 +6,7 @@ const NewArrivalPage = () => {
 
     const location = useLocation();
     const isHomePage = location.pathname === "/";
+    const isDetail = location.pathname === "/";
 
     useEffect(() => {
         fetch("http://localhost:3000/products/new_arrivals")
@@ -44,10 +45,10 @@ const NewArrivalPage = () => {
                         <h2>{product.name}</h2>
 
                         <p className="price">€{Number(product.price).toFixed(2)}</p>
+                        {!isDetail && (
+                            <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
 
-                        <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
-
-
+                        )}
                     </div>
 
                 ))}
