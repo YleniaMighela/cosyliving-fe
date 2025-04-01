@@ -23,8 +23,6 @@ const initialBillingData = {
   cap_billing: "",
 };
 
-
-
 export default function FormCliente() {
   // console.log(localStorage);
 
@@ -37,7 +35,9 @@ export default function FormCliente() {
   const [orderProducts, setOrderProducts] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("Cart")) || [])
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem("Cart")) || []
+  );
 
   // Recupero dati da localStorage
   useEffect(() => {
@@ -64,7 +64,6 @@ export default function FormCliente() {
     setOrderProducts(JSON.parse(localStorage.getItem("Cart")) || []);
   }, []);
   console.log(orderProducts);
-
 
   var prezzo_totale = 0;
   for (var i = 0; i < orderProducts.length; i++) {
@@ -140,7 +139,7 @@ export default function FormCliente() {
         "YwWXI2IpotKYzl-pl"
       )
       .then(
-        (result) => { },
+        (result) => {},
         (error) => {
           console.log(error.text);
         }
@@ -154,7 +153,7 @@ export default function FormCliente() {
         "YwWXI2IpotKYzl-pl"
       )
       .then(
-        (result) => { },
+        (result) => {},
         (error) => {
           console.log(error.text);
         }
@@ -243,7 +242,13 @@ export default function FormCliente() {
       {/* sezione dati personali */}
       <section>
         {/* Form Dati Personali */}
-        <form className="form_personali" onSubmit={handleSubmit}>
+        <form
+          className="form_personali"
+          onSubmit={() => {
+            handleSubmit(e.target);
+            localStorage.clear();
+          }}
+        >
           <h2>Inserisci Dati Personali</h2>
           <div>
             <input
@@ -327,9 +332,7 @@ export default function FormCliente() {
           </div>
 
           <div>
-            <button type="submit" onClick={() => localStorage.clear()}>
-              Invia dati
-            </button>
+            <button type="submit">Invia dati</button>
           </div>
         </form>
       </section>
