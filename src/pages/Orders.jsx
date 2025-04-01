@@ -26,7 +26,6 @@ export default function OrderSummary() {
 
                 <h4>Prodotti Ordinati:</h4>
                 <ul>
-
                     {orderDetails.products.map((product, index) => (
                         <li key={index}>{product.name} x {product.quantity}</li>
                     ))}
