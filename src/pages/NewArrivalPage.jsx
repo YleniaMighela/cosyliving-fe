@@ -49,6 +49,7 @@ const NewArrivalPage = () => {
                             <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
 
                         )}
+                        <em>Disponibile dal: {new Date(product.created_at).toLocaleDateString()}</em>
                     </div>
 
                 ))}

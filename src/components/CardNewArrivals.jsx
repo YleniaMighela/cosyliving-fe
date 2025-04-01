@@ -12,6 +12,7 @@ export default function NewArrivalsCard() {
                 </Link>
                 <div className="container_newarrival">
                     <NewArrivalPage />
+
                 </div>
 
             </div>
