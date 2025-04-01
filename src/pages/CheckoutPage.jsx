@@ -9,16 +9,18 @@ const initialPersonalData = {
   shipment_address: "",
   city: "",
   phone_num: "",
-  billing_address: "Via di Prova 5",
   cf: "",
+  cap: "",
   products: [],
+  totalPrice: 0,
 };
 
 const initialBillingData = {
-  partitaIVA: "",
-  indirizzoFatturazione: "",
-  cittàFatturazione: "",
-  cap: "",
+  name_billing: "",
+  surname_billing: "",
+  billing_address: "",
+  city_billing: "",
+  cap_billing: "",
 };
 
 export default function FormCliente() {
@@ -155,10 +157,12 @@ export default function FormCliente() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    console.log(personalData);
+    const totalInfo = { ...personalData, ...billingData };
+    console.log(totalInfo);
+
     // Axios Call
     axios
-      .post(`http://localhost:3000/order/`, personalData, {
+      .post(`http://localhost:3000/order/`, totalInfo, {
         headers: {
           "Content-Type": "application/json",
         },
@@ -297,6 +301,16 @@ export default function FormCliente() {
           <div>
             <input
               type="text"
+              name="cap"
+              value={personalData.cap}
+              placeholder="CAP...*"
+              onChange={handlePersonalData}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
               name="city"
               value={personalData.city}
               placeholder="Città...*"
@@ -306,7 +320,9 @@ export default function FormCliente() {
           </div>
 
           <div>
-            <button type="submit">Invia dati</button>
+            <button type="submit" onClick={() => localStorage.clear()}>
+              Invia dati
+            </button>
           </div>
         </form>
       </section>
@@ -320,9 +336,9 @@ export default function FormCliente() {
           <div>
             <input
               type="text"
-              name="partitaIVA"
-              placeholder="Partita Iva..."
-              value={billingData.partitaIVA}
+              name="name_billing"
+              placeholder="Nome..."
+              value={billingData.name_billing}
               onChange={handleBillingData}
               required
             />
@@ -330,9 +346,19 @@ export default function FormCliente() {
           <div>
             <input
               type="text"
-              name="indirizzoFatturazione"
+              name="surname_billing"
+              placeholder="Cognome..."
+              value={billingData.surname_billing}
+              onChange={handleBillingData}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="billing_address"
               placeholder="Indirizzo di Fatturazione..."
-              value={billingData.indirizzoFatturazione}
+              value={billingData.billing_address}
               onChange={handleBillingData}
               required
             />
@@ -340,8 +366,8 @@ export default function FormCliente() {
           <div>
             <input
               type="text"
-              name="cittàFatturazione"
-              value={billingData.cittàFatturazione}
+              name="city_billing"
+              value={billingData.city_billing}
               placeholder="Città..."
               onChange={handleBillingData}
               required
@@ -350,18 +376,12 @@ export default function FormCliente() {
           <div>
             <input
               type="text"
-              name="cap"
-              value={billingData.cap}
+              name="cap_billing"
+              value={billingData.cap_billing}
               placeholder="CAP..."
               onChange={handleBillingData}
               required
             />
-          </div>
-
-          <div>
-            <button type="submit" onClick={() => localStorage.clear()}>
-              Invia dati
-            </button>
           </div>
         </form>
       </section>
