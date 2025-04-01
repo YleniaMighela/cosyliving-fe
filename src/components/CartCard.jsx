@@ -22,6 +22,8 @@ export default function CartCard({ dati, setCart }) {
     function updateQuantity(id, newQuantity) {
         var newCart = data.map((product) => product.id === id ? { ...product, quantity: newQuantity } : product)
         setData(newCart);
+        setCart(newCart)
+
         localStorage.setItem("Cart", JSON.stringify(newCart))
     }
 

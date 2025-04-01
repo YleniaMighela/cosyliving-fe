@@ -14,6 +14,7 @@ export default function Cart() {
         // Salva il carrello in localStorage
 
         localStorage.setItem("Cart", JSON.stringify(cart));
+
         // Calcola il totale dei prezzi
         const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
         // console.log(total);
