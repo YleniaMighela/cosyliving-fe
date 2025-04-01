@@ -139,7 +139,7 @@ export default function FormCliente() {
         "YwWXI2IpotKYzl-pl"
       )
       .then(
-        (result) => {},
+        (result) => { },
         (error) => {
           console.log(error.text);
         }
@@ -153,7 +153,7 @@ export default function FormCliente() {
         "YwWXI2IpotKYzl-pl"
       )
       .then(
-        (result) => {},
+        (result) => { },
         (error) => {
           console.log(error.text);
         }
@@ -177,7 +177,10 @@ export default function FormCliente() {
         setSearchRes(response.data);
         localStorage.clear();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err)
+        setErrorMessage("Abbiamo riscontrato un errore")
+      });
 
     sendEmail(e);
     handlePersonalSubmit(e);
@@ -332,7 +335,7 @@ export default function FormCliente() {
               required
             />
           </div>
-
+          {errorMessage}
           <div>
             <button type="submit">Invia dati</button>
           </div>
