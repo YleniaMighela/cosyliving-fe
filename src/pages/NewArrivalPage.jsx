@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 const NewArrivalPage = () => {
     const [newArrivals, setNewArrivals] = useState([]);
+
+    const location = useLocation();
+    const isHomePage = location.pathname === "/";
 
     useEffect(() => {
         fetch("http://localhost:3000/products/new_arrivals")
@@ -24,11 +27,14 @@ const NewArrivalPage = () => {
     return (
         <div className="special-price-container">
 
-            <Link to="/">
-                <button id="button_notfound">Indietro</button>
-            </Link>
-            <h1>Nuovi Arrivi</h1>
-
+            {!isHomePage && (
+                <>
+                    <Link to="/">
+                        <button id="button_notfound">Indietro</button>
+                    </Link>
+                    <h1>Nuovi Arrivi</h1>
+                </>
+            )}
             <div className="products-grid">
 
                 {newArrivals.map((product) => (
