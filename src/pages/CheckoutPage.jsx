@@ -173,7 +173,10 @@ export default function FormCliente() {
           "Content-Type": "application/json",
         },
       })
-      .then((response) => setSearchRes(response.data))
+      .then((response) => {
+        setSearchRes(response.data);
+        localStorage.clear();
+      })
       .catch((err) => console.error(err));
 
     sendEmail(e);
@@ -244,9 +247,8 @@ export default function FormCliente() {
         {/* Form Dati Personali */}
         <form
           className="form_personali"
-          onSubmit={() => {
-            handleSubmit(e.target);
-            localStorage.clear();
+          onSubmit={(e) => {
+            handleSubmit(e);
           }}
         >
           <h2>Inserisci Dati Personali</h2>
