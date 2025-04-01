@@ -63,6 +63,8 @@ export default function FormCliente() {
   useEffect(() => {
     setOrderProducts(JSON.parse(localStorage.getItem("Cart")) || []);
   }, []);
+  console.log(orderProducts);
+
 
   var prezzo_totale = 0;
   for (var i = 0; i < orderProducts.length; i++) {

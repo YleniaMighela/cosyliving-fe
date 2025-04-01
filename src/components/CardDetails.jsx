@@ -84,11 +84,14 @@ const CardProducts = () => {
       // Otherwise, add a new product
       var Product = {
         id: product.id,
+        name: product.name,
         img: imageUrl,
         price: CalcPrice(Number(product.price), Number(count)),
         quantity: count,
       };
       Cart.push(Product);
+      console.log(Product);
+
     }
 
     // Save updated cart to localStorage
