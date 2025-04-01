@@ -32,14 +32,15 @@ export default function Cart() {
                     <Link to="/"><button className="bottone_dettaglio">Continua i tuoi acquisti</button></Link>
                 </div>
             ) : (
-                <section>
+                <section className="ciao">
                     <div className="flex_cart">
                         <CartCard dati={cart} setCart={setCart} />
                     </div>
-                    <Link to="/form">
-                        <button className="button_ordina">Ordina</button>
-                    </Link>
-                    <div>
+                    <div className="container_button">
+                        <Link to="/form">
+                            <button className="button_ordina">Ordina</button>
+                        </Link>
+
                         <h2>Totale : €{prezzo.toFixed(2)}</h2>
                     </div>
                 </section>

@@ -31,7 +31,7 @@ header {
 /* NAVBAR */
 .navba {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
 
 }
 
@@ -96,11 +96,6 @@ header {
 
 
 /* CATEGORIE MENU TENDINA HOME */
-.container_categoryhome {
-    display: flex;
-    justify-content: center;
-    margin: 40px;
-}
 
 #resultsCategory {
     font-size: 40px;
@@ -108,37 +103,6 @@ header {
 
 }
 
-.container_infocategory {
-
-    border: 2px solid black;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-
-.info {
-    font-size: 20px;
-    margin: 5px;
-}
-
-.img_category1 {
-    margin-top: 10px;
-    width: 100%;
-    height: auto;
-    max-width: 450px;
-    min-width: 200px;
-    object-fit: cover;
-    display: block;
-
-
-}
-
-.price_category {
-    margin-top: 3%;
-    font-size: 20px;
-}
 
 
 /* BARRA DI RICERCA */
@@ -208,7 +172,6 @@ main {
     height: 120vh;
     object-fit: cover;
     object-position: center;
-    /* Centra l'immagine */
     border-radius: 10px;
     flex-shrink: 0;
 }
@@ -236,12 +199,13 @@ main {
 
 /* SEZIONE NUOVI ARRIVI */
 
+.img_newarri {
+    margin-top: 2%;
+}
+
 .home-container {
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     width: 80%;
-    /* padding: 50px 0; */
+
 }
 
 .card {
@@ -273,12 +237,11 @@ main {
     width: 100%;
     margin-left: 15%;
     padding: 20px;
-    /* position: relative; */
+
 }
 
 #special {
-    /* width: 50%;
-    height: auto; */
+
     max-height: 900px;
     border: 3px solid black;
 
@@ -346,6 +309,7 @@ h3 {
 
 }
 
+/* PAGINA NON TROVATA */
 .container_notFound {
     margin: 5%;
     text-align: center;
@@ -406,7 +370,7 @@ h3 {
     position: relative;
     width: 100%;
     max-width: 400px;
-    /* Imposta una larghezza massima */
+
 }
 
 .product-image {
@@ -425,7 +389,7 @@ h3 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 89%;
+    height: 85%;
     background: rgba(0, 0, 0, 0.445);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -480,7 +444,7 @@ h3 {
 .quantity-container button {
     margin-left: 12px;
     padding: 3px;
-    /* display: flex; */
+
 }
 
 .quantity-container p {
@@ -526,7 +490,6 @@ h3 {
 }
 
 .container_riepilogo {
-    /* border: 1px solid black; */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -534,6 +497,11 @@ h3 {
     position: absolute;
     top: 0%;
     left: 80%
+}
+
+.container_riepilogo ul {
+    list-style: none;
+    line-height: 60px;
 }
 
 .form_personali {
@@ -592,9 +560,30 @@ h3 {
     margin: 2px 0;
 }
 
+.container_button {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+
+
+}
+
+.flex_cart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+.ciao {
+    min-height: 100vh;
+}
+
 .button_ordina {
+
     font-size: 30px;
-    margin: 45px 150px;
+    margin-top: 25%;
+
 }
 
 /* RECENSIONI */
@@ -638,11 +627,7 @@ footer {
 }
 
 
-.flex_cart {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 
 /* SPECIAL PRICES */
 
@@ -650,6 +635,7 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
+    min-height: 100vh;
 
 }
 
@@ -776,7 +762,7 @@ a {
 
 h1 {
     text-align: center;
-    margin-bottom: 20px;
+    margin: 20px;
 }
 
 .search-input {
@@ -926,7 +912,7 @@ h1 {
 
 
 /* MEDIA QUERY SMARTPHONE */
-@media screen and (min-width: 480px) and (max-width: 767px) {
+@media screen and (min-width: 450px) and (max-width: 767px) {
     .categories-desktop {
         display: none;
 
