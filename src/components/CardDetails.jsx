@@ -14,6 +14,7 @@ const CardProducts = () => {
   const [count, setCount] = useState(1);
 
   const navigate = useNavigate();
+  const [text, setText] = useState("Aggiungi al carrello")
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -84,7 +85,6 @@ const CardProducts = () => {
       var Product = {
         id: product.id,
         img: imageUrl,
-        name: product.name,
         price: CalcPrice(Number(product.price), Number(count)),
         quantity: count,
       };
@@ -96,6 +96,21 @@ const CardProducts = () => {
     console.log(Cart);
     console.log(product);
     // console.log("localstorage" + localStorage);
+  }
+
+
+  function ChangeCart(text) {
+    setText("Aggiunto al carrello")
+    setInterval(() => {
+      setText("Aggiungi al carrello")
+      clearInterval()
+    }, 2700);
+  }
+
+  function Call() {
+    ChangeCart(text)
+    StoreProduct();
+
   }
 
   return (

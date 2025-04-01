@@ -23,6 +23,8 @@ const initialBillingData = {
   cap_billing: "",
 };
 
+
+
 export default function FormCliente() {
   // console.log(localStorage);
 
@@ -33,6 +35,9 @@ export default function FormCliente() {
   const [billingInfo, setBillingInfo] = useState([]);
   // variabili di stato per riepilogo dell'ordine
   const [orderProducts, setOrderProducts] = useState([]);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("Cart")) || [])
 
   // Recupero dati da localStorage
   useEffect(() => {
@@ -133,7 +138,7 @@ export default function FormCliente() {
         "YwWXI2IpotKYzl-pl"
       )
       .then(
-        (result) => {},
+        (result) => { },
         (error) => {
           console.log(error.text);
         }
@@ -147,7 +152,7 @@ export default function FormCliente() {
         "YwWXI2IpotKYzl-pl"
       )
       .then(
-        (result) => {},
+        (result) => { },
         (error) => {
           console.log(error.text);
         }
