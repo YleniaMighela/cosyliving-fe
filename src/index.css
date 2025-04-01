@@ -1009,4 +1009,8 @@ h1 {
         padding: 0px;
 
     }
+
+    .container_imgprice {
+        justify-content: center;
+    }
 }
