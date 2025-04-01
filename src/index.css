@@ -10,6 +10,8 @@ header {
     background-color: rgba(211, 211, 211, 0.753);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 10px;
 
 }
 
@@ -17,30 +19,46 @@ header {
     color: black;
     margin: 10px;
 
+
 }
 
 
 /* NAVBAR */
 .navba {
-    padding: 10px;
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+
 }
 
-.navba a {
+
+/* Navbar visibile su Desktop */
+.categories-desktop {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.category-link {
     text-decoration: none;
-    font-size: 20px;
-    color: blue;
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px;
+    color: black;
+    padding: 5px 10px;
 }
 
+.category-link:hover {
+    background-color: #ddd;
+    border-radius: 5px;
+}
+
+/* Dropdown (visibile solo su mobile) */
 .dropdown {
+    display: none;
+    /* Nasconde il dropdown su desktop */
     position: relative;
 }
 
-.dropdown button {
+.dropdown-button {
     background: none;
     border: none;
     font-size: 16px;
@@ -50,8 +68,7 @@ header {
 .dropdown-content {
     display: none;
     position: absolute;
-    padding: 20px;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     min-width: 150px;
     z-index: 1;
@@ -215,11 +232,11 @@ main {
 /* SEZIONE NUOVI ARRIVI */
 
 .home-container {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 50px 0;
+    align-items: center; */
+    width: 80%;
+    /* padding: 50px 0; */
 }
 
 .card {
@@ -247,7 +264,7 @@ main {
 .container_imgprice {
     display: flex;
     justify-content: center;
-    width: 70%;
+    width: 100%;
     position: relative;
 }
 
@@ -687,9 +704,89 @@ input[type="radio"] {
 
 a {
     text-decoration: none;
-    /* Rimuove la sottolineatura */
     color: inherit;
-    /* Fa in modo che il colore ereditato dal genitore venga utilizzato */
+
+}
+
+.font-block {
+    display: none;
+}
+
+
+
+
+
+/* MEDIA QUERY */
+/* 🔹 MEDIA QUERY per Tablet*/
+@media screen and (max-width: 768px) {
+    .categories-desktop {
+        display: none;
+
+    }
+
+    .dropdown {
+        display: block;
+
+    }
+
+    .fa-house {
+        display: none;
+    }
+
+
+
+
+
+    .special {
+        display: block;
+    }
+
+    .navba {
+        align-items: center;
+
+    }
+
+    .home-container {
+        flex-wrap: wrap;
+    }
+}
+
+
+
+/* MEDIA QUERY SMARTPHONE */
+@media screen and (max-width: 480px) {
+    .categories-desktop {
+        display: none;
+
+    }
+
+    .dropdown {
+        display: block;
+
+    }
+
+
+    .title {
+        display: none;
+    }
+
+    .font-block {
+        display: block;
+        margin-bottom: 35%;
+    }
+
+    .special {
+        display: block;
+    }
+
+    .navba {
+        align-items: center;
+
+    }
+
+    .home-container {
+        flex-wrap: wrap;
+    }
 }
 
 .order_by {
