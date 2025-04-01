@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 
 const SpecialPrices = () => {
     const [products, setProducts] = useState([]);
+    const location = useLocation();
+    const isHomePage = location.pathname === "/";
+    const isDetail = location.pathname === "/";
 
     useEffect(() => {
         fetch("http://localhost:3000/products")
@@ -25,22 +29,27 @@ const SpecialPrices = () => {
 
     return (
         <div className="special-price-container">
+            {!isHomePage && (
+                <>
+                    <Link to="/">
+                        <button id="button_notfound">Indietro</button>
+                    </Link>
+                    <h1>Prodotti in Promozione</h1>
 
-            <Link to="/">
-                <button id="button_notfound">Indietro</button>
-            </Link>
-            <h1>Prodotti in Promozione</h1>
+                </>
+            )}
             <div className="products-grid">
-                {products.map((product) => (
+
+                {products.slice(0, isHomePage ? 6 : products.length).map((product) => (
                     <div key={product.id} className="product-card">
 
                         <img src={`${product.img_cover}`} alt={product.name} />
                         <h2>{product.name}</h2>
                         <p className="price">€{Number(product.price).toFixed(2)}</p>
                         <p className="discount">Sconto: {product.discount}%</p>
-
-                        <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
-
+                        {!isDetail && (
+                            <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
+                        )}
                     </div>
                 ))}
             </div>

@@ -36,25 +36,33 @@ const NewArrivalPage = () => {
                     <h1>Nuovi Arrivi</h1>
                 </>
             )}
-            <div className="products-grid">
+            <section>
 
-                {newArrivals.map((product) => (
-                    <div key={product.id} className="product-card">
 
-                        <img src={`${product.img_cover}`} alt={product.name} />
-                        <h2>{product.name}</h2>
+                <Link to="/new-arrivals">
 
-                        <p className="price">€{Number(product.price).toFixed(2)}</p>
-                        {!isDetail && (
-                            <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
+                    <div className="products-grid">
 
-                        )}
-                        <em>Disponibile dal: {new Date(product.created_at).toLocaleDateString()}</em>
+
+                        {newArrivals.map((product) => (
+                            <div key={product.id} className="product-card">
+
+                                <img src={`${product.img_cover}`} alt={product.name} />
+                                <h2>{product.name}</h2>
+
+                                <p className="price">{Number(product.price).toFixed(2)}€</p>
+                                {!isDetail && (
+                                    <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
+
+                                )}
+                                <em>Disponibile dal: {new Date(product.created_at).toLocaleDateString()}</em>
+                            </div>
+
+                        ))}
                     </div>
+                </Link>
+            </section>
 
-                ))}
-
-            </div>
 
         </div >
     );

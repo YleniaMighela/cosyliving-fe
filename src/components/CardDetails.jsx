@@ -114,7 +114,7 @@ const CardProducts = () => {
           </div>
           <div className="product-info">
             <h2 className="product-name">{product.name}</h2>
-
+            <em>Disponibile dal: {new Date(product.created_at).toLocaleDateString()}</em>
             <div className="container_dimension">
               <strong> Dimensioni:</strong>
               <ul>
