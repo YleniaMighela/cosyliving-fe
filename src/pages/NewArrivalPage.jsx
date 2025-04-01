@@ -46,8 +46,8 @@ const NewArrivalPage = () => {
 
                         {newArrivals.map((product) => (
                             <div key={product.id} className="product-card">
-
-                                <img src={`${product.img_cover}`} alt={product.name} />
+                                <em>Disponibile dal: {new Date(product.created_at).toLocaleDateString()}</em>
+                                <img className="img_newarri" src={`${product.img_cover}`} alt={product.name} />
                                 <h2>{product.name}</h2>
 
                                 <p className="price">{Number(product.price).toFixed(2)}€</p>
@@ -55,7 +55,7 @@ const NewArrivalPage = () => {
                                     <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
 
                                 )}
-                                <em>Disponibile dal: {new Date(product.created_at).toLocaleDateString()}</em>
+
                             </div>
 
                         ))}
