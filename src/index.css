@@ -724,8 +724,44 @@ a {
 
 
 /* MEDIA QUERY */
-/* 🔹 MEDIA QUERY per Tablet*/
-@media screen and (max-width: 768px) {
+
+/* Media Query per schermi da 900px a 1500px */
+@media screen and (min-width: 900px) and (max-width: 1500px) {
+    .bg-container {
+        padding-left: 5%;
+        /* Riduce leggermente il padding sinistro */
+    }
+
+    .container-tips {
+        flex-direction: row;
+        padding: 12px;
+        /* Riduce leggermente il padding */
+        align-items: center;
+    }
+
+    .tips-left {
+        width: 45%;
+        font-size: 22px;
+        padding: 3%;
+        border: none;
+        order: 0;
+    }
+
+    .tips-right {
+        width: 55%;
+        order: 0;
+    }
+
+    .img-tips {
+        width: 100%;
+        margin-top: 0;
+    }
+}
+
+
+
+/* 🔹 MEDIA QUERY per Tablet */
+@media screen and (min-width: 768px) and (max-width: 900px) {
     .categories-desktop {
         display: none;
 
@@ -740,10 +776,6 @@ a {
         display: none;
     }
 
-
-
-
-
     .special {
         display: block;
     }
@@ -756,12 +788,46 @@ a {
     .home-container {
         flex-wrap: wrap;
     }
+
+    .bg-container {
+        padding-left: 0;
+
+    }
+
+    .container-tips {
+        flex-direction: row;
+        padding: 10px;
+        align-items: center;
+
+    }
+
+    .tips-left {
+        width: 50%;
+        font-size: 20px;
+        padding: 3%;
+        border: none;
+        order: 0;
+
+    }
+
+    .tips-right {
+        width: 50%;
+        order: 0;
+
+    }
+
+    .img-tips {
+        width: 100%;
+        margin-top: 0;
+
+    }
 }
 
 
 
+
 /* MEDIA QUERY SMARTPHONE */
-@media screen and (max-width: 480px) {
+@media screen and (min-width: 480px) and (max-width: 767px) {
     .categories-desktop {
         display: none;
 
@@ -794,10 +860,50 @@ a {
     .home-container {
         flex-wrap: wrap;
     }
-}
 
-.order_by {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    .order_by {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .bg-container {
+        padding-left: 0;
+    }
+
+    .container-tips {
+        flex-direction: column;
+        padding: 10px;
+        align-items: center;
+
+    }
+
+    .tips-left {
+        width: 100%;
+        font-size: 18px;
+        padding: 5%;
+        border: none;
+        order: 1;/
+    }
+
+    .tips-right {
+        width: 100%;
+
+    }
+
+    .img-tips {
+        width: 100%;
+
+    }
+
+    .containersingle_review {
+        width: 90%;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+
+    .container_review {
+        padding: 0px;
+
+    }
 }
