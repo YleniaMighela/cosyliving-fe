@@ -172,7 +172,7 @@ export default function FormCliente() {
     console.log(totalInfo);
 
     // **Salva i dati dell'ordine nel localStorage**
-    localStorage.setItem("lastOrder", JSON.stringify(totalInfo));
+    // localStorage.setItem("lastOrder", JSON.stringify(totalInfo));
 
     // Axios Call
     axios
@@ -182,8 +182,13 @@ export default function FormCliente() {
         },
       })
       .then((response) => {
-        setSearchRes(response.data);
+        console.log(response.data);
+
         localStorage.clear();
+
+        console.log("Carrello svuotato, nuovo stato:", []);
+
+        setCart([]);
       })
       .catch((err) => {
         console.error(err);
