@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import CardProduct from "../components/CardProduct";
 
 export default function SearchProduct() {
-  const { value, sorter } = useParams();
+  const { value, sorter, category } = useParams();
 
   // State Var that contains the query results
   const [searchRes, setSearchRes] = useState([]);
@@ -21,10 +21,11 @@ export default function SearchProduct() {
 
     // Axios call that search specific prods
     axios
-      .get(`http://localhost:3000/search/${value}${sorter ? `/${sorter}` : ""}`)
+      .get(`http://localhost:3000/search/${value}${sorter ? `/${sorter}` : ""}
+        ${category ? `/category/${category}` : ""}`)
       .then((response) => setSearchRes(response.data))
       .catch((err) => console.error(err));
-  }, [value, sorter]);
+  }, [value, sorter, category]);
 
   return (
     <>
@@ -38,6 +39,23 @@ export default function SearchProduct() {
           {/* sezione del filtro */}
           <h2>Ordina per:</h2>
           <div className="filter-container">
+            {/* Filtro per categorie */}
+            <div className="ultim_arrivi">
+              <span>Categoria: </span>
+              <select
+                value={category || ""}
+                onChange={(e) => navigate(`/search/${value}/${sorter ? sorter : ''}/${e.target.value}`)}
+              >
+                <option value="">Tutte le categorie</option>
+                <option value="divani">Divani</option>
+                <option value="poltrone">Poltrone</option>
+                <option value="pouf">Pouf</option>
+                <option value="tavolini">Tavolini</option>
+                <option value="sedie">Sedie</option>
+                <option value="lampade">Lampade</option>
+                <option value="librerie">Librerie</option>
+              </select>
+            </div>
             <div className="ultim_arrivi">
               <span>Ultimi arrivi: </span>
 
