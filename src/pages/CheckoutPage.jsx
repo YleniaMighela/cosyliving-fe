@@ -162,8 +162,15 @@ export default function FormCliente() {
   function handleSubmit(e) {
     e.preventDefault();
 
-    const totalInfo = { ...personalData, ...billingData };
+    const totalInfo = {
+      ...personalData, ...billingData,
+      products: cart,
+      totalPrice: prezzo_totale
+    };
     console.log(totalInfo);
+
+    // **Salva i dati dell'ordine nel localStorage**
+    localStorage.setItem("lastOrder", JSON.stringify(totalInfo));
 
     // Axios Call
     axios
@@ -177,6 +184,9 @@ export default function FormCliente() {
 
     sendEmail(e);
     handlePersonalSubmit(e);
+
+    //Reindirizza alla pagina degli ordini
+    window.location.href = "/order-summary";
   }
 
   useEffect(() => {
