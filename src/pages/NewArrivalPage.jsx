@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 const NewArrivalPage = () => {
     const [newArrivals, setNewArrivals] = useState([]);
+
+    const location = useLocation();
+    const isHomePage = location.pathname === "/";
+    const isDetail = location.pathname === "/";
 
     useEffect(() => {
         fetch("http://localhost:3000/products/new_arrivals")
@@ -24,29 +28,41 @@ const NewArrivalPage = () => {
     return (
         <div className="special-price-container">
 
-            <Link to="/">
-                <button id="button_notfound">Indietro</button>
-            </Link>
-            <h1>Nuovi Arrivi</h1>
-
-            <div className="products-grid">
-
-                {newArrivals.map((product) => (
-                    <div key={product.id} className="product-card">
-
-                        <img src={`${product.img_cover}`} alt={product.name} />
-                        <h2>{product.name}</h2>
-
-                        <p className="price">€{Number(product.price).toFixed(2)}</p>
-
-                        <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
+            {!isHomePage && (
+                <>
+                    <Link to="/">
+                        <button id="button_notfound">Indietro</button>
+                    </Link>
+                    <h1>Nuovi Arrivi</h1>
+                </>
+            )}
+            <section>
 
 
+                <Link to="/new-arrivals">
+
+                    <div className="products-grid">
+
+
+                        {newArrivals.map((product) => (
+                            <div key={product.id} className="product-card">
+
+                                <img src={`${product.img_cover}`} alt={product.name} />
+                                <h2>{product.name}</h2>
+
+                                <p className="price">{Number(product.price).toFixed(2)}€</p>
+                                {!isDetail && (
+                                    <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
+
+                                )}
+                                <em>Disponibile dal: {new Date(product.created_at).toLocaleDateString()}</em>
+                            </div>
+
+                        ))}
                     </div>
+                </Link>
+            </section>
 
-                ))}
-
-            </div>
 
         </div >
     );
