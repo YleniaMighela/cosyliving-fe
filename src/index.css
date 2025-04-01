@@ -229,11 +229,11 @@ main {
 /* SEZIONE NUOVI ARRIVI */
 
 .home-container {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 50px 0;
+    align-items: center; */
+    width: 80%;
+    /* padding: 50px 0; */
 }
 
 .card {
@@ -261,7 +261,7 @@ main {
 .container_imgprice {
     display: flex;
     justify-content: center;
-    width: 70%;
+    width: 100%;
     position: relative;
 }
 
