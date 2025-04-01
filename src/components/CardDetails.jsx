@@ -187,8 +187,8 @@ const CardProducts = () => {
 
             <p className="product-price">{product.price} €</p>
             <p className="discount"> Sconto del: {product.discount} %</p>
-            <button className="add-to-cart" onClick={StoreProduct}>
-              Aggiungi al carrello
+            <button className="add-to-cart" onClick={Call}>
+              {text}
             </button>
           </div>
         </div>
