@@ -7,7 +7,7 @@ export default function NewArrivalsCard() {
             <div className="container_imgprice">
                 <Link to="/new-arrivals"><h3>New Arrivals</h3>    </Link>
 
-                <img id="special" src="../img/poltrona.jpg" alt="Nuovi Arrivi" />
+                <img id="special" src="../img/nuovi arrivi.jpg" alt="Nuovi Arrivi" />
                 <NewArrivalPage />
             </div>
 
