@@ -1187,3 +1187,8 @@ h1 {
     height: 300px;
     background-color: white;
 }
+
+
+.added-to-wishlist {
+    color: red;
+}

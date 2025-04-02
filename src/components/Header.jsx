@@ -58,7 +58,7 @@ export default function Header() {
         <Link to="/cart">
           <FontAwesomeIcon icon={faCartShopping} size="2x" className="cart-icon" />
         </Link>
-        <Link to="#">
+        <Link to="/wishlist">
           <FontAwesomeIcon icon={faHeart} size="2x" className="heart-icon" />
         </Link>
       </div>

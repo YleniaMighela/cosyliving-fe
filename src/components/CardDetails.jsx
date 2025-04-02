@@ -3,12 +3,14 @@ import { faInstagramSquare } from "@fortawesome/free-brands-svg-icons/faInstagra
 import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
 
 const CardProducts = () => {
+  // localStorage.removeItem("Wishlist")
   const { slug } = useParams();
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [count, setCount] = useState(1);
@@ -16,6 +18,8 @@ const CardProducts = () => {
   const navigate = useNavigate();
   const [text, setText] = useState("Aggiungi al carrello")
   const [classb, setClassb] = useState("add-to-cart")
+  const [classa, setClassa] = useState("heart-icon")
+  const [Wish, setWish] = useState([])
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -35,8 +39,19 @@ const CardProducts = () => {
     };
 
     fetchProduct();
-  }, [slug]);
 
+
+  }, [slug]);
+  useEffect(() => {
+    if (!product) return;
+    const wishList = JSON.parse(localStorage.getItem("Wishlist")) || [];
+
+    const existingProduct = wishList.find((item) => item.name === product.name);
+
+    if (existingProduct) {
+      setClassa(existingProduct ? "added-to-wishlist" : "heart-icon");
+    }
+  }, [product])
   if (loading) return <p className="loading">Caricamento...</p>;
   if (error) return <p className="error">{error}</p>;
   if (!product) return null;
@@ -105,11 +120,40 @@ const CardProducts = () => {
     localStorage.setItem("Cart", JSON.stringify(Cart));
     console.log(Cart);
     console.log(product);
-    // console.log("localstorage" + localStorage);
+  }
+
+  function addWish() {
+    let wishList = JSON.parse(localStorage.getItem("Wishlist")) || [];
+
+    let existingProduct = wishList.find((item) => item.name === product.name);
+
+    if (existingProduct) {
+      console.log("Rimosso dai preferiti");
+      setClassa("heart-icon");
+
+      wishList = wishList.filter(item => item.id !== existingProduct.id);
+    } else {
+      console.log("Aggiunto ai preferiti");
+      let newProduct = {
+        id: product.id,
+        name: product.name,
+        img: imageUrl,
+      };
+
+      wishList.push(newProduct);
+      setClassa("added-to-wishlist heart-icon");
+    }
+
+    setWish([...wishList]);
+    localStorage.setItem("Wishlist", JSON.stringify(wishList));
+    console.log(JSON.parse(localStorage.getItem("Wishlist")));
+
   }
 
 
-  function ChangeCart(text) {
+
+
+  function ChangeCart() {
     setText("Aggiunto al carrello")
     setClassb("add-to-cart added-to-cart")
     setInterval(() => {
@@ -120,10 +164,14 @@ const CardProducts = () => {
   }
 
   function Call() {
-    ChangeCart(text)
+    ChangeCart()
     StoreProduct();
 
   }
+  console.log(JSON.parse(localStorage.getItem("Wishlist")));
+
+
+
 
   return (
     <>
@@ -144,6 +192,7 @@ const CardProducts = () => {
 
           <div className="product-info">
             <div>
+              <p onClick={addWish}><FontAwesomeIcon icon={faHeart} size="2x" className={classa} /></p>
               <button id="button_notfound_detail" onClick={() => navigate(-1)}>
                 Indietro
               </button>
