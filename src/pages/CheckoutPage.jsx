@@ -34,7 +34,7 @@ export default function FormCliente() {
     JSON.parse(localStorage.getItem("Cart")) || []
   );
   const [tot_price, setTot_price] = useState(0)
-
+  const [showBillingForm, setShowBillingForm] = useState(false);
   // Recupero dati da localStorage
   useEffect(() => {
     const storedClients = JSON.parse(localStorage.getItem("clients")) || [];
@@ -382,63 +382,76 @@ export default function FormCliente() {
 
           {/* sezione dati fatturazione*/}
           < div >
+            {/* Checkbox per Dati di Fatturazione */}
+            <div className="checkbox">
+              <label>
+                <input
+                  type="checkbox"
+                  checked={showBillingForm}
+                  onChange={() => setShowBillingForm(!showBillingForm)}
+                />
+                Inserisci Dati di Fatturazione
+              </label>
+            </div>
             {/* Form Dati di Fatturazione */}
-            <section>
-              < form className="form_personali" onSubmit={handleBillingSubmit} >
-                <h2>Inserisci Dati di Fatturazione</h2>
-                <div>
-                  <input
-                    type="text"
-                    name="name_billing"
-                    placeholder="Nome..."
-                    value={billingData.name_billing}
-                    onChange={handleBillingData}
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    name="surname_billing"
-                    placeholder="Cognome..."
-                    value={billingData.surname_billing}
-                    onChange={handleBillingData}
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    name="billing_address"
-                    placeholder="Indirizzo di Fatturazione..."
-                    value={billingData.billing_address}
-                    onChange={handleBillingData}
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    name="city_billing"
-                    value={billingData.city_billing}
-                    placeholder="Città..."
-                    onChange={handleBillingData}
-                    required
-                  />
-                </div>
-                <div>
-                  <input
-                    type="text"
-                    name="cap_billing"
-                    value={billingData.cap_billing}
-                    placeholder="CAP..."
-                    onChange={handleBillingData}
-                    required
-                  />
+            {showBillingForm && (
+              <section>
+                < form className="form_personali" onSubmit={handleBillingSubmit} >
+                  <h2>Inserisci Dati di Fatturazione</h2>
+                  <div>
+                    <input
+                      type="text"
+                      name="name_billing"
+                      placeholder="Nome..."
+                      value={billingData.name_billing}
+                      onChange={handleBillingData}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="surname_billing"
+                      placeholder="Cognome..."
+                      value={billingData.surname_billing}
+                      onChange={handleBillingData}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="billing_address"
+                      placeholder="Indirizzo di Fatturazione..."
+                      value={billingData.billing_address}
+                      onChange={handleBillingData}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="city_billing"
+                      value={billingData.city_billing}
+                      placeholder="Città..."
+                      onChange={handleBillingData}
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="text"
+                      name="cap_billing"
+                      value={billingData.cap_billing}
+                      placeholder="CAP..."
+                      onChange={handleBillingData}
+                      required
+                    />
 
-                </div>
-              </form >
-            </section>
+                  </div>
+                </form >
+              </section>
+            )}
           </div>
         </section>
       </div>
