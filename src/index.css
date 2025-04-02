@@ -865,6 +865,10 @@ h1 {
     z-index: 999999999;
 }
 
+.button_notfound_detail {
+    font-family: Lato;
+}
+
 /* MEDIA QUERY */
 
 /* Media Query per schermi da 900px a 1500px */
