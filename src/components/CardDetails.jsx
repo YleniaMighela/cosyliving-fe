@@ -94,8 +94,10 @@ const CardProducts = () => {
     if (existingProductIndex !== -1) {
       // Se il prodotto esiste già
       let updatedProduct = { ...Cart[existingProductIndex] };
+      let max_quantity = product.quantity - updatedProduct.quantity;
+      console.log(max_quantity);
 
-      if (updatedProduct.quantity === product.quantity) {
+      if (count + updatedProduct.quantity > max_quantity) {
         setMax(true);
         console.log("Danni evitati: quantità massima raggiunta");
         return; // Esce dalla funzione senza modificare il carrello
@@ -137,7 +139,7 @@ const CardProducts = () => {
       console.log("Rimosso dai preferiti");
       setClassa("heart-icon");
 
-      // wishList = wishList.filter(item => item.id !== existingProduct.id);
+      wishList = wishList.filter(item => item.id !== existingProduct.id);
     } else {
       console.log("Aggiunto ai preferiti");
       let newProduct = {

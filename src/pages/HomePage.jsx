@@ -9,7 +9,7 @@ import CardHero from "../components/CardHero";
 import CardNewArrivals from "../components/CardNewArrivals";
 export default function HomePage() {
     const [displayPopUp, setDisplayPopUp] = useState(true);
-    // localStorage.clear()
+    // localStorage.clear   ()
     const closePopUp = () => {
         // imposta "seenPopUP" come true
         localStorage.setItem("seenPopUp", true);
