@@ -53,7 +53,7 @@ const SpecialPrices = () => {
                                     <h2>{product.name}</h2>
                                     <p className="price">Prezzo originale:<s>€{Number(product.price).toFixed(2)}</s></p>
                                     <p className="discount">Sconto del: {product.discount}%</p>
-                                    <p> Prezzo scontato: {product.discount_price}</p>
+                                    <p> Prezzo scontato: €{product.discount_price}</p>
 
                                 </Link>
 
