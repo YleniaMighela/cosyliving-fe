@@ -153,11 +153,12 @@ export default function SearchProduct() {
             {searchRes.length > 0 ? (
               searchRes.map((res) => (
                 <div key={res.id} className="product-item">
-                  <CardProduct prodInfos={res} />
                   <Link
                     to={`/products/${res.slug}`}
                     className="not_link product-link"
                   >
+                    <CardProduct prodInfos={res} />
+
                     <button className="bottone_dettaglio">
                       Vai al dettaglio
                     </button>
