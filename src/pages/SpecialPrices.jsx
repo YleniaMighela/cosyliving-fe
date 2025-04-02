@@ -46,15 +46,13 @@ const SpecialPrices = () => {
                     <div className="products-grid">
 
                         {products.slice(0, isHomePage ? 6 : products.length).map((product) => (
-                            <div key={product.id} className="product-card">
-                                <Link to={`/products/${product.slug}`} className="not_link product-link">
+                            <div key={product.id} className="product-card hover-img detail-card">
+                                <Link to={`/products/${product.slug}`} className="not_link product-link ">
                                     <img src={`${product.img_cover}`} alt={product.name} />
                                     <h2>{product.name}</h2>
                                     <p className="price">€{Number(product.price).toFixed(2)}</p>
                                     <p className="discount">Sconto: {product.discount}%</p>
-                                    {!isDetail && (
-                                        <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
-                                    )}
+
                                 </Link>
                             </div>
                         ))}
