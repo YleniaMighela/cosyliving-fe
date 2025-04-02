@@ -1039,6 +1039,11 @@ h1 {
 
     }
 
+    .section_ordine {
+        display: block;
+
+    }
+
     #scelta {
         display: none;
 
