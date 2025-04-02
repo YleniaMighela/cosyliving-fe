@@ -45,14 +45,14 @@ export default function ResultsCategoryHome() {
                         .map((product) => (
                             <>
 
-                                <div className="product-card">
+                                <div className="product-card hover-img detail-card">
 
-                                    <div key={product.id}>
+                                    <div key={product.id} className="">
                                         <Link to={`/products/${product.slug}`} className="not_link">
                                             <h2 className="product-name">{product.name}</h2>
                                             <img className="img_category1" src={product.img_cover} alt={product.name} />
                                             <p className="price_category">{product.price} €</p>
-                                            <button className="bottone_dettaglio">Vai al dettaglio</button>
+
                                         </Link>
                                     </div>
                                 </div >

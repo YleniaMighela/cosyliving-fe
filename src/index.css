@@ -671,6 +671,7 @@ footer {
     text-align: center;
     background: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10%;
 }
 
 .product-card img {
