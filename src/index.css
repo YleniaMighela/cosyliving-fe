@@ -509,7 +509,7 @@ h3 {
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: center;
     position: absolute;
     top: 0%;
     left: 80%
@@ -519,6 +519,8 @@ h3 {
     list-style: none;
     line-height: 60px;
 }
+
+
 
 .form_personali {
 
@@ -1170,6 +1172,15 @@ h1 {
 
     .container_imgprice {
         justify-content: center;
+    }
+
+    .container_riepilogo {
+        /* text-align: center; */
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        position: absolute;
+        left: 67%
     }
 }
 
