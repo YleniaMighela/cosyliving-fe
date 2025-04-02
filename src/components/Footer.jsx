@@ -11,9 +11,9 @@ export default function Footer() {
 
             <div className="footer-left">
                 <span>Termini e condizioni</span>
-                <span>Contatti  +39 3324565784</span>
-                <span>email@outlook.it</span>
-                <span>P.IVA 56546841354864</span>
+                <span className="footer-none">Contatti  +39 3324565784</span>
+                <span className="footer-none">email@outlook.it</span>
+                <span className="footer-none">P.IVA 56546841354864</span>
             </div>
             <div className="footer-right">
                 <span>Seguici anche su</span>
