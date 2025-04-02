@@ -1,6 +1,6 @@
 // qui ci va il carossello
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
 const images = [
@@ -24,7 +24,28 @@ const CardHero = () => {
         } else {
             setIndex(i);
         }
+
     };
+    function auto_scroll() {
+        var i = 0;
+        setInterval(() => {
+            i += 1
+            if (i >= images.length) {
+                setIndex(0); // Torna all'inizio se è oltre il limite
+                i = 0
+            } else if (i < 0) {
+                setIndex(images.length - 1); // Torna all'ultima immagine
+                i = images.length - 1
+            } else {
+                setIndex(i);
+            }
+            console.log(i);
+
+        }, 3000)
+
+    }
+
+    useEffect(auto_scroll, [])
 
     return (
         <div className="carousel-container">
