@@ -25,6 +25,8 @@ export default function CartCard({ dati, setCart }) {
         setCart(newCart)
 
         localStorage.setItem("Cart", JSON.stringify(newCart))
+        console.log(localStorage.getItem("Cart"));
+
     }
 
     useEffect(() => {
