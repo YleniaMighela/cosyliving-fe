@@ -39,7 +39,7 @@ export default function CartCard({ dati, setCart }) {
         data.map((prop) => (
 
             <div className="container_cart" key={prop.id}>
-                <img src={prop.img} alt={prop.name} />
+                <Link to={`/products/${prop.name}`}> <img src={prop.img} alt={prop.name} /></Link>
                 <div>
                     <h2>{prop.name}</h2>
                     <p>€{prop.price}</p>
