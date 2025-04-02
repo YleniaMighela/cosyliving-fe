@@ -1,1 +1,3 @@
-// componente Card Products
+export default function Wishlist() {
+
+}

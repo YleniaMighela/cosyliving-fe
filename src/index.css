@@ -1017,6 +1017,16 @@ h1 {
         justify-content: center;
         margin-left: 12%;
     }
+
+    .icons_header {
+        margin: 0px;
+
+    }
+
+    #scelta {
+        display: none;
+
+    }
 }
 
 
@@ -1025,6 +1035,11 @@ h1 {
 /* MEDIA QUERY SMARTPHONE */
 @media screen and (min-width: 490px) and (max-width: 767px) {
     .categories-desktop {
+        display: none;
+
+    }
+
+    #scelta {
         display: none;
 
     }
@@ -1040,6 +1055,9 @@ h1 {
     /* HEADER */
     .icons_header {
         margin: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .cart-icon {
