@@ -45,10 +45,15 @@ const CardProducts = () => {
     ? product.img_cover
     : `/images/${product.img_cover}`;
 
-  function CalcPrice(price, mult) {
-    price = price * mult;
-    // console.log(price);
-    return Number(price).toFixed(2);
+  function CalcPrice(price, mult, discount) {
+    let finalPrice = price;
+
+    if (discount > 0) {
+      // Calcola il prezzo scontato
+      finalPrice = price * (1 - discount / 100);
+    }
+
+    return Number(finalPrice * mult).toFixed(2);
   }
 
   const handleCount = (e) => {
@@ -78,7 +83,8 @@ const CardProducts = () => {
       existingProduct.quantity += count;
       existingProduct.price = CalcPrice(
         Number(product.price),
-        existingProduct.quantity
+        existingProduct.quantity,
+        product.discount
       );
     } else {
       // Otherwise, add a new product
@@ -86,7 +92,7 @@ const CardProducts = () => {
         id: product.id,
         name: product.name,
         img: imageUrl,
-        price: CalcPrice(Number(product.price), Number(count)),
+        price: CalcPrice(Number(product.price), Number(count), Number(product.discount)),
         quantity: count,
       };
       Cart.push(Product);
