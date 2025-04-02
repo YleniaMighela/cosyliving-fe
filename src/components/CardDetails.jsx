@@ -160,16 +160,7 @@ const CardProducts = () => {
               </ul>
 
             </div>
-            {/* 
-            <div>
-              <strong>Materiali:</strong>
-              <span></span>
-            </div>
 
-            <div>
-              <strong>Colori:</strong>
-              <span></span>
-            </div> */}
 
             <div className="quantity-container">
               <label>
@@ -195,9 +186,21 @@ const CardProducts = () => {
               </button>
               {count === product.quantity && <p>Quantità massima ordinabile</p>}
             </div>
-
-            <p className="product-price">{product.price} €</p>
-            <p className="discount"> Sconto del: {product.discount} %</p>
+            {product.discount > 0 ? (
+              <>
+                <p className="price">
+                  Prezzo originale: <s>€{Number(product.price).toFixed(2)}</s>
+                </p>
+                <p className="discount">Sconto del: {product.discount}%</p>
+                <p>
+                  Prezzo scontato: <strong>€{product.discount_price}</strong>
+                </p>
+              </>
+            ) : (
+              <p className="price">
+                Prezzo: <strong>€{Number(product.price).toFixed(2)}</strong>
+              </p>
+            )}
             <button className="add-to-cart" onClick={Call}>
               {text}
             </button>
