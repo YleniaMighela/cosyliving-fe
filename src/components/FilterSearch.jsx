@@ -18,6 +18,11 @@ export default function FilterSearch() {
     <div className="form_search">
       {!isHiddenPage && (
         <>
+          <select id="scelta" name="scelta">
+            <option value="opzione1">Tutto</option>
+            <option value="opzione2">Categoria</option>
+            <option value="opzione3">In Saldo</option>
+          </select>
           <input
             className="input_search"
             type="search"
