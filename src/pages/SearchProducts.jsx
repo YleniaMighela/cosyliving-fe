@@ -153,7 +153,7 @@ export default function SearchProduct() {
             {searchRes.length > 0 ? (
               searchRes.map((res) => (
                 <div key={res.id} className="product-item ">
-                  <div className="hover-img detail-card">
+                  <div className="">
 
 
                     <Link
