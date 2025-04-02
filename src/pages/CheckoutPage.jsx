@@ -250,7 +250,7 @@ export default function FormCliente() {
                 <ul>
                   {orderProducts.map((product, index) => (
                     <li key={index}>
-                      {product.name} x {product.quantity} - €{product.price}
+                      {product.name} x {product.quantity} - €{product.unitPrice}
                     </li>
                   ))}
                 </ul>
