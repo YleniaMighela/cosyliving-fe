@@ -270,22 +270,18 @@ export default function FormCliente() {
                     </li>
                   ))}
                 </ul>
-                <p>Totale prodotti: €{tot_price - 9.99}</p>
-                {tot_price - 9.99 >= 1000 ? (
-                  <p>
-                    <strong>Spedizione €9,99</strong>
-                  </p>
-                ) : (
-                  <p>
-                    <strong>
-                      <s>Spedizione €9,99</s>
-                    </strong>
-                  </p>
-                )}
+                <p>Totale prodotti €{prezzo_totale.toFixed(2)}</p>
+                <p>
+                  <strong>
+                    <s>Spedizione €9,99</s>
+                  </strong>
+                </p>
+
                 <p>
                   <strong>Totale: €{tot_price}</strong>
                 </p>
               </>
+
             )}
           </div>
           {/* Form Dati Personali */}
