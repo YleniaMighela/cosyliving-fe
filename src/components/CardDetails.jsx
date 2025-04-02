@@ -94,23 +94,23 @@ const CardProducts = () => {
     if (existingProductIndex !== -1) {
       // Se il prodotto esiste già
       let updatedProduct = { ...Cart[existingProductIndex] };
-      let max_quantity = product.quantity - updatedProduct.quantity;
-      console.log(max_quantity);
 
-      if (count + updatedProduct.quantity > max_quantity) {
+      // Verifica se aggiungendo count si supera la quantità massima disponibile
+      if (updatedProduct.quantity + count > product.quantity) {
         setMax(true);
         console.log("Danni evitati: quantità massima raggiunta");
         return; // Esce dalla funzione senza modificare il carrello
+      } else {
+        // Aggiorna la quantità e il prezzo
+        updatedProduct.quantity += count;
+        updatedProduct.price = CalcPrice(
+          Number(product.price),
+          updatedProduct.quantity,
+          product.discount
+        );
+
+        Cart[existingProductIndex] = updatedProduct;
       }
-
-      updatedProduct.quantity += count;
-      updatedProduct.price = CalcPrice(
-        Number(product.price),
-        updatedProduct.quantity,
-        product.discount
-      );
-
-      Cart[existingProductIndex] = updatedProduct;
     } else {
       // Se il prodotto non esiste ancora nel carrello
       let newProduct = {
