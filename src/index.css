@@ -1212,3 +1212,7 @@ h1 {
     margin-left: 45%;
     padding: 12px;
 }
+
+.added-to-wishlist {
+    color: red;
+}
