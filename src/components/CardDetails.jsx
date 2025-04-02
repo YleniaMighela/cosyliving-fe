@@ -20,6 +20,7 @@ const CardProducts = () => {
   const [classb, setClassb] = useState("add-to-cart")
   const [classa, setClassa] = useState("heart-icon")
   const [Wish, setWish] = useState([])
+  const [max, setMax] = useState(false)
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -45,6 +46,7 @@ const CardProducts = () => {
   useEffect(() => {
     if (!product) return;
     const wishList = JSON.parse(localStorage.getItem("Wishlist")) || [];
+
 
     const existingProduct = wishList.find((item) => item.name === product.name);
 
@@ -85,41 +87,44 @@ const CardProducts = () => {
   };
 
   function StoreProduct() {
-    // Retrieve the existing cart or initialize an empty array
-    var Cart = JSON.parse(localStorage.getItem("Cart")) || [];
+    let Cart = JSON.parse(localStorage.getItem("Cart")) || [];
 
-    // Determine the new product ID
-    var id_cart = Cart.length > 0 ? Cart[Cart.length - 1].id + 1 : 1;
+    let existingProductIndex = Cart.findIndex((item) => item.name === product.name);
 
-    // Check if the product already exists in the cart
-    var existingProduct = Cart.find((item) => item.name === product.name);
+    if (existingProductIndex !== -1) {
+      // Se il prodotto esiste già
+      let updatedProduct = { ...Cart[existingProductIndex] };
 
-    if (existingProduct) {
-      // If product exists, update its quantity
-      existingProduct.quantity += count;
-      existingProduct.price = CalcPrice(
+      if (updatedProduct.quantity === product.quantity) {
+        setMax(true);
+        console.log("Danni evitati: quantità massima raggiunta");
+        return; // Esce dalla funzione senza modificare il carrello
+      }
+
+      updatedProduct.quantity += count;
+      updatedProduct.price = CalcPrice(
         Number(product.price),
-        existingProduct.quantity,
+        updatedProduct.quantity,
         product.discount
       );
+
+      Cart[existingProductIndex] = updatedProduct;
     } else {
-      // Otherwise, add a new product
-      var Product = {
+      // Se il prodotto non esiste ancora nel carrello
+      let newProduct = {
         id: product.id,
         name: product.name,
         img: imageUrl,
         price: CalcPrice(Number(product.price), Number(count), Number(product.discount)),
         quantity: count,
       };
-      Cart.push(Product);
-      console.log(Product);
 
+      Cart.push(newProduct);
+      console.log("Nuovo prodotto aggiunto:", newProduct);
     }
 
-    // Save updated cart to localStorage
     localStorage.setItem("Cart", JSON.stringify(Cart));
-    console.log(Cart);
-    console.log(product);
+    console.log("Carrello aggiornato:", Cart);
   }
 
   function addWish() {
@@ -127,11 +132,12 @@ const CardProducts = () => {
 
     let existingProduct = wishList.find((item) => item.name === product.name);
 
+
     if (existingProduct) {
       console.log("Rimosso dai preferiti");
       setClassa("heart-icon");
 
-      wishList = wishList.filter(item => item.id !== existingProduct.id);
+      // wishList = wishList.filter(item => item.id !== existingProduct.id);
     } else {
       console.log("Aggiunto ai preferiti");
       let newProduct = {
@@ -146,7 +152,7 @@ const CardProducts = () => {
 
     setWish([...wishList]);
     localStorage.setItem("Wishlist", JSON.stringify(wishList));
-    console.log(JSON.parse(localStorage.getItem("Wishlist")));
+    // console.log(JSON.parse(localStorage.getItem("Wishlist")));
 
   }
 
@@ -168,7 +174,7 @@ const CardProducts = () => {
     StoreProduct();
 
   }
-  console.log(JSON.parse(localStorage.getItem("Wishlist")));
+  // console.log(JSON.parse(localStorage.getItem("Wishlist")));
 
 
 
@@ -259,14 +265,17 @@ const CardProducts = () => {
                 Prezzo: <strong>€{Number(product.price).toFixed(2)}</strong>
               </p>
             )}
-            <button className={classb} onClick={Call}>
-              {text}
-            </button>
+            {!max ? (
+
+              <button className={classb} onClick={Call}>
+                {text}
+              </button>) : (
+              <p> Numero massimo di oggetti disponibili aggiunto al carrello</p>
+            )}
           </div>
         </div>
       </div>
     </>
   );
 };
-
 export default CardProducts;
