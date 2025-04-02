@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import CardProduct from "../components/CardProduct";
 
 export default function SearchProduct() {
-  const { value, sorter } = useParams();
+  const { option, value, sorter } = useParams();
 
   // State Var that contains the query results
   const [searchRes, setSearchRes] = useState([]);
@@ -21,10 +21,14 @@ export default function SearchProduct() {
 
     // Axios call that search specific prods
     axios
-      .get(`http://localhost:3000/search/${value}${sorter ? `/${sorter}` : ""}`)
+      .get(
+        `http://localhost:3000/search/${option}/${value}${
+          sorter ? `/${sorter}` : ""
+        }`
+      )
       .then((response) => setSearchRes(response.data))
       .catch((err) => console.error(err));
-  }, [value, sorter]);
+  }, [value, sorter, option]);
 
   return (
     <>
@@ -50,7 +54,7 @@ export default function SearchProduct() {
                   checked={sorter === "date_desc"}
                   onChange={(e) =>
                     navigate(
-                      `/search/${value}/${e.target.id}_${e.target.value}`
+                      `/search/${option}/${value}/${e.target.id}_${e.target.value}`
                     )
                   }
                 />
@@ -66,7 +70,7 @@ export default function SearchProduct() {
                   checked={sorter === "date_asc"}
                   onChange={(e) =>
                     navigate(
-                      `/search/${value}/${e.target.id}_${e.target.value}`
+                      `/search/${option}/${value}/${e.target.id}_${e.target.value}`
                     )
                   }
                 />
@@ -86,7 +90,7 @@ export default function SearchProduct() {
                   checked={sorter === "price_asc"}
                   onChange={(e) =>
                     navigate(
-                      `/search/${value}/${e.target.id}_${e.target.value}`
+                      `/search/${option}/${value}/${e.target.id}_${e.target.value}`
                     )
                   }
                 />
@@ -101,7 +105,7 @@ export default function SearchProduct() {
                   checked={sorter === "price_desc"}
                   onChange={(e) =>
                     navigate(
-                      `/search/${value}/${e.target.id}_${e.target.value}`
+                      `/search/${option}/${value}/${e.target.id}_${e.target.value}`
                     )
                   }
                 />
@@ -122,7 +126,7 @@ export default function SearchProduct() {
                   checked={sorter === "name_asc"}
                   onChange={(e) =>
                     navigate(
-                      `/search/${value}/${e.target.id}_${e.target.value}`
+                      `/search/${option}/${value}/${e.target.id}_${e.target.value}`
                     )
                   }
                 />
@@ -138,7 +142,7 @@ export default function SearchProduct() {
                   checked={sorter === "name_desc"}
                   onChange={(e) =>
                     navigate(
-                      `/search/${value}/${e.target.id}_${e.target.value}`
+                      `/search/${option}/${value}/${e.target.id}_${e.target.value}`
                     )
                   }
                 />
@@ -154,15 +158,11 @@ export default function SearchProduct() {
               searchRes.map((res) => (
                 <div key={res.id} className="product-item ">
                   <div className="">
-
-
                     <Link
                       to={`/products/${res.slug}`}
                       className="not_link product-link "
                     >
                       <CardProduct prodInfos={res} />
-
-
                     </Link>
                   </div>
                 </div>

@@ -1216,3 +1216,7 @@ h1 {
 .added-to-wishlist {
     color: red;
 }
+
+.checkbox {
+    margin-left: 1%;
+}
