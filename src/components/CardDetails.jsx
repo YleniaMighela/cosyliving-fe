@@ -210,7 +210,7 @@ const CardProducts = () => {
                 Prezzo: <strong>€{Number(product.price).toFixed(2)}</strong>
               </p>
             )}
-            <button className="add-to-cart" onClick={Call}>
+            <button className={classb} onClick={Call}>
               {text}
             </button>
           </div>
