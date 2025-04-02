@@ -37,8 +37,13 @@ export default function FormCliente() {
 
   // Recupero dati da localStorage
   useEffect(() => {
-    setClients(JSON.parse(localStorage.getItem("clients")) || []);
-    setBillingInfo(JSON.parse(localStorage.getItem("billingInfo")) || []);
+    const storedClients = JSON.parse(localStorage.getItem("clients")) || [];
+
+    setClients(storedClients);
+
+    const storedBilling = JSON.parse(localStorage.getItem("billingInfo")) || [];
+
+    setBillingInfo(storedBilling);
   }, []);
 
   // Salvo dati nel localStorage quando cambia lo stato
@@ -124,7 +129,37 @@ export default function FormCliente() {
       [e.target.name]: e.target.value,
     });
   }
-
+  // function sendEmail(e) {
+  //   e.preventDefault();
+  //   // email conferma ordine al cliente
+  //   emailjs
+  //     .sendForm(
+  //       "service_z4wn6ts",
+  //       "template_yfwhf7f",
+  //       e.target,
+  //       "YwWXI2IpotKYzl-pl"
+  //     )
+  //     .then(
+  //       (result) => { },
+  //       (error) => {
+  //         console.log(error.text);
+  //       }
+  //     );
+  //   // email conferma ordine al sitp
+  //   emailjs
+  //     .sendForm(
+  //       "service_z4wn6ts",
+  //       "template_792darg",
+  //       e.target,
+  //       "YwWXI2IpotKYzl-pl"
+  //     )
+  //     .then(
+  //       (result) => { },
+  //       (error) => {
+  //         console.log(error.text);
+  //       }
+  //     );
+  // }
   // Funzione per gestire l'input dei dati di fatturazione
   function handleBillingData(e) {
     setBillingData({
@@ -176,15 +211,33 @@ export default function FormCliente() {
       .then((response) => {
         localStorage.clear();
         setCart([]);
-        window.location.href = "/order-summary";
+
       })
       .catch((err) => {
         console.error(err);
         setErrorMessage("Abbiamo riscontrato un errore");
       });
 
+
     handlePersonalSubmit(e);
+
+    //Reindirizza alla pagina degli ordini
+    window.location.href = "/order-summary";
   }
+
+  useEffect(() => {
+    if (orderProducts.length > 0) {
+      setPersonalData((currentPersonalData) => ({
+        ...currentPersonalData,
+        products: orderProducts.map((product) => ({
+          id: product.id,
+          quantity: product.quantity,
+        })),
+      }));
+    }
+  }, [orderProducts]);
+
+
 
   return (
     <>
@@ -194,7 +247,23 @@ export default function FormCliente() {
             <h2>Riepilogo Ordine</h2>
             {orderProducts.length === 0 ? (
               <p>Nessun prodotto aggiunto al carrello</p>
-            ) : (
+            ) : prezzo_totale <= 1000 ? (
+              <>
+                <ul>
+                  {orderProducts.map((product, index) => (
+                    <li key={index}>
+                      {product.name} x {product.quantity} - €{product.price}
+                    </li>
+                  ))}
+                </ul>
+                <p>Totale prodotti €{prezzo_totale.toFixed(2)}</p>
+                <p>
+                  <strong>Spedizione €9,99</strong>
+                </p>
+                <p>
+                  <strong>Totale: €{(prezzo_totale + 9.99).toFixed(2)}</strong>
+                </p>
+              </>) : (
               <>
                 <ul>
                   {orderProducts.map((product, index) => (
@@ -204,7 +273,7 @@ export default function FormCliente() {
                   ))}
                 </ul>
                 <p>Totale prodotti: €{tot_price - 9.99}</p>
-                {tot_price - 9.99 <= 1000 ? (
+                {tot_price - 9.99 >= 1000 ? (
                   <p>
                     <strong>Spedizione €9,99</strong>
                   </p>
@@ -223,17 +292,163 @@ export default function FormCliente() {
           </div>
         </section>
 
-        <section>
-          <form className="form_personali" onSubmit={handleSubmit}>
-            <h2>Inserisci Dati Personali</h2>
-            <input type="text" name="name" placeholder="Nome...*" value={personalData.name} onChange={handlePersonalData} required />
-            <input type="text" name="surname" placeholder="Cognome...*" value={personalData.surname} onChange={handlePersonalData} required />
-            <input type="email" name="email" placeholder="Email...*" value={personalData.email} onChange={handlePersonalData} required />
-            {errorMessage && <p>{errorMessage}</p>}
-            <button type="submit">Invia dati</button>
-          </form>
-        </section>
       </div>
+      {/* Form Dati Personali */}
+      <section>
+        <form
+          className="form_personali"
+          onSubmit={(e) => {
+            handleSubmit(e);
+          }}
+        >
+          <h2>Inserisci Dati Personali</h2>
+          <div>
+            <input
+              type="text"
+              name="name"
+              placeholder="Nome...*"
+              value={personalData.name}
+              onChange={handlePersonalData}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="surname"
+              placeholder="Cognome...*"
+              value={personalData.surname}
+              onChange={handlePersonalData}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email...*"
+              value={personalData.email}
+              onChange={handlePersonalData}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="tel"
+              name="phone_num"
+              placeholder="Numero telefonico...*"
+              value={personalData.phone_num}
+              onChange={handlePersonalData}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="cf"
+              placeholder="Codice Fiscale...*"
+              value={personalData.cf}
+              onChange={handlePersonalData}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="shipment_address"
+              value={personalData.shipment_address}
+              placeholder="Via...*"
+              onChange={handlePersonalData}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="cap"
+              value={personalData.cap}
+              placeholder="CAP...*"
+              onChange={handlePersonalData}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="text"
+              name="city"
+              value={personalData.city}
+              placeholder="Città...*"
+              onChange={handlePersonalData}
+              required
+            />
+          </div>
+          {errorMessage}
+          <div>
+            <button type="submit">Invia dati</button>
+          </div>
+        </form>
+      </section >
+
+      {/* sezione dati fatturazione*/}
+      < div >
+        {/* Form Dati di Fatturazione */}
+        <section>
+          < form className="form_personali" onSubmit={handleBillingSubmit} >
+            <h2>Inserisci Dati di Fatturazione</h2>
+            <div>
+              <input
+                type="text"
+                name="name_billing"
+                placeholder="Nome..."
+                value={billingData.name_billing}
+                onChange={handleBillingData}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="surname_billing"
+                placeholder="Cognome..."
+                value={billingData.surname_billing}
+                onChange={handleBillingData}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="billing_address"
+                placeholder="Indirizzo di Fatturazione..."
+                value={billingData.billing_address}
+                onChange={handleBillingData}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="city_billing"
+                value={billingData.city_billing}
+                placeholder="Città..."
+                onChange={handleBillingData}
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="text"
+                name="cap_billing"
+                value={billingData.cap_billing}
+                placeholder="CAP..."
+                onChange={handleBillingData}
+                required
+              />
+
+            </div>
+          </form >
+        </section>
+      </div >
     </>
   );
 }
