@@ -44,20 +44,23 @@ export default function ResultsCategoryHome() {
                         .sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
                         .map((product) => (
                             <>
-                                <div className="product-card">
-                                    <div key={product.id}>
 
-                                        <h2 className="product-name">{product.name}</h2>
-                                        <img className="img_category1" src={product.img_cover} alt={product.name} />
-                                        <p className="price_category">{product.price} €</p>
-                                        <Link to={`/products/${product.slug}`} className="not_link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
+                                <div className="product-card">
+
+                                    <div key={product.id}>
+                                        <Link to={`/products/${product.slug}`} className="not_link">
+                                            <h2 className="product-name">{product.name}</h2>
+                                            <img className="img_category1" src={product.img_cover} alt={product.name} />
+                                            <p className="price_category">{product.price} €</p>
+                                            <button className="bottone_dettaglio">Vai al dettaglio</button>
+                                        </Link>
                                     </div>
-                                </div>
+                                </div >
 
                             </>
                         ))}
                 </div>
-            </div>
+            </div >
         </>
     );
 }
