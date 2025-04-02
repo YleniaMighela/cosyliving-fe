@@ -6,7 +6,7 @@ export default function CardProduct(props) {
     <>
       <div className="special-price-container">
         <div className="products-grid ">
-          <div className="product-card">
+          <div className="product-card hover-img detail-card">
             <img src={img_cover} alt={"Image of " + name} />
             <span>
               {" "}

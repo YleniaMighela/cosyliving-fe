@@ -152,17 +152,19 @@ export default function SearchProduct() {
           <div className="products-grid ">
             {searchRes.length > 0 ? (
               searchRes.map((res) => (
-                <div key={res.id} className="product-item">
-                  <Link
-                    to={`/products/${res.slug}`}
-                    className="not_link product-link"
-                  >
-                    <CardProduct prodInfos={res} />
+                <div key={res.id} className="product-item ">
+                  <div className="">
 
-                    <button className="bottone_dettaglio">
-                      Vai al dettaglio
-                    </button>
-                  </Link>
+
+                    <Link
+                      to={`/products/${res.slug}`}
+                      className="not_link product-link "
+                    >
+                      <CardProduct prodInfos={res} />
+
+
+                    </Link>
+                  </div>
                 </div>
               ))
             ) : (
