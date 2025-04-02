@@ -19,9 +19,10 @@ export default function FilterSearch() {
       {!isHiddenPage && (
         <>
           <select id="scelta" name="scelta">
-            <option value="opzione1">Tutto</option>
-            <option value="opzione2">Categoria</option>
-            <option value="opzione3">In Saldo</option>
+            <option value="all_product">Tutto</option>
+            <option value="name">Nome Prodotto</option>
+            <option value="category">Categoria</option>
+            <option value="discount">In Saldo</option>
           </select>
           <input
             className="input_search"
