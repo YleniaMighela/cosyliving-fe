@@ -144,6 +144,7 @@ header {
 main {
     width: 100%;
     height: 100%;
+    min-height: 100vh;
     /* nasconde la scrollbar */
     scrollbar-width: none;
 }
@@ -335,6 +336,16 @@ h3 {
 
 /* DETTAGLIO PRODOTTO */
 
+#button_notfound_detail {
+    font-size: 25px;
+    padding: 10px 20px;
+    margin-left: 250px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
 .bottone_dettaglio {
     margin: 5%;
     padding: 2%;
@@ -389,7 +400,8 @@ h3 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 85%;
+    height: 80%;
+    border-radius: 3%;
     background: rgba(0, 0, 0, 0.445);
     opacity: 0;
     transition: opacity 0.3s ease-in-out;
@@ -635,7 +647,7 @@ footer {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    min-height: 100vh;
+    /* min-height: 100vh; */
 
 }
 
