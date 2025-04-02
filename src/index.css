@@ -139,7 +139,9 @@ header {
 }
 
 
-
+.button_notfound_detail {
+    font-family: Lato;
+}
 
 main {
     width: 100%;
