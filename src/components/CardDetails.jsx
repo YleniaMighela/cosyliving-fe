@@ -15,6 +15,7 @@ const CardProducts = () => {
 
   const navigate = useNavigate();
   const [text, setText] = useState("Aggiungi al carrello")
+  const [classb, setClassb] = useState("add-to-cart")
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -104,8 +105,10 @@ const CardProducts = () => {
 
   function ChangeCart(text) {
     setText("Aggiunto al carrello")
+    setClassb("add-to-cart added-to-cart")
     setInterval(() => {
       setText("Aggiungi al carrello")
+      setClassb("add-to-cart")
       clearInterval()
     }, 2700);
   }
@@ -190,7 +193,7 @@ const CardProducts = () => {
 
             <p className="product-price">{product.price} €</p>
             <p className="discount"> Sconto del: {product.discount} %</p>
-            <button className="add-to-cart" onClick={Call}>
+            <button className={classb} onClick={Call}>
               {text}
             </button>
           </div>
