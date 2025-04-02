@@ -10,7 +10,7 @@ const SpecialPrices = () => {
     const isDetail = location.pathname === "/";
 
     useEffect(() => {
-        fetch("http://localhost:3000/products")
+        fetch("http://localhost:3000/products/special_price")
             .then((res) => {
                 if (!res.ok) {
                     throw new Error(`Errore HTTP! Status: ${res.status}`);
