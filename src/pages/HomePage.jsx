@@ -2,7 +2,7 @@ import ReviewSize from "../components/ReviewSize";
 import SpecialPrice from "../components/SpecialPrice"
 import CardTips from "../components/CardTips";
 // import CardProducts from "../components/CardProducts";
-
+import { Modal, Box } from "@mui/material";
 
 import CardHero from "../components/CardHero";
 import CardNewArrivals from "../components/CardNewArrivals";
