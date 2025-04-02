@@ -39,7 +39,7 @@ function CardCategory() {
                 className="category-banner"
                 style={{ backgroundImage: `url(/images/categories/${category}.jpg)` }}
             ></div>
-            <div className="products-grid">
+            <div className="products-grid ">
                 {products.map((product) => (
                     <div key={product.id} className="product-card">
                         <img src={`/images/products/${product.img_cover}`} alt={product.name} className="product-image" />

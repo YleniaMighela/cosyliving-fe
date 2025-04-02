@@ -118,19 +118,27 @@ const CardProducts = () => {
 
   return (
     <>
-      <button id="button_notfound" onClick={() => navigate(-1)}>
-        Indietro
-      </button>
+
 
       <div className="product-detail">
+
         <div className="product-container">
+
           <div className="image-container">
+
             <img src={imageUrl} alt={product.name} className="product-image" />
             <div className="overlay">
               <p className="product-description">{product.description}</p>
             </div>
           </div>
+
+
           <div className="product-info">
+            <div>
+              <button id="button_notfound_detail" onClick={() => navigate(-1)}>
+                Indietro
+              </button>
+            </div>
             <h2 className="product-name">{product.name}</h2>
             <em>Disponibile dal: {new Date(product.created_at).toLocaleDateString()}</em>
 
