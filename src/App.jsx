@@ -14,6 +14,7 @@ import SearchProduct from "./pages/SearchProducts.jsx";
 import SpecialPrices from "./pages/SpecialPrices";
 import NewArrivalPage from "./pages/NewArrivalPage";
 import OrderSummary from "./pages/Orders";
+import Wishlist from "./pages/WishlistPage.jsx";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
               <Route path="/new-arrivals" element={<NewArrivalPage />} />
               <Route path="/order-summary" element={<OrderSummary />} />
               <Route path="/cart" element={<Cart />}></Route>
+              <Route path="/wishlist" element={<Wishlist />}></Route>
             </Route>
           </Routes>
         </BrowserRouter>

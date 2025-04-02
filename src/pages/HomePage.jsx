@@ -9,7 +9,7 @@ import CardHero from "../components/CardHero";
 import CardNewArrivals from "../components/CardNewArrivals";
 export default function HomePage() {
     const [displayPopUp, setDisplayPopUp] = useState(true);
-    localStorage.clear()
+    // localStorage.clear()
     const closePopUp = () => {
         // imposta "seenPopUP" come true
         localStorage.setItem("seenPopUp", true);
@@ -41,8 +41,12 @@ export default function HomePage() {
                         {/* in the line below we pass our custom styles object to the modal via 'sx' prop*/}
                         <Box className="pop-up">
                             {/* what user will see in the modal is defined below */}
-                            <h1>Ciao</h1>
-                            <button onClick={closePopUp}>OK</button>
+                            <h1>Benvenuto su CosyLiving</h1>
+                            <p> L'arredamento perfetto per la tua casa! 🏡✨
+
+                                Scopri la nostra collezione, pensata per unire eleganza, comfort e funzionalità. Dai divani accoglienti alle librerie di design, tutto ciò che serve per rendere il tuo salone unico e accogliente.</p>
+                            <p>🛋️ Arreda con stile, vivi con comfort. Buono shopping! 🛍️</p>
+                            <button className="button_popup" onClick={closePopUp}>OK</button>
                         </Box>
                     </Modal>
                 )}
