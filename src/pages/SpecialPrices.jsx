@@ -54,10 +54,20 @@ const SpecialPrices = () => {
                                     <p className="discount">Sconto: {product.discount}%</p>
 
                                 </Link>
+                                <img src={`${product.img_cover}`} alt={product.name} />
+                                <h2>{product.name}</h2>
+                                <p className="price">Prezzo originale:<s>€{Number(product.price).toFixed(2)}</s></p>
+                                <p className="discount">Sconto del: {product.discount}%</p>
+                                <p> Prezzo scontato: {product.discount_price}</p>
+
+                                {!isDetail && (
+                                    <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
+                                )}
                             </div>
                         ))}
                     </div>
                 </Link>
+
             </section>
         </div>
     );
