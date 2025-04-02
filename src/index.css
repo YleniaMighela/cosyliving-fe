@@ -819,7 +819,50 @@ h1 {
 }
 
 
+/* HOVER CARD */
+.hover-img {
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.hover-img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Messaggio che appare sull'hover */
+.hover-img::after {
+    content: "Vai ai nuovi arrivi";
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+    white-space: nowrap;
+}
+
+.special-prices::after {
+    content: "Vai ai prodotti in sconto";
+}
+
+
+.hover-img:hover::after {
+    opacity: 1;
+    bottom: -40px;
+
+}
+
+.detail-card:after {
+    content: "Vai al dettaglio prodotto";
+    margin-bottom: 3%;
+    z-index: 999999999;
+}
 
 /* MEDIA QUERY */
 

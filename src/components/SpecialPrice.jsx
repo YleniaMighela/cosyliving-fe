@@ -8,7 +8,7 @@ export default function SpecialPrice() {
             <Link to="/special-price">  <h3>Special Price</h3> </Link>
             <div className="container_imgprice">
 
-                <Link to="/special-price">
+                <Link to="/special-price" className="hover-img special-prices">
                     <img id="special" src="../img/divano.jpg" alt="Promozioni" />
                 </Link>
 
