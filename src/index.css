@@ -400,7 +400,7 @@ h3 {
     top: 0;
     left: 0;
     width: 100%;
-    height: 80%;
+    height: 100%;
     border-radius: 3%;
     background: rgba(0, 0, 0, 0.445);
     opacity: 0;
@@ -968,6 +968,10 @@ h1 {
         flex-wrap: wrap;
     }
 
+    #button_notfound_detail {
+        margin-left: 150px;
+    }
+
     .bg-container {
         padding-left: 0;
 
@@ -1015,6 +1019,14 @@ h1 {
     .categories-desktop {
         display: none;
 
+    }
+
+    .filter-container>div {
+        flex-direction: column;
+    }
+
+    .product-container {
+        flex-direction: column;
     }
 
     /* HEADER */

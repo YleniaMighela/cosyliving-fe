@@ -57,9 +57,7 @@ const SpecialPrices = () => {
 
                                 </Link>
 
-                                {!isDetail && (
-                                    <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
-                                )}
+
                             </div>
                         ))}
                     </div>
