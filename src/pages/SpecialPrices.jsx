@@ -48,17 +48,14 @@ const SpecialPrices = () => {
                         {products.slice(0, isHomePage ? 6 : products.length).map((product) => (
                             <div key={product.id} className="product-card hover-img detail-card">
                                 <Link to={`/products/${product.slug}`} className="not_link product-link ">
+
                                     <img src={`${product.img_cover}`} alt={product.name} />
                                     <h2>{product.name}</h2>
-                                    <p className="price">€{Number(product.price).toFixed(2)}</p>
-                                    <p className="discount">Sconto: {product.discount}%</p>
+                                    <p className="price">Prezzo originale:<s>€{Number(product.price).toFixed(2)}</s></p>
+                                    <p className="discount">Sconto del: {product.discount}%</p>
+                                    <p> Prezzo scontato: {product.discount_price}</p>
 
                                 </Link>
-                                <img src={`${product.img_cover}`} alt={product.name} />
-                                <h2>{product.name}</h2>
-                                <p className="price">Prezzo originale:<s>€{Number(product.price).toFixed(2)}</s></p>
-                                <p className="discount">Sconto del: {product.discount}%</p>
-                                <p> Prezzo scontato: {product.discount_price}</p>
 
                                 {!isDetail && (
                                     <Link to={`/products/${product.slug}`} className="not_link product-link"> <button className="bottone_dettaglio">Vai al dettaglio</button></Link>
