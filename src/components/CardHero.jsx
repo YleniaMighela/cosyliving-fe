@@ -39,7 +39,7 @@ const CardHero = () => {
             } else {
                 setIndex(i);
             }
-            console.log(i);
+            // console.log(i);
 
         }, 3000)
 
