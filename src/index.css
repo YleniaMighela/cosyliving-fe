@@ -483,8 +483,10 @@ h3 {
     margin-top: 60px;
 }
 
-.add-to-cart:hover {
-    background-color: #333;
+
+
+.added-to-cart {
+    background-color: orange;
 }
 
 .loading,
