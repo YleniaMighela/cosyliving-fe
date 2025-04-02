@@ -9,6 +9,8 @@ export default function FilterSearch() {
 
   // State Var that contains the searchbar value
   const [valueSearch, setValueSearch] = useState("");
+  // State Var that contains the option value
+  const [optionSearch, setOptionSearch] = useState("all_product");
 
   const isHiddenPage = location.pathname.startsWith("/404");
   // location.pathname.startsWith("/trip") ||
@@ -18,7 +20,12 @@ export default function FilterSearch() {
     <div className="form_search">
       {!isHiddenPage && (
         <>
-          <select id="scelta" name="scelta">
+          <select
+            id="scelta"
+            name="scelta"
+            value={optionSearch}
+            onChange={(e) => setOptionSearch(e.target.value)}
+          >
             <option value="all_product">Tutto</option>
             <option value="name">Nome Prodotto</option>
             <option value="category">Categoria</option>
@@ -35,7 +42,8 @@ export default function FilterSearch() {
             className="button_search"
             type="submit"
             onClick={() => {
-              if (valueSearch.length != 0) navigate(`/search/${valueSearch}`);
+              if (valueSearch.length != 0)
+                navigate(`/search/${optionSearch}/${valueSearch}`);
             }}
           >
             Cerca

@@ -28,7 +28,7 @@ function App() {
               <Route path="/form" element={<Form />} />
               <Route path="/category/:name" element={<ResultsCategoryHome />} />
               <Route
-                path="/search/:value/:sorter?"
+                path="/search/:option/:value/:sorter?"
                 element={<SearchProduct />}
               />
               <Route path="/products/:slug" element={<DetailProduct />} />
