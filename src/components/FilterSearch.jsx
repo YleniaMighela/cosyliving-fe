@@ -26,10 +26,10 @@ export default function FilterSearch() {
             value={optionSearch}
             onChange={(e) => setOptionSearch(e.target.value)}
           >
-            <option value="all_product">Tutto</option>
-            <option value="name">Nome Prodotto</option>
-            <option value="category">Categoria</option>
-            <option value="discount">In Saldo</option>
+            <option className="ctg" value="all_product">Tutto</option>
+            <option className="ctg" value="name">Nome Prodotto</option>
+            <option className="ctg" value="category">Categoria</option>
+            <option className="ctg" value="discount">In Saldo</option>
           </select>
           <input
             className="input_search"

@@ -267,6 +267,7 @@ h3 {
     color: rgb(247, 242, 242);
     font-size: 50px;
     margin-left: 20%;
+    border-radius: 5px;
 }
 
 .container_newarrival {
@@ -975,6 +976,10 @@ h1 {
     border: 0;
 }
 
+.ctg {
+    font-family: Lato;
+}
+
 /* MEDIA QUERY */
 
 /* Media Query per schermi da 900px a 1500px */
@@ -1168,6 +1173,10 @@ h1 {
 
     }
 
+    .overlay {
+        height: 100%;
+    }
+
     #scelta {
         display: none;
 
@@ -1215,12 +1224,12 @@ h1 {
 
     #special {
         max-height: 500px;
-        margin-right: 20px;
     }
 
     .new-arrivals-title {
         font-size: 20px;
         width: 85%;
+        margin-left: 22%;
 
     }
 
