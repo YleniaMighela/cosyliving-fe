@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 export default function CardProduct(props) {
-  const { name, price, quantity, img_cover, created_at } = props.prodInfos;
+  const { name, price, quantity, img_cover, created_at, discount, discount_price } = props.prodInfos;
   return (
     // Style temporaneo
     <>
@@ -12,12 +12,17 @@ export default function CardProduct(props) {
               {" "}
               <strong> Nome del prodotto: </strong> {name}{" "}
             </span>
+
             <br />
-            <span className="price">
-              {" "}
-              <strong>Prezzo:</strong> {price} €
-            </span>
-            <br />
+            {discount > 0 ? (
+              <>
+                <p className="price">Prezzo originale:<s>€{Number(price).toFixed(2)}</s></p>
+                <p className="discount">Sconto del: {discount}%</p>
+                <p> Prezzo scontato: €{discount_price}</p>
+              </>
+            ) : (
+              <p className="price">Prezzo: €{Number(price).toFixed(2)}</p>
+            )}
             <span>
               {" "}
               <strong>Quantità:</strong> {quantity}
