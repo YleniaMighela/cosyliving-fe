@@ -154,6 +154,10 @@ header {
     padding: 10px;
 }
 
+.red-heart {
+    color: red;
+}
+
 .cart-icon {
     padding: 10px;
     color: black;
