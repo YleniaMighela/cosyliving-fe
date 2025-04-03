@@ -17,6 +17,7 @@ export default function CartCard({ dati, setCart }) {
         localStorage.setItem("Cart", JSON.stringify(Cart))
 
         setData(Cart)
+        window.dispatchEvent(new Event("storage"));
     }
     console.log(data);
 
