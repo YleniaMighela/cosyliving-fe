@@ -134,7 +134,7 @@ export default function FormCliente() {
         "YwWXI2IpotKYzl-pl"
       )
       .then(
-        (result) => {},
+        (result) => { },
         (error) => {
           console.log(error.text);
         }
@@ -148,7 +148,7 @@ export default function FormCliente() {
         "YwWXI2IpotKYzl-pl"
       )
       .then(
-        (result) => {},
+        (result) => { },
         (error) => {
           console.log(error.text);
         }
@@ -249,7 +249,7 @@ export default function FormCliente() {
                 <ul>
                   {orderProducts.map((product, index) => (
                     <li key={index}>
-                      {product.name} x {product.quantity} - €{product.unitPrice}
+                      {product.name} x {product.quantity} - €{product.totalPrice}
                     </li>
                   ))}
                 </ul>

@@ -42,7 +42,7 @@ export default function CartCard({ dati, setCart }) {
                 <Link to={`/products/${prop.name}`}> <img src={prop.img} alt={prop.name} /></Link>
                 <div>
                     <h2>{prop.name}</h2>
-                    <p>€{prop.price}</p>
+                    <p>€{prop.price / prop.quantity}</p>
                     <div className="flex_cart">
                         <button
                             onClick={() =>
