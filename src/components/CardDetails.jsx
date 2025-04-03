@@ -148,10 +148,13 @@ const CardProducts = () => {
 
 
     if (existingProduct) {
-      console.log("Rimosso dai preferiti");
+
       setClassa("heart-icon");
 
       wishList = wishList.filter(item => item.id !== existingProduct.id);
+      console.log(`Rimosso dai preferiti `);
+      // window.dispatchEvent(new Event("storage"));
+
     } else {
       console.log("Aggiunto ai preferiti");
       let newProduct = {
@@ -163,12 +166,15 @@ const CardProducts = () => {
       console.log(newProduct);
 
       wishList.push(newProduct);
+      // window.dispatchEvent(new Event("storage"));
       setClassa("added-to-wishlist heart-icon");
+
     }
 
     setWish([...wishList]);
     localStorage.setItem("Wishlist", JSON.stringify(wishList));
-    // console.log(JSON.parse(localStorage.getItem("Wishlist")));
+    window.dispatchEvent(new Event("storage"));
+    console.log((localStorage.getItem("Wishlist")));
 
   }
 

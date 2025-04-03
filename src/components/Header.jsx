@@ -20,6 +20,8 @@ export default function Header() {
   ];
   const [cart, setCart] = useState([]);
   const [prods, setProds] = useState(0);
+  const [classHeart, setClassHeart] = useState("heart-icon")
+  const [wish, setWish] = useState([]);
 
   // Carica il carrello da localStorage al montaggio
   useEffect(() => {
@@ -44,6 +46,36 @@ export default function Header() {
   useEffect(() => {
     setProds(cart.length);
   }, [cart]);
+
+  useEffect(() => {
+    const storedWish = JSON.parse(localStorage.getItem("Wishlist")) || [];
+    setWish(storedWish);
+
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const updatedWish = JSON.parse(localStorage.getItem("Wishlist")) || [];
+      setWish(updatedWish);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+    // console.log(cart);
+
+  }, []);
+
+  useEffect(() => {
+    console.log(wish.lenght);
+
+    if (wish.length > 0) {
+      setClassHeart(" heart-icon red-heart")
+    } else if (wish.length === 0) {
+      setClassHeart("heart-icon")
+    }
+
+  }, [wish]);
+
   // console.log(prods);
 
   // console.log(cart);
@@ -101,7 +133,7 @@ export default function Header() {
           />
         </Link>
         <Link to="/wishlist">
-          <FontAwesomeIcon icon={faHeart} size="2x" className="heart-icon" />
+          <FontAwesomeIcon icon={faHeart} size="2x" className={classHeart} />
         </Link>
       </div>
     </header>
