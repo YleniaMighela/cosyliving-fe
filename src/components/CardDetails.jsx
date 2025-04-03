@@ -128,7 +128,7 @@ const CardProducts = () => {
       };
 
       Cart.push(newProduct);
-      console.log(newProduct);
+      // console.log(newProduct);
 
     }
 
@@ -159,7 +159,9 @@ const CardProducts = () => {
         id: product.id,
         name: product.name,
         img: imageUrl,
+        p_slug: slug
       };
+      console.log(newProduct);
 
       wishList.push(newProduct);
       setClassa("added-to-wishlist heart-icon");
