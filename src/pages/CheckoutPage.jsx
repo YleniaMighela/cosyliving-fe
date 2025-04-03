@@ -1,6 +1,7 @@
 import emailjs from "emailjs-com";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { faL } from "@fortawesome/free-solid-svg-icons";
 
 const initialPersonalData = {
   name: "",
@@ -30,11 +31,13 @@ export default function FormCliente() {
   const [billingInfo, setBillingInfo] = useState([]);
   const [orderProducts, setOrderProducts] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage2, setErrorMessage2] = useState("");
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("Cart")) || []
   );
   const [tot_price, setTot_price] = useState(0);
   const [showBillingForm, setShowBillingForm] = useState(false);
+
   // Recupero dati da localStorage
   useEffect(() => {
     const storedClients = JSON.parse(localStorage.getItem("clients")) || [];
@@ -116,16 +119,90 @@ export default function FormCliente() {
     return acc + prezzoScontato * product.quantity;
   }, 0);
 
+  // Check Values
+  function inputValidator(value, regexp) {
+    if (regexp.test(value)) {
+      return true;
+    } else {
+      setErrorMessage(value + " non è un valido inserimento");
+      return false;
+    }
+  }
+
   // Funzione per gestire l'input dei dati personali
-  function handlePersonalData(e) {
-    setPersonalData({
-      ...personalData,
+  function handlePersonalData(e, regexp) {
+    if (!regexp.test(e.target.value)) {
+      setErrorMessage(`${e.target.value} non è un inserimento valido`);
+      return;
+    } else {
+      setErrorMessage(""); // Nessun errore se esattamente 10 cifre
+    }
+
+    if (e.target.value.length < 10 && e.target.name === "phone_num") {
+      setErrorMessage("Il numero deve avere esattamente 10 cifre.");
+    } else {
+      setErrorMessage(""); // Nessun errore se esattamente 10 cifre
+    }
+
+    if (e.target.value.length < 5 && e.target.name === "cap") {
+      setErrorMessage("Il CAP deve avere esattamente 5 cifre.");
+    } else {
+      setErrorMessage(""); // Nessun errore se esattamente 10 cifre
+    }
+
+    setPersonalData((data) => ({
+      ...data,
       [e.target.name]: e.target.value,
-    });
+    }));
+  }
+
+  function sendEmail(e) {
+    e.preventDefault();
+    // email conferma ordine al cliente
+    emailjs
+      .sendForm(
+        "service_z4wn6ts",
+        "template_yfwhf7f",
+        e.target,
+        "YwWXI2IpotKYzl-pl"
+      )
+      .then(
+        (result) => {},
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    // email conferma ordine al sitp
+    emailjs
+      .sendForm(
+        "service_z4wn6ts",
+        "template_792darg",
+        e.target,
+        "YwWXI2IpotKYzl-pl"
+      )
+      .then(
+        (result) => {},
+        (error) => {
+          console.log(error.text);
+        }
+      );
   }
 
   // Funzione per gestire l'input dei dati di fatturazione
-  function handleBillingData(e) {
+  function handleBillingData(e, regexp) {
+    if (!regexp.test(e.target.value)) {
+      setErrorMessage2(`${e.target.value} non è un inserimento valido`);
+      return;
+    } else {
+      setErrorMessage2(""); // Nessun errore se esattamente 10 cifre
+    }
+
+    if (e.target.value.length < 5 && e.target.name === "cap_billing") {
+      setErrorMessage2("Il CAP deve avere esattamente 5 cifre.");
+    } else {
+      setErrorMessage2(""); // Nessun errore se esattamente 10 cifre
+    }
+
     setBillingData({
       ...billingData,
       [e.target.name]: e.target.value,
@@ -135,6 +212,7 @@ export default function FormCliente() {
   // Salvataggio dati personali
   function handlePersonalSubmit(e) {
     e.preventDefault();
+
     const newClient = {
       id: clients.length === 0 ? 1 : clients[clients.length - 1].id + 1,
       ...personalData,
@@ -157,39 +235,6 @@ export default function FormCliente() {
     setBillingData(initialBillingData);
   }
 
-  function sendEmail(e) {
-    console.log("Ciao");
-
-    // email conferma ordine al cliente
-    emailjs
-      .sendForm(
-        "service_z4wn6ts",
-        "template_yfwhf7f",
-        e.target,
-        "YwWXI2IpotKYzl-pl"
-      )
-      .then(
-        (result) => { },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-    // email conferma ordine al sitp
-    emailjs
-      .sendForm(
-        "service_z4wn6ts",
-        "template_792darg",
-        e.target,
-        "YwWXI2IpotKYzl-pl"
-      )
-      .then(
-        (result) => { },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
     const totalInfo = {
@@ -208,26 +253,21 @@ export default function FormCliente() {
       .then(() => {
         localStorage.removeItem("Cart");
         setCart([]);
-        // console.log(
-        //   "LocalStorage after clearing:",
-        //   localStorage.getItem("Cart")
-        // );
-        sendEmail(e)
-        // window.location.href = "/order-summary";
-
+        console.log(
+          "LocalStorage after clearing:",
+          localStorage.getItem("Cart")
+        );
+        //Reindirizza alla pagina degli ordini
+        setInterval(() => {
+          window.location.href = "/order-summary";
+        }, 3000);
       })
       .catch((err) => {
         console.error(err);
         setErrorMessage("Abbiamo riscontrato un errore, riprova.");
       });
 
-
     handlePersonalSubmit(e);
-
-    //Reindirizza alla pagina degli ordini
-    setInterval(() => {
-      // window.location.href = "/order-summary";
-    }, 3000);
   }
 
   useEffect(() => {
@@ -255,7 +295,8 @@ export default function FormCliente() {
                 <ul>
                   {orderProducts.map((product, index) => (
                     <li key={index}>
-                      {product.name} x {product.quantity} - €{product.totalPrice}
+                      {product.name} x {product.quantity} - €
+                      {product.totalPrice}
                     </li>
                   ))}
                 </ul>
@@ -302,9 +343,12 @@ export default function FormCliente() {
                 <input
                   type="text"
                   name="name"
+                  maxLength="50"
                   placeholder="Nome...*"
                   value={personalData.name}
-                  onChange={handlePersonalData}
+                  onChange={(e) =>
+                    handlePersonalData(e, /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{0,50}$/)
+                  }
                   required
                 />
               </div>
@@ -312,9 +356,12 @@ export default function FormCliente() {
                 <input
                   type="text"
                   name="surname"
+                  maxLength="50"
                   placeholder="Cognome...*"
                   value={personalData.surname}
-                  onChange={handlePersonalData}
+                  onChange={(e) =>
+                    handlePersonalData(e, /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{0,50}$/)
+                  }
                   required
                 />
               </div>
@@ -322,9 +369,10 @@ export default function FormCliente() {
                 <input
                   type="email"
                   name="email"
+                  maxLength="100"
                   placeholder="Email...*"
                   value={personalData.email}
-                  onChange={handlePersonalData}
+                  onChange={(e) => handlePersonalData(e, /.*/)}
                   required
                 />
               </div>
@@ -332,9 +380,11 @@ export default function FormCliente() {
                 <input
                   type="tel"
                   name="phone_num"
-                  placeholder="Numero telefonico...*"
+                  placeholder="Numero telefonico ...*"
+                  inputMode="numeric"
+                  maxLength="10"
                   value={personalData.phone_num}
-                  onChange={handlePersonalData}
+                  onChange={(e) => handlePersonalData(e, /^\d{0,10}$/)}
                   required
                 />
               </div>
@@ -342,9 +392,15 @@ export default function FormCliente() {
                 <input
                   type="text"
                   name="cf"
+                  maxLength="16"
                   placeholder="Codice Fiscale...*"
                   value={personalData.cf}
-                  onChange={handlePersonalData}
+                  onChange={(e) =>
+                    handlePersonalData(
+                      e,
+                      /^[A-Z]{0,6}\d{0,2}[A-Z]{0,1}\d{0,2}[A-Z]{0,1}\d{0,3}[A-Z]{0,1}$/
+                    )
+                  }
                   required
                 />
               </div>
@@ -352,9 +408,12 @@ export default function FormCliente() {
                 <input
                   type="text"
                   name="shipment_address"
+                  maxLength="100"
                   value={personalData.shipment_address}
                   placeholder="Via...*"
-                  onChange={handlePersonalData}
+                  onChange={(e) =>
+                    handlePersonalData(e, /^[A-Za-z0-9\s,.-]{0,100}$/)
+                  }
                   required
                 />
               </div>
@@ -362,9 +421,10 @@ export default function FormCliente() {
                 <input
                   type="text"
                   name="cap"
+                  maxLength="5"
                   value={personalData.cap}
                   placeholder="CAP...*"
-                  onChange={handlePersonalData}
+                  onChange={(e) => handlePersonalData(e, /^\d{0,5}$/)}
                   required
                 />
               </div>
@@ -372,9 +432,12 @@ export default function FormCliente() {
                 <input
                   type="text"
                   name="city"
+                  maxLength="50"
                   value={personalData.city}
                   placeholder="Città...*"
-                  onChange={handlePersonalData}
+                  onChange={(e) =>
+                    handlePersonalData(e, /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{0,50}$/)
+                  }
                   required
                 />
               </div>
@@ -407,9 +470,12 @@ export default function FormCliente() {
                     <input
                       type="text"
                       name="name_billing"
+                      maxLength="50"
                       placeholder="Nome..."
                       value={billingData.name_billing}
-                      onChange={handleBillingData}
+                      onChange={(e) =>
+                        handleBillingData(e, /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{0,50}$/)
+                      }
                       required
                     />
                   </div>
@@ -417,9 +483,12 @@ export default function FormCliente() {
                     <input
                       type="text"
                       name="surname_billing"
+                      maxLength="50"
                       placeholder="Cognome..."
                       value={billingData.surname_billing}
-                      onChange={handleBillingData}
+                      onChange={(e) =>
+                        handleBillingData(e, /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{0,50}$/)
+                      }
                       required
                     />
                   </div>
@@ -427,9 +496,12 @@ export default function FormCliente() {
                     <input
                       type="text"
                       name="billing_address"
+                      maxLength="100"
                       placeholder="Indirizzo di Fatturazione..."
                       value={billingData.billing_address}
-                      onChange={handleBillingData}
+                      onChange={(e) =>
+                        handleBillingData(e, /^[A-Za-z0-9\s,.-]{0,100}$/)
+                      }
                       required
                     />
                   </div>
@@ -437,9 +509,12 @@ export default function FormCliente() {
                     <input
                       type="text"
                       name="city_billing"
+                      maxLength="50"
                       value={billingData.city_billing}
                       placeholder="Città..."
-                      onChange={handleBillingData}
+                      onChange={(e) =>
+                        handleBillingData(e, /^[A-Za-zÀ-ÖØ-öø-ÿ' -]{0,50}$/)
+                      }
                       required
                     />
                   </div>
@@ -447,12 +522,14 @@ export default function FormCliente() {
                     <input
                       type="text"
                       name="cap_billing"
+                      maxLength="5"
                       value={billingData.cap_billing}
                       placeholder="CAP..."
-                      onChange={handleBillingData}
+                      onChange={(e) => handleBillingData(e, /^\d{0,5}$/)}
                       required
                     />
                   </div>
+                  {errorMessage2}
                 </form>
               </section>
             )}
