@@ -18,6 +18,7 @@ export default function CartCard({ dati, setCart }) {
 
         setData(Cart)
     }
+    console.log(data);
 
     function updateQuantity(id, newQuantity) {
         var newCart = data.map((product) => product.id === id ? { ...product, quantity: newQuantity } : product)
@@ -39,10 +40,10 @@ export default function CartCard({ dati, setCart }) {
         data.map((prop) => (
 
             <div className="container_cart" key={prop.id}>
-                <Link to={`/products/${prop.name}`}> <img src={prop.img} alt={prop.name} /></Link>
+                <Link to={`/products/${prop.slug}`}> <img src={prop.img} alt={prop.name} /></Link>
                 <div>
                     <h2>{prop.name}</h2>
-                    <p>€{prop.price / prop.quantity}</p>
+                    <p>€{prop.discount_price || prop.price}</p>
                     <div className="flex_cart">
                         <button
                             onClick={() =>

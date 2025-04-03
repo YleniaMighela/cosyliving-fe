@@ -64,16 +64,16 @@ const CardProducts = () => {
     ? product.img_cover
     : `/images/${product.img_cover}`;
 
-  function CalcPrice(price, mult, discount) {
-    let finalPrice = price;
+  // function CalcPrice(price, mult, discount) {
+  //   let finalPrice = price;
 
-    if (discount > 0) {
-      // Calcola il prezzo scontato
-      finalPrice = price * (1 - discount / 100);
-    }
+  //   if (discount > 0) {
+  //     // Calcola il prezzo scontato
+  //     finalPrice = price * (1 - discount / 100);
+  //   }
 
-    return Number(finalPrice * mult).toFixed(2);
-  }
+  //   return Number(finalPrice * mult).toFixed(2);
+  // }
 
   const handleCount = (e) => {
     let value = parseInt(e.target.value, 10);
@@ -105,11 +105,7 @@ const CardProducts = () => {
       }
 
       existingProduct.quantity += newCount;
-      existingProduct.price = CalcPrice(
-        Number(product.price),
-        existingProduct.quantity,
-        product.discount
-      );
+
 
       Cart[existingProductIndex] = existingProduct;
     } else {
@@ -122,7 +118,8 @@ const CardProducts = () => {
         id: product.id,
         name: product.name,
         img: imageUrl,
-        price: CalcPrice(Number(product.price), Number(newCount), Number(product.discount)),
+        price: product.price,
+        discount_price: product.discount_price,
         quantity: newCount,
         p_slug: slug,
         q_max: product.quantity

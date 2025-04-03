@@ -18,7 +18,7 @@ export default function Cart() {
         // Calcola il totale dei prezzi
         var total = 0
         cart.map((product) => {
-            total += Number((product.price))
+            total += Number((product.discount_price || product.price) * product.quantity)
         })
 
         // Aggiorna il prezzo
