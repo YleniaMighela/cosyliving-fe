@@ -44,27 +44,34 @@ export default function ResultsCategoryHome() {
             .sort((a, b) => parseFloat(a.price) - parseFloat(b.price))
             .map((product) => (
               <>
-                <div className="product-card hover-img detail-card">
-                  <div key={product.id} className="">
-                    <Link to={`/products/${product.slug}`} className="not_link">
-                      <h2 className="product-name">{product.name}</h2>
-                      <img
-                        className="img_category1"
-                        src={product.img_cover}
-                        alt={product.name}
-                      />
-                      {product.discount > 0 ? (
-                        <>
-                          <p className="price">Prezzo originale:<s>€{Number(product.price).toFixed(2)}</s></p>
-                          <p className="discount">Sconto del: {product.discount}%</p>
-                          <p> Prezzo scontato: €{product.discount_price}</p>
-                        </>
-                      ) : (
-                        <p className="price">Prezzo: €{Number(product.price).toFixed(2)}</p>
-                      )}
-
-                    </Link>
-                  </div>
+                <div
+                  key={product.id}
+                  className="product-card hover-img detail-card"
+                >
+                  <Link to={`/products/${product.slug}`} className="not_link">
+                    <h2 className="product-name">{product.name}</h2>
+                    <img
+                      className="img_category1"
+                      src={product.img_cover}
+                      alt={product.name}
+                    />
+                    {product.discount > 0 ? (
+                      <>
+                        <p className="price">
+                          Prezzo originale:
+                          <s>€{Number(product.price).toFixed(2)}</s>
+                        </p>
+                        <p className="discount">
+                          Sconto del: {product.discount}%
+                        </p>
+                        <p> Prezzo scontato: €{product.discount_price}</p>
+                      </>
+                    ) : (
+                      <p className="price">
+                        Prezzo: €{Number(product.price).toFixed(2)}
+                      </p>
+                    )}
+                  </Link>
                 </div>
               </>
             ))}
