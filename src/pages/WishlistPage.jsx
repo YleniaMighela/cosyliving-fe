@@ -33,7 +33,7 @@ const Wishlist = () => {
 
                         return (
                             <div key={product.id} className="wishlist-item hover-img detail-card">
-                                <Link to={`/products/${product.name}`}>
+                                <Link to={`/products/${product.p_slug}`}>
                                     <h3 className="wishlist-title">{product.name}</h3>
                                     <img src={product.img} alt={product.name} className="wishlist-image" />
                                 </Link>
