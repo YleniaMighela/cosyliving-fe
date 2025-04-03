@@ -1110,6 +1110,8 @@ h1 {
         font-size: 30px;
         width: 80%;
         margin-left: 22%;
+        margin-bottom: 3%;
+        margin-top: 3%;
     }
 
     .containersingle_review {
@@ -1118,7 +1120,7 @@ h1 {
 
     #special {
         display: block;
-        margin-bottom: 10%;
+
     }
 
     .navba {
@@ -1286,6 +1288,8 @@ h1 {
         font-size: 20px;
         width: 85%;
         margin-left: 22%;
+        margin-bottom: 3%;
+        margin-top: 3%;
 
     }
 
