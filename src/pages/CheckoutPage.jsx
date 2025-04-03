@@ -33,7 +33,7 @@ export default function FormCliente() {
   const [cart, setCart] = useState(
     JSON.parse(localStorage.getItem("Cart")) || []
   );
-  const [tot_price, setTot_price] = useState(0)
+  const [tot_price, setTot_price] = useState(0);
   const [showBillingForm, setShowBillingForm] = useState(false);
   // Recupero dati da localStorage
   useEffect(() => {
@@ -69,9 +69,7 @@ export default function FormCliente() {
       .catch((err) => {
         console.log(err);
       });
-
   }
-
 
   // Richiede i prezzi all'avvio
   useEffect(() => {
@@ -87,7 +85,7 @@ export default function FormCliente() {
         },
       })
       .then((response) => {
-        setTot_price(response.data.tot_price)
+        setTot_price(response.data.tot_price);
       })
       .catch((err) => {
         console.log(err);
@@ -113,7 +111,8 @@ export default function FormCliente() {
 
   // Ricalcola il prezzo totale quando cambia `orderProducts`
   const prezzo_totale = orderProducts.reduce((acc, product) => {
-    const prezzoScontato = product.unitPrice - (product.unitPrice * product.discount) / 100;
+    const prezzoScontato =
+      product.unitPrice - (product.unitPrice * product.discount) / 100;
     return acc + prezzoScontato * product.quantity;
   }, 0);
 
@@ -124,37 +123,37 @@ export default function FormCliente() {
       [e.target.name]: e.target.value,
     });
   }
-  // function sendEmail(e) {
-  //   e.preventDefault();
-  //   // email conferma ordine al cliente
-  //   emailjs
-  //     .sendForm(
-  //       "service_z4wn6ts",
-  //       "template_yfwhf7f",
-  //       e.target,
-  //       "YwWXI2IpotKYzl-pl"
-  //     )
-  //     .then(
-  //       (result) => { },
-  //       (error) => {
-  //         console.log(error.text);
-  //       }
-  //     );
-  //   // email conferma ordine al sitp
-  //   emailjs
-  //     .sendForm(
-  //       "service_z4wn6ts",
-  //       "template_792darg",
-  //       e.target,
-  //       "YwWXI2IpotKYzl-pl"
-  //     )
-  //     .then(
-  //       (result) => { },
-  //       (error) => {
-  //         console.log(error.text);
-  //       }
-  //     );
-  // }
+  function sendEmail(e) {
+    e.preventDefault();
+    // email conferma ordine al cliente
+    emailjs
+      .sendForm(
+        "service_z4wn6ts",
+        "template_yfwhf7f",
+        e.target,
+        "YwWXI2IpotKYzl-pl"
+      )
+      .then(
+        (result) => {},
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    // email conferma ordine al sitp
+    emailjs
+      .sendForm(
+        "service_z4wn6ts",
+        "template_792darg",
+        e.target,
+        "YwWXI2IpotKYzl-pl"
+      )
+      .then(
+        (result) => {},
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  }
   // Funzione per gestire l'input dei dati di fatturazione
   function handleBillingData(e) {
     setBillingData({
@@ -197,23 +196,25 @@ export default function FormCliente() {
       totalPrice: prezzo_totale.toFixed(2),
     };
 
-    axios.post("http://localhost:3000/order/", totalInfo, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
+    axios
+      .post("http://localhost:3000/order/", totalInfo, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
       .then(() => {
         localStorage.removeItem("Cart");
         setCart([]);
-        console.log("LocalStorage after clearing:", localStorage.getItem("Cart"));
+        console.log(
+          "LocalStorage after clearing:",
+          localStorage.getItem("Cart")
+        );
         window.location.href = "/order-summary";
       })
       .catch((err) => {
         console.error(err);
         setErrorMessage("Abbiamo riscontrato un errore, riprova.");
       });
-
-
 
     handlePersonalSubmit(e);
 
@@ -234,8 +235,6 @@ export default function FormCliente() {
       }));
     }
   }, [orderProducts]);
-
-
 
   return (
     <>
@@ -261,7 +260,8 @@ export default function FormCliente() {
                 <p>
                   <strong>Totale: €{(prezzo_totale + 9.99).toFixed(2)}</strong>
                 </p>
-              </>) : (
+              </>
+            ) : (
               <>
                 <ul>
                   {orderProducts.map((product, index) => (
@@ -281,7 +281,6 @@ export default function FormCliente() {
                   <strong>Totale: €{tot_price}</strong>
                 </p>
               </>
-
             )}
           </div>
           {/* Form Dati Personali */}
@@ -378,10 +377,10 @@ export default function FormCliente() {
                 <button type="submit">Invia dati</button>
               </div>
             </form>
-          </section >
+          </section>
 
           {/* sezione dati fatturazione*/}
-          < div >
+          <div>
             {/* Checkbox per Dati di Fatturazione */}
             <div className="checkbox">
               <label>
@@ -396,7 +395,7 @@ export default function FormCliente() {
             {/* Form Dati di Fatturazione */}
             {showBillingForm && (
               <section>
-                < form className="form_personali" onSubmit={handleBillingSubmit} >
+                <form className="form_personali" onSubmit={handleBillingSubmit}>
                   <h2>Inserisci Dati di Fatturazione</h2>
                   <div>
                     <input
@@ -447,15 +446,13 @@ export default function FormCliente() {
                       onChange={handleBillingData}
                       required
                     />
-
                   </div>
-                </form >
+                </form>
               </section>
             )}
           </div>
         </section>
       </div>
-
     </>
   );
 }
