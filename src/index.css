@@ -27,6 +27,17 @@ header {
 
 }
 
+.number_cart {
+    width: 35px;
+    height: auto;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 900;
+    margin-left: 10%;
+    background-color: #22222270;
+    border-radius: 49%;
+    color: black;
+}
 
 /* NAVBAR */
 .navba {

@@ -92,7 +92,7 @@ export default function Header() {
 
       {/* Sezione Icone */}
       <div className="icons_header">
-        <p>{prods}</p>
+        <p className="number_cart">{prods}</p>
         <Link to="/cart">
           <FontAwesomeIcon
             icon={faCartShopping}
