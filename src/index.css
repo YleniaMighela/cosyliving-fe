@@ -597,8 +597,9 @@ h3 {
     margin-top: 10px;
     color: black;
     background-color: white;
-    line-height: 90px;
-    padding: 5%;
+    padding: 2%;
+    font-size: 30px;
+    display: contents;
 }
 
 .remove-button {
