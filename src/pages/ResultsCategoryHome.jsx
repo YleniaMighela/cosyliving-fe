@@ -53,7 +53,16 @@ export default function ResultsCategoryHome() {
                         src={product.img_cover}
                         alt={product.name}
                       />
-                      <p className="price_category">{product.price} €</p>
+                      {product.discount > 0 ? (
+                        <>
+                          <p className="price">Prezzo originale:<s>€{Number(product.price).toFixed(2)}</s></p>
+                          <p className="discount">Sconto del: {product.discount}%</p>
+                          <p> Prezzo scontato: €{product.discount_price}</p>
+                        </>
+                      ) : (
+                        <p className="price">Prezzo: €{Number(product.price).toFixed(2)}</p>
+                      )}
+
                     </Link>
                   </div>
                 </div>

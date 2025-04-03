@@ -203,7 +203,7 @@ export default function FormCliente() {
       },
     })
       .then(() => {
-        localStorage.clear();
+        localStorage.removeItem("Cart");
         setCart([]);
         console.log("LocalStorage after clearing:", localStorage.getItem("Cart"));
         window.location.href = "/order-summary";

@@ -21,6 +21,7 @@ const CardProducts = () => {
   const [classa, setClassa] = useState("heart-icon")
   const [Wish, setWish] = useState([])
   const [max, setMax] = useState(false)
+  const [maxMessage, setMaxMessage] = useState(""); // Stato per il messaggio
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -86,48 +87,57 @@ const CardProducts = () => {
     setCount(value);
   };
 
+
+
   function StoreProduct() {
     let Cart = JSON.parse(localStorage.getItem("Cart")) || [];
-
     let existingProductIndex = Cart.findIndex((item) => item.name === product.name);
 
+    let newCount = count;
+
     if (existingProductIndex !== -1) {
-      // Se il prodotto esiste già
-      let updatedProduct = { ...Cart[existingProductIndex] };
+      let existingProduct = { ...Cart[existingProductIndex] };
 
-      // Verifica se aggiungendo count si supera la quantità massima disponibile
-      if (updatedProduct.quantity + count > product.quantity) {
-        setMax(true);
-        console.log("Danni evitati: quantità massima raggiunta");
-        return; // Esce dalla funzione senza modificare il carrello
-      } else {
-        // Aggiorna la quantità e il prezzo
-        updatedProduct.quantity += count;
-        updatedProduct.price = CalcPrice(
-          Number(product.price),
-          updatedProduct.quantity,
-          product.discount
-        );
-
-        Cart[existingProductIndex] = updatedProduct;
+      // Se la somma delle quantità supera la quantità massima disponibile
+      if (existingProduct.quantity + count > product.quantity) {
+        newCount = product.quantity - existingProduct.quantity; // Aggiunge solo il massimo possibile
+        setMaxMessage("Quantità massima raggiunta, aggiunti solo i prodotti disponibili.");
       }
+
+      existingProduct.quantity += newCount;
+      existingProduct.price = CalcPrice(
+        Number(product.price),
+        existingProduct.quantity,
+        product.discount
+      );
+
+      Cart[existingProductIndex] = existingProduct;
     } else {
-      // Se il prodotto non esiste ancora nel carrello
+      if (count > product.quantity) {
+        newCount = product.quantity; // Limita la quantità al massimo disponibile
+        setMaxMessage("Quantità massima raggiunta, aggiunti solo i prodotti disponibili.");
+      }
+
       let newProduct = {
         id: product.id,
         name: product.name,
         img: imageUrl,
-        price: CalcPrice(Number(product.price), Number(count), Number(product.discount)),
-        quantity: count,
+        price: CalcPrice(Number(product.price), Number(newCount), Number(product.discount)),
+        quantity: newCount,
       };
 
       Cart.push(newProduct);
-      console.log("Nuovo prodotto aggiunto:", newProduct);
     }
 
     localStorage.setItem("Cart", JSON.stringify(Cart));
-    console.log("Carrello aggiornato:", Cart);
   }
+
+  function Call() {
+    ChangeCart();
+    StoreProduct();
+  }
+
+
 
   function addWish() {
     let wishList = JSON.parse(localStorage.getItem("Wishlist")) || [];
@@ -267,12 +277,12 @@ const CardProducts = () => {
                 Prezzo: <strong>€{Number(product.price).toFixed(2)}</strong>
               </p>
             )}
-            {!max ? (
+            {maxMessage === "" ? (
 
               <button className={classb} onClick={Call}>
                 {text}
               </button>) : (
-              <p> Numero massimo di oggetti disponibili aggiunto al carrello</p>
+              <p> {maxMessage}</p>
             )}
           </div>
         </div>
