@@ -61,7 +61,7 @@ export default function CartCard({ dati, setCart }) {
                                     +
                                 </button>
                                 <br />
-                                <p> Quantità massima raggiunta</p>
+                                <p className="max_quantity_message" > Quantità massima raggiunta</p>
                             </>
 
                         ) : (
