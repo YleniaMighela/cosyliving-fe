@@ -1122,6 +1122,11 @@ h1 {
 
     }
 
+    .number_cart {
+        background: none;
+        background-color: transparent;
+    }
+
     .home-container {
         flex-wrap: wrap;
     }
@@ -1226,6 +1231,11 @@ h1 {
 
     .filter-container>div {
         flex-direction: column;
+    }
+
+    .number_cart {
+        background: none;
+        background-color: transparent;
     }
 
     .product-container {
