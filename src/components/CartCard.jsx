@@ -55,7 +55,15 @@ export default function CartCard({ dati, setCart }) {
                         </button>
                         <p>{prop.quantity}</p>
                         {prop.quantity + 1 > prop.q_max ? (
-                            <p>Quantità massima raggiunta</p>
+
+                            <>
+                                <button >
+                                    +
+                                </button>
+                                <br />
+                                <p>Quantità massima raggiunta</p>
+                            </>
+
                         ) : (
                             <button onClick={() => updateQuantity(prop.id, prop.quantity + 1)}>
                                 +
