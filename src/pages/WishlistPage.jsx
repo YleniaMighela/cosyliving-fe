@@ -21,9 +21,17 @@ const Wishlist = () => {
 
     return (
         <div className="wishlist-container">
-            <h2 className="wishlist-title">La tua Wishlist</h2>
+
+
+
             {wishlist.length === 0 ? (
-                <p className="empty-message">Nessun prodotto nei preferiti.</p>
+
+                <div className="container_notFound">
+                    <h2 className="wishlist-title">La tua Wishlist</h2>
+                    <FontAwesomeIcon icon={faHeart} className="wishlist-remove" />
+                    <p className="empty-message">Nessun prodotto nei preferiti.</p>
+                    <Link to="/"><button className="bottone_dettaglio">Continua i tuoi acquisti</button></Link>
+                </div>
             ) : (
                 <div className="wishlist-grid">
                     {wishlist.map((product) => {
