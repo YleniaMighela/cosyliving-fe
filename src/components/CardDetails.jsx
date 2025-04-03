@@ -124,9 +124,12 @@ const CardProducts = () => {
         img: imageUrl,
         price: CalcPrice(Number(product.price), Number(newCount), Number(product.discount)),
         quantity: newCount,
+        p_slug: slug
       };
 
       Cart.push(newProduct);
+      console.log(newProduct);
+
     }
 
     localStorage.setItem("Cart", JSON.stringify(Cart));
