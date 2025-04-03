@@ -123,37 +123,7 @@ export default function FormCliente() {
       [e.target.name]: e.target.value,
     });
   }
-  function sendEmail(e) {
-    e.preventDefault();
-    // email conferma ordine al cliente
-    emailjs
-      .sendForm(
-        "service_z4wn6ts",
-        "template_yfwhf7f",
-        e.target,
-        "YwWXI2IpotKYzl-pl"
-      )
-      .then(
-        (result) => { },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-    // email conferma ordine al sitp
-    emailjs
-      .sendForm(
-        "service_z4wn6ts",
-        "template_792darg",
-        e.target,
-        "YwWXI2IpotKYzl-pl"
-      )
-      .then(
-        (result) => { },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  }
+
   // Funzione per gestire l'input dei dati di fatturazione
   function handleBillingData(e) {
     setBillingData({
@@ -187,6 +157,39 @@ export default function FormCliente() {
     setBillingData(initialBillingData);
   }
 
+  function sendEmail(e) {
+    console.log("Ciao");
+
+    // email conferma ordine al cliente
+    emailjs
+      .sendForm(
+        "service_z4wn6ts",
+        "template_yfwhf7f",
+        e.target,
+        "YwWXI2IpotKYzl-pl"
+      )
+      .then(
+        (result) => { },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+    // email conferma ordine al sitp
+    emailjs
+      .sendForm(
+        "service_z4wn6ts",
+        "template_792darg",
+        e.target,
+        "YwWXI2IpotKYzl-pl"
+      )
+      .then(
+        (result) => { },
+        (error) => {
+          console.log(error.text);
+        }
+      );
+  }
+
   function handleSubmit(e) {
     e.preventDefault();
     const totalInfo = {
@@ -205,22 +208,25 @@ export default function FormCliente() {
       .then(() => {
         localStorage.removeItem("Cart");
         setCart([]);
-        console.log(
-          "LocalStorage after clearing:",
-          localStorage.getItem("Cart")
-        );
-        window.location.href = "/order-summary";
+        // console.log(
+        //   "LocalStorage after clearing:",
+        //   localStorage.getItem("Cart")
+        // );
+        sendEmail(e)
+        // window.location.href = "/order-summary";
+
       })
       .catch((err) => {
         console.error(err);
         setErrorMessage("Abbiamo riscontrato un errore, riprova.");
       });
 
+
     handlePersonalSubmit(e);
 
     //Reindirizza alla pagina degli ordini
     setInterval(() => {
-      window.location.href = "/order-summary";
+      // window.location.href = "/order-summary";
     }, 3000);
   }
 
