@@ -45,7 +45,7 @@ export default function CartCard({ dati, setCart }) {
                     <h2>{prop.name}</h2>
                     <p>€{prop.discount_price || prop.price}</p>
                     <div className="flex_cart">
-                        <button
+                        <button className="button_cart"
                             onClick={() =>
                                 prop.quantity === 1
                                     ? EliminateArticle(prop.id)
@@ -58,20 +58,20 @@ export default function CartCard({ dati, setCart }) {
                         {prop.quantity + 1 > prop.q_max ? (
 
                             <>
-                                <button >
+                                <button className="button_cart" >
                                     +
                                 </button>
                                 <br />
-                                <p>Quantità massima raggiunta</p>
+                                <p className="max_quantity_message" > Quantità massima raggiunta</p>
                             </>
 
                         ) : (
-                            <button onClick={() => updateQuantity(prop.id, prop.quantity + 1)}>
+                            <button className="button_cart" onClick={() => updateQuantity(prop.id, prop.quantity + 1)}>
                                 +
                             </button>
                         )}
                     </div>
-                    <button onClick={() => EliminateArticle(prop.id)}>Rimuovi dal carrello</button>
+                    <button className="button_remove" onClick={() => EliminateArticle(prop.id)}>Rimuovi dal carrello</button>
                 </div>
 
             </div>
