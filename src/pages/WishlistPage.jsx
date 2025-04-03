@@ -15,6 +15,7 @@ const Wishlist = () => {
         const updatedWishlist = wishlist.filter((item) => item.id !== id);
         setWishlist(updatedWishlist);
         localStorage.setItem("Wishlist", JSON.stringify(updatedWishlist));
+        window.dispatchEvent(new Event("storage"));
     };
 
 
