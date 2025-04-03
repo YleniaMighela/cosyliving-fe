@@ -6,6 +6,7 @@ import {
   faHouse,
 } from "@fortawesome/free-solid-svg-icons";
 import FilterSearch from "./FilterSearch";
+import { useState, useEffect } from "react";
 
 export default function Header() {
   const categories = [
@@ -17,6 +18,36 @@ export default function Header() {
     "Lampade",
     "Librerie",
   ];
+  const [cart, setCart] = useState([]);
+  const [prods, setProds] = useState(0);
+
+  // Carica il carrello da localStorage al montaggio
+  useEffect(() => {
+    const storedCart = JSON.parse(localStorage.getItem("Cart")) || [];
+    setCart(storedCart);
+
+  }, []);
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const updatedCart = JSON.parse(localStorage.getItem("Cart")) || [];
+      setCart(updatedCart);
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+    console.log(cart);
+
+  }, []);
+
+  // Aggiorna `prods` ogni volta che cambia `cart`
+  useEffect(() => {
+    setProds(cart.length);
+  }, [cart]);
+  // console.log(prods);
+
+  // console.log(cart);
+
 
   return (
     <header>
@@ -61,6 +92,7 @@ export default function Header() {
 
       {/* Sezione Icone */}
       <div className="icons_header">
+        <p>{prods}</p>
         <Link to="/cart">
           <FontAwesomeIcon
             icon={faCartShopping}

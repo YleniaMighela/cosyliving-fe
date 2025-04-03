@@ -131,6 +131,7 @@ const CardProducts = () => {
     }
 
     localStorage.setItem("Cart", JSON.stringify(Cart));
+    window.dispatchEvent(new Event("storage"));
   }
 
   function Call() {
@@ -181,7 +182,7 @@ const CardProducts = () => {
       setText("Aggiungi al carrello")
       setClassb("add-to-cart")
       clearInterval()
-    }, 2700);
+    }, 3000);
   }
 
   function Call() {
