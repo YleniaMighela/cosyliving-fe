@@ -113,13 +113,23 @@ header {
     align-items: center;
 }
 
+
 .input_search {
     padding: 5px;
     margin: 5px;
+    border-radius: 10px;
+    border: 0px;
 }
 
 .button_search {
     padding: 5px;
+    font-size: 15px;
+    padding: 5px 10px;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: Lato;
 }
 
 
@@ -257,6 +267,7 @@ h3 {
     color: rgb(247, 242, 242);
     font-size: 50px;
     margin-left: 20%;
+    border-radius: 5px;
 }
 
 .container_newarrival {
@@ -270,8 +281,9 @@ h3 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    padding-left: 9%;
+    padding-left: 15%;
     width: 100%;
+    margin-bottom: 3%;
 }
 
 .container-tips {
@@ -295,9 +307,21 @@ h3 {
 .tips-left {
     font-size: 25px;
     width: 35%;
-    border: 1px solid black;
+
     text-align: start;
+
     padding: 2%;
+    background-color: #f3efef70;
+}
+
+.justify {
+    text-align: justify;
+}
+
+.justify-centrer {
+    text-align: center;
+
+
 }
 
 .tips-right {
@@ -680,16 +704,20 @@ h3 {
     gap: 10px;
     flex-wrap: wrap;
     padding: 10px;
+    margin-bottom: 3%;
 }
 
 .containersingle_review {
     width: 20%;
     padding: 20px;
-    border: 2px solid black;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     flex-direction: column;
+    text-align: justify;
+    background-color: #f3efef70;
 }
+
+
 
 /* FOOTER */
 
@@ -711,6 +739,7 @@ footer {
     display: flex;
     gap: 15px;
     align-items: center;
+    color: white;
 }
 
 
@@ -937,6 +966,20 @@ h1 {
     font-family: Lato;
 }
 
+#scelta {
+    border-radius: 10px;
+    font-family: Lato;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    font-size: 16px;
+    border: 0;
+}
+
+.ctg {
+    font-family: Lato;
+}
+
 /* MEDIA QUERY */
 
 /* Media Query per schermi da 900px a 1500px */
@@ -1020,15 +1063,16 @@ h1 {
     .new-arrivals-title {
         font-size: 30px;
         width: 80%;
-
+        margin-left: 22%;
     }
 
     .containersingle_review {
         width: 25%;
     }
 
-    .special {
+    #special {
         display: block;
+        margin-bottom: 10%;
     }
 
     .navba {
@@ -1050,29 +1094,40 @@ h1 {
     }
 
     .container-tips {
-        flex-direction: row;
+        flex-direction: column;
         padding: 10px;
         align-items: center;
 
     }
 
-    .tips-left {
-        width: 50%;
-        font-size: 20px;
-        padding: 3%;
-        border: none;
-        order: 0;
+    .tips-left,
+    .img-tips {
+        min-height: 0;
+    }
 
+    .tips-left {
+        width: 100%;
+        font-size: 18px;
+        padding: 5%;
+        border: none;
+        text-align: justify;
+        order: 1;/
+    }
+
+    .bar {
+        width: 95%;
+        margin-bottom: 4%;
+        margin-top: 2%;
     }
 
     .tips-right {
-        width: 50%;
-        order: 0;
+        width: 100%;
+        display: contents;
 
     }
 
     .img-tips {
-        width: 100%;
+        width: 95%;
         margin-top: 0;
 
     }
@@ -1085,6 +1140,16 @@ h1 {
     .icons_header {
         margin: 0px;
 
+    }
+
+    /* REVIEW */
+    .containersingle_review {
+        display: flex;
+        justify-content: left;
+        width: 30%;
+        text-align: justify;
+        border: 2px;
+        background-color: #f3efef70;
     }
 
     #scelta {
@@ -1106,6 +1171,10 @@ h1 {
     .section_ordine {
         display: block;
 
+    }
+
+    .overlay {
+        height: 100%;
     }
 
     #scelta {
@@ -1155,12 +1224,12 @@ h1 {
 
     #special {
         max-height: 500px;
-        margin-right: 20px;
     }
 
     .new-arrivals-title {
         font-size: 20px;
         width: 85%;
+        margin-left: 22%;
 
     }
 
