@@ -124,11 +124,12 @@ const CardProducts = () => {
         img: imageUrl,
         price: CalcPrice(Number(product.price), Number(newCount), Number(product.discount)),
         quantity: newCount,
-        p_slug: slug
+        p_slug: slug,
+        q_max: product.quantity
       };
 
       Cart.push(newProduct);
-      // console.log(newProduct);
+      console.log(newProduct);
 
     }
 

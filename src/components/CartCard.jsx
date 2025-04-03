@@ -54,11 +54,13 @@ export default function CartCard({ dati, setCart }) {
                             -
                         </button>
                         <p>{prop.quantity}</p>
-                        <button
-                            onClick={() => updateQuantity(prop.id, prop.quantity + 1)}
-                        >
-                            +
-                        </button>
+                        {prop.quantity + 1 > prop.q_max ? (
+                            <p>Quantità massima raggiunta</p>
+                        ) : (
+                            <button onClick={() => updateQuantity(prop.id, prop.quantity + 1)}>
+                                +
+                            </button>
+                        )}
                     </div>
                     <button onClick={() => EliminateArticle(prop.id)}>Rimuovi dal carrello</button>
                 </div>
