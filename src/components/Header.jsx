@@ -38,7 +38,7 @@ export default function Header() {
 
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
-    console.log(cart);
+
 
   }, []);
 
@@ -66,7 +66,7 @@ export default function Header() {
   }, []);
 
   useEffect(() => {
-    console.log(wish.lenght);
+
 
     if (wish.length > 0) {
       setClassHeart(" heart-icon red-heart")

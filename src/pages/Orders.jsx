@@ -25,6 +25,7 @@ export default function OrderSummary() {
   if (!orderDetails) {
     return <p>Caricamento ordine...</p>;
   }
+  console.log(orderDetails.products);
 
   return (
     <div className="order-container">
@@ -54,7 +55,8 @@ export default function OrderSummary() {
           ))}
         </ul>
 
-        <h4>Totale: €{orderDetails.total_price}</h4>
+        <h4>Totale: €{Number(orderDetails.total_price).toFixed(2)}</h4>
+
       </div>
     </div>
   );

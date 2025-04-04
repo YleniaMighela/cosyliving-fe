@@ -1,4 +1,4 @@
-import emailjs from "emailjs-com";
+import emailjs, { send } from "emailjs-com";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { faL } from "@fortawesome/free-solid-svg-icons";
@@ -78,7 +78,7 @@ export default function FormCliente() {
   useEffect(() => {
     fetchPrices();
   }, []);
-  console.log(orderProducts);
+  // console.log(orderProducts);
 
   function fetch() {
     axios
@@ -167,7 +167,7 @@ export default function FormCliente() {
         "YwWXI2IpotKYzl-pl"
       )
       .then(
-        (result) => {},
+        (result) => { },
         (error) => {
           console.log(error.text);
         }
@@ -181,7 +181,7 @@ export default function FormCliente() {
         "YwWXI2IpotKYzl-pl"
       )
       .then(
-        (result) => {},
+        (result) => { },
         (error) => {
           console.log(error.text);
         }
@@ -243,6 +243,7 @@ export default function FormCliente() {
       products: cart,
       totalPrice: prezzo_totale.toFixed(2),
     };
+    console.log("carrello", cart);
 
     axios
       .post("http://localhost:3000/order/", totalInfo, {
@@ -266,7 +267,7 @@ export default function FormCliente() {
         console.error(err);
         setErrorMessage("Abbiamo riscontrato un errore, riprova.");
       });
-
+    sendEmail(e)
     handlePersonalSubmit(e);
   }
 
@@ -281,7 +282,9 @@ export default function FormCliente() {
       }));
     }
   }, [orderProducts]);
-
+  function Call() {
+    window.dispatchEvent(new Event("storage"));
+  }
   return (
     <>
       <div className="ciao">
@@ -443,7 +446,7 @@ export default function FormCliente() {
               </div>
               {errorMessage}
               <div>
-                <button type="submit">Invia dati</button>
+                <button type="submit" onClick={() => { Call() }}>Invia dati</button>
               </div>
             </form>
           </section>
