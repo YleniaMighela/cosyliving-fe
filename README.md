@@ -1,12 +1,36 @@
-# React + Vite
+CosyLiving è una web app e-commerce per la vendita di arredamento da salotto, sviluppata in React con backend in Express e database relazionale. Il progetto è stato realizzato durante il corso Boolean, curando ogni fase dello sviluppo: dalla progettazione del database, alla logica backend, fino all’interfaccia utente.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+✨ Funzionalità principali:
+🏠 Homepage con hero section e due aree dedicate:
 
-Currently, two official plugins are available:
+   - Prodotti più venduti
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+   - Ultimi arrivi
 
-## Expanding the ESLint configuration
+🔎 Pagina di ricerca avanzata con filtri dinamici per:
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+   - Nome prodotto
+    
+   - Fascia di prezzo
+    
+   - Data di inserimento
+
+📦 Pagina di dettaglio prodotto con descrizione, immagini e possibilità di aggiunta al carrello
+
+🛒 Carrello interattivo con:
+
+   - Modifica delle quantità
+    
+   - Rimozione articoli
+    
+   - Calcolo del totale in tempo reale
+
+🧾 Checkout completo:
+
+   - Inserimento dati di spedizione e fatturazione
+    
+   - Riepilogo dell’ordine prima della conferma
+
+✉️ Invio automatico di un’email di conferma al cliente e al venditore
+
+L’interfaccia è responsive e progettata per offrire un’esperienza d’acquisto semplice, fluida e moderna, simile a quella dei principali e-commerce presenti sul mercato.
